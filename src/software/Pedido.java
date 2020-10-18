@@ -6,7 +6,7 @@ public class Pedido {
 	private String fechaPedido;
 	private String fechaEntregaPedido;
 	private Cliente cliente;
-	private Postre postre;
+	private Postre[] postre;
 	private String lugarDeEntrega;
 	private double valorTotal;
 	
