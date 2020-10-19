@@ -1,56 +1,62 @@
 package software;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class GuiRegistrarCliente extends JFrame {
 
+	ButtonGroup sexo;
+	JRadioButton masculino, femenino;
+	JTextField nombreCliente, direccion, telefono, edad;
+	JButton guardarButton, limpiarCamposButton;
+
 	public GuiRegistrarCliente() {
 		setTitle("Registrar Cliente");
-		setLayout(new FlowLayout());
+		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		// setLayout(new GridLayout(10,3));
-		
-
-		ButtonGroup sexo;
-		JRadioButton masculino, femenino;
-		JTextField nombreCliente, direccion, telefono, edad;
-		JButton guardarButton, limpiarCamposButton;
 
 		add(new JLabel("Nombre del cliente:"));
 		add(nombreCliente = new JTextField(20));
-		
 
+		/*
+		 * nombreCliente = new JTextField(20); add(nombreCliente);
+		 */
 		add(new JLabel("Dirección:"));
 		add(direccion = new JTextField(25));
 
 		add(new JLabel("Telefono:"));
-		add(telefono = new JTextField(27));
+		add(telefono = new JTextField(26));
 
 		add(new JLabel("Edad:"));
-		add(edad = new JTextField(28));
-		
+		add(edad = new JTextField(7));
+
 		add(new JLabel("Sexo:"));
 		sexo = new ButtonGroup();
 		add(masculino = new JRadioButton("Masculino"));
 		add(femenino = new JRadioButton("Femenino"));
 		sexo.add(masculino);
 		sexo.add(femenino);
-		
-		
-		add(guardarButton = new JButton("Guardar"));
-		
-		add(limpiarCamposButton = new JButton("Limpiar campos"));
 
+		add(guardarButton = new JButton("Guardar"));
+		guardarButton.addActionListener(new Guardar());
+
+		add(limpiarCamposButton = new JButton("Limpiar campos"));
+		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		setSize(400, 500);
 		setResizable(false);// Establecemos si la ventana puede cambiar de tamaño o no
@@ -58,4 +64,27 @@ public class GuiRegistrarCliente extends JFrame {
 		setVisible(true);
 
 	}
+
+	class Guardar implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			JOptionPane.showMessageDialog(null, "Clic en el botón guardar");
+
+		}
+	}
+
+	class LimpiarCampos implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			nombreCliente.setText(null);
+			direccion.setText(null);
+			telefono.setText(null);
+			edad.setText(null);
+			sexo.clearSelection();
+
+			JOptionPane.showMessageDialog(null, "Clic en el botón Limpiar campos");
+
+		}
+	}
+
 }

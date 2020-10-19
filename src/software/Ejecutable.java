@@ -8,6 +8,7 @@ public class Ejecutable {
 		
 		GuiRegistrarCliente cliente = new GuiRegistrarCliente();
 		
+		GuiRegistrarPostre postre = new GuiRegistrarPostre();
 	}
 
 }
