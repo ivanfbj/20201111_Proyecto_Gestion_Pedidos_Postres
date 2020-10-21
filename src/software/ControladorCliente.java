@@ -18,8 +18,8 @@ public class ControladorCliente {
         cliente=new Cliente[n];
         cont=0;
     }
-    public void registrarCliente(String nombre,String nom, String direccion, int telefono, String sexo, int edad){
-     cliente[cont]=new Cliente(nombre,direccion,  telefono, sexo,  edad);
+    public void registrarCliente(String nombreCliente, String direccion, int telefono, String sexo, int edad){
+     cliente[cont]=new Cliente(nombreCliente,direccion,  telefono, sexo,  edad);
      cont++;
     }
     public Cliente[]getCliente(){
