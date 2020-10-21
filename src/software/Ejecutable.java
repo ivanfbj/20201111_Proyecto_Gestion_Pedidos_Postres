@@ -9,7 +9,8 @@ public class Ejecutable {
 		GuiRegistrarCliente cliente = new GuiRegistrarCliente();
 		
 		GuiRegistrarPostre postre = new GuiRegistrarPostre();
-                //este archivo es de daniel
+                
+                GuiRegistrarPedido pedido = new GuiRegistrarPedido();
 	}
 
 }
