@@ -24,7 +24,7 @@ public class GuiRegistrarCliente extends JFrame {
 	JRadioButton masculino, femenino;
 	JTextField nombreCliente, direccion, telefono, edad;
 	JButton guardarButton, limpiarCamposButton;
-	ControladorCliente cliente = new ControladorCliente(10);
+        ControladorCliente [] cliente=new ControladorCliente[10];
 
 	public GuiRegistrarCliente() {
 		setTitle("Registrar Cliente");
@@ -37,7 +37,7 @@ public class GuiRegistrarCliente extends JFrame {
 		/*
 		 * nombreCliente = new JTextField(20); add(nombreCliente);
 		 */
-		add(new JLabel("Direccion:"));
+		add(new JLabel("Direcci�n:"));
 		add(direccion = new JTextField(25));
 
 		add(new JLabel("Telefono:"));
@@ -60,7 +60,7 @@ public class GuiRegistrarCliente extends JFrame {
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		setSize(400, 500);
-		setResizable(false);// Establecemos si la ventana puede cambiar de tamanoo o no
+		setResizable(false);// Establecemos si la ventana puede cambiar de tamaño o no
 		setLocationRelativeTo(null);
 		setVisible(true);
 
@@ -68,9 +68,9 @@ public class GuiRegistrarCliente extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+                    cliente.registrarCliente(guardarButton.getText());//se genera un error en registrar cliente
+                    
 
-			cliente.registrarCliente(nombreCliente.getText(), direccion.getText(),Integer.parseInt(telefono.getText()) , sexo   ,Integer.parseInt(edad.getText()));
-			
 			JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
 
 		}

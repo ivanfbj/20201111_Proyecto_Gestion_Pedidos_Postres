@@ -21,7 +21,7 @@ public class Cliente {
 	public String toString() {
 		return "Nombre del cliente=" + nombreCliente + ", Direccion=" + direccion + ", Telefono=" + telefono + ", Sexo=" + sexo + ", Edad=" + edad;
 	}
-
+//este es el comentario de federico
 	
 	
 	
