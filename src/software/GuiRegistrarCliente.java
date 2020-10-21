@@ -36,7 +36,7 @@ public class GuiRegistrarCliente extends JFrame {
 		/*
 		 * nombreCliente = new JTextField(20); add(nombreCliente);
 		 */
-		add(new JLabel("Dirección:"));
+		add(new JLabel("Direcciï¿½n:"));
 		add(direccion = new JTextField(25));
 
 		add(new JLabel("Telefono:"));
@@ -59,7 +59,7 @@ public class GuiRegistrarCliente extends JFrame {
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		setSize(400, 500);
-		setResizable(false);// Establecemos si la ventana puede cambiar de tamaño o no
+		setResizable(false);// Establecemos si la ventana puede cambiar de tamaï¿½o o no
 		setLocationRelativeTo(null);
 		setVisible(true);
 
@@ -68,7 +68,7 @@ public class GuiRegistrarCliente extends JFrame {
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			JOptionPane.showMessageDialog(null, "Clic en el botón guardar");
+			JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
 
 		}
 	}
@@ -82,7 +82,7 @@ public class GuiRegistrarCliente extends JFrame {
 			edad.setText(null);
 			sexo.clearSelection();
 
-			JOptionPane.showMessageDialog(null, "Clic en el botón Limpiar campos");
+			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
 
 		}
 	}
