@@ -10,24 +10,26 @@ package software;
  * @author FEDERICO
  */
 public class ControladorCliente {
-       private Cliente cliente[];
-    int cont;
-    
-    
-    ControladorCliente(int n){
-        cliente=new Cliente[n];
-        cont=0;
-    }
-    public void registrarCliente(String nombre,String nom, String direccion, int telefono, String sexo, int edad){
-     cliente[cont]=new Cliente(nombre,direccion,  telefono, sexo,  edad);
-     cont++;
-    }
-    public Cliente[]getCliente(){
-        return cliente;
-        
-    }
-    public int getCont(){
-        return cont;
-    }
- 
+	private Cliente cliente[];
+	int cont;
+
+	ControladorCliente(int n) {
+		cliente = new Cliente[n];
+		cont = 0;
+	}
+
+	public void registrarCliente(String nombreCliente, String direccion, int telefono, String sexo, int edad) {
+		cliente[cont] = new Cliente(nombreCliente, direccion, telefono, sexo, edad);
+		cont++;
+	}
+
+	public Cliente[] getCliente() {
+		return cliente;
+
+	}
+
+	public int getCont() {
+		return cont;
+	}
+
 }

@@ -24,7 +24,7 @@ public class GuiRegistrarCliente extends JFrame {
 	JRadioButton masculino, femenino;
 	JTextField nombreCliente, direccion, telefono, edad;
 	JButton guardarButton, limpiarCamposButton;
-        ControladorCliente [] cliente=new ControladorCliente[10];
+	ControladorCliente cliente = new ControladorCliente(10);
 
 	public GuiRegistrarCliente() {
 		setTitle("Registrar Cliente");
@@ -68,8 +68,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-                    cliente.registrarCliente(guardarButton.getText());//se genera un error en registrar cliente
-                    
+			cliente.registrarCliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), "sexo", Integer.parseInt(edad.getText()));
 
 			JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
 
