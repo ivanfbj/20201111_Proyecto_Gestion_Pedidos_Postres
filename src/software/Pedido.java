@@ -28,16 +28,16 @@ public class Pedido {
     @Override
     public String toString() {
         String cadena="";
-        return  "codigoPedido=" + codigoPedido + ", fechaPedido=" + fechaPedido + ", fechaEntregaPedido=" + fechaEntregaPedido +
+        cadena= "codigoPedido=" + codigoPedido + ", fechaPedido=" + fechaPedido + ", fechaEntregaPedido=" + fechaEntregaPedido +
                 ", cliente=" + cliente + ", postre=" + postre + ", lugarDeEntrega=" +
                 lugarDeEntrega + ", valorTotal=" + valorTotal ;
-        /*for (int i = 0; cantpostres >=i; i++) {
+        for (int i = 0; cantpostres >=i; i++) {
            cadena="\ncantidad de postres\n";
            cadena+=postre[i].toString();
-         
+         //se organiza el error para recorre el vector postre
             
         }
-        return cadena;*/
+        return cadena;
     }
 }
     
