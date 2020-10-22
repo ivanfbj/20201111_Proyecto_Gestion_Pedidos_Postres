@@ -50,8 +50,13 @@ public class GuiRegistrarCliente extends JFrame {
 		sexo = new ButtonGroup();
 		add(masculino = new JRadioButton("Masculino"));
 		add(femenino = new JRadioButton("Femenino"));
-		sexo.add(masculino);
-		sexo.add(femenino);
+                /*if(masculino.isSelected()){
+		sexo.add(masculino);}
+                if(femenino.isSelected()){
+		sexo.add(femenino);}*/
+                sexo.add(masculino);
+                 sexo.add(femenino);
+                
 
 		add(guardarButton = new JButton("Guardar"));
 		guardarButton.addActionListener(new Guardar());
@@ -68,9 +73,17 @@ public class GuiRegistrarCliente extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			cliente.registrarCliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), "sexo", Integer.parseInt(edad.getText()));
+                   String sexoseleccionado="";
+                   if(masculino.isSelected()){
+                       sexoseleccionado="masculino";
+                   }
+                   if(femenino.isSelected()){
+                       sexoseleccionado="femenino";
+                   }
+			cliente.registrarCliente(nombreCliente.getText(), direccion.getText(),
+                                Integer.parseInt(telefono.getText()),sexoseleccionado,Integer.parseInt(edad.getText()));
 
-			JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
+			JOptionPane.showMessageDialog(null, "Clic en el boton guardar"+sexoseleccionado);
 
 		}
 	}
