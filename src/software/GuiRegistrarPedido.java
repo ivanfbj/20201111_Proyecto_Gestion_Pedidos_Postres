@@ -67,4 +67,9 @@ public class GuiRegistrarPedido extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
+        class GuardarPedido implements ActionListener{
+            public void actionPerformed(ActionEvent e){
+                
+            }
+        }
 }
