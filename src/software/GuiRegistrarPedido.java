@@ -60,9 +60,9 @@ public class GuiRegistrarPedido extends JFrame {
 		// AnadirPostreButton.addActionListener(new AnadirPostre());
 
 		add(LimpiarCamposButton = new JButton("Limpiar Campos"));
-		// LimpiarCamposButton.addActionListener(new LimpiarCampos());
+		LimpiarCamposButton.addActionListener(new LimpiarCampos());
 
-		setSize(400, 500);
+		setSize(370, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -78,4 +78,19 @@ public class GuiRegistrarPedido extends JFrame {
                 
             }
         }
+        
+        class LimpiarCampos implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			CodigoPedido.setText(null);
+			FechaPedido.setText(null);
+			FechaEntrega.setText(null);
+			LugarEntrega.setText(null);
+                        ValorTotal.setText(null);
+			TiendaDomicilio.clearSelection();
+
+			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+
+		}
+	}
 }
