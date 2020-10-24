@@ -37,7 +37,7 @@ public class GuiRegistrarCliente extends JFrame {
 		/*
 		 * nombreCliente = new JTextField(20); add(nombreCliente);
 		 */
-		add(new JLabel("Direcci�n:"));
+		add(new JLabel("Direccion:"));
 		add(direccion = new JTextField(25));
 
 		add(new JLabel("Telefono:"));
@@ -48,15 +48,16 @@ public class GuiRegistrarCliente extends JFrame {
 
 		add(new JLabel("Sexo:"));
 		sexo = new ButtonGroup();
-		add(masculino = new JRadioButton("Masculino"));
-		add(femenino = new JRadioButton("Femenino"));
-                /*if(masculino.isSelected()){
-		sexo.add(masculino);}
-                if(femenino.isSelected()){
-		sexo.add(femenino);}*/
-                sexo.add(masculino);
-                 sexo.add(femenino);
-                
+		masculino = new JRadioButton("Masculino");
+		masculino.setActionCommand("Masculino");
+		add(masculino);
+
+		femenino = new JRadioButton("Femenino");
+		femenino.setActionCommand("Femenino");
+		add(femenino);
+
+		sexo.add(masculino);
+		sexo.add(femenino);
 
 		add(guardarButton = new JButton("Guardar"));
 		guardarButton.addActionListener(new Guardar());
@@ -65,7 +66,7 @@ public class GuiRegistrarCliente extends JFrame {
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		setSize(400, 500);
-		setResizable(false);// Establecemos si la ventana puede cambiar de tamaño o no
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
 
@@ -73,17 +74,9 @@ public class GuiRegistrarCliente extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-                   String sexoseleccionado="";
-                   if(masculino.isSelected()){
-                       sexoseleccionado="masculino";
-                   }
-                   if(femenino.isSelected()){
-                       sexoseleccionado="femenino";
-                   }
-			cliente.registrarCliente(nombreCliente.getText(), direccion.getText(),
-                                Integer.parseInt(telefono.getText()),sexoseleccionado,Integer.parseInt(edad.getText()));
+			cliente.registrarCliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), sexo.getSelection().getActionCommand(), Integer.parseInt(edad.getText()));
 
-			JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente");
+			JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
 
 		}
 	}
