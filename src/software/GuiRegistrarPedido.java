@@ -40,57 +40,59 @@ public class GuiRegistrarPedido extends JFrame {
 		Postre.addItem("Postre 2");
 		add(Postre);
 
-		add(new JLabel("Lugar entrega:"));
-		add(LugarEntrega = new JTextField(20));
+        add(new JLabel("Lugar entrega:"));
+        add(LugarEntrega = new JTextField(20));
 
-		add(new JLabel("Valor Total:"));
-		add(ValorTotal = new JTextField(26));
+        add(new JLabel("Valor Total:"));
+        add(ValorTotal = new JTextField(26));
 
-		add(new JLabel("Tipo de lugar:"));
-		TiendaDomicilio = new ButtonGroup();
-		add(Tienda = new JRadioButton("Tienda"));
-		add(Domicilio = new JRadioButton("Domicilio"));
-		TiendaDomicilio.add(Tienda);
-		TiendaDomicilio.add(Domicilio);
+        add(new JLabel("Tipo de lugar:"));
+        TiendaDomicilio = new ButtonGroup();
+        add(Tienda = new JRadioButton("Tienda"));
+        add(Domicilio = new JRadioButton("Domicilio"));
+        TiendaDomicilio.add(Tienda);
+        TiendaDomicilio.add(Domicilio);
 
-		add(GuardarPedidoButton = new JButton("Guardar Pedido"));
-		// GuardarPedidoButton.addActionListener(new GuardarPedido());
+        add(GuardarPedidoButton = new JButton("Guardar Pedido"));
+        // GuardarPedidoButton.addActionListener(new GuardarPedido());
 
-		add(AnadirPostreButton = new JButton("Anadir Postre"));
-		// AnadirPostreButton.addActionListener(new AnadirPostre());
+        add(AnadirPostreButton = new JButton("Anadir Postre"));
+        // AnadirPostreButton.addActionListener(new AnadirPostre());
 
-		add(LimpiarCamposButton = new JButton("Limpiar Campos"));
-		LimpiarCamposButton.addActionListener(new LimpiarCampos());
+        add(LimpiarCamposButton = new JButton("Limpiar Campos"));
+        LimpiarCamposButton.addActionListener(new LimpiarCampos());
 
-		setSize(370, 500);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setVisible(true);
-		
+        setSize(370, 500);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
 
-	}
-        class GuardarPedido implements ActionListener{
-            public void actionPerformed(ActionEvent e){
-                pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
-            "cliente",  LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()),Integer.parseInt(Postre.toString()))
-                        ;//se presentan problemas para llamar el contenido del atributo cliente
-                JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
-                
-            }
+    }
+
+    class GuardarPedido implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
+                    "cliente", LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para llamar el contenido del atributo cliente
+            JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
+
         }
-        
-        class LimpiarCampos implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+    }
 
-			CodigoPedido.setText(null);
-			FechaPedido.setText(null);
-			FechaEntrega.setText(null);
-			LugarEntrega.setText(null);
-                        ValorTotal.setText(null);
-			TiendaDomicilio.clearSelection();
+    class LimpiarCampos implements ActionListener {
 
-			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+        public void actionPerformed(ActionEvent e) {
 
-		}
-	}
+            CodigoPedido.setText(null);
+            FechaPedido.setText(null);
+            FechaEntrega.setText(null);
+            LugarEntrega.setText(null);
+            ValorTotal.setText(null);
+            TiendaDomicilio.clearSelection();
+            Postre.setSelectedIndex(0);
+            Cliente.setSelectedIndex(0);
+            JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+
+        }
+    }
 }
