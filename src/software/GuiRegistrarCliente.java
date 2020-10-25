@@ -23,7 +23,7 @@ public class GuiRegistrarCliente extends JFrame {
 	ButtonGroup sexo;
 	JRadioButton masculino, femenino;
 	JTextField nombreCliente, direccion, telefono, edad;
-	JButton guardarButton, limpiarCamposButton;
+	JButton guardarButton, limpiarCamposButton, mostrarClientesButton;
 	ControladorCliente cliente = new ControladorCliente(10);
 
 	public GuiRegistrarCliente() {
@@ -65,6 +65,9 @@ public class GuiRegistrarCliente extends JFrame {
 		add(limpiarCamposButton = new JButton("Limpiar campos"));
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
+		add(mostrarClientesButton = new JButton("Mostrar clientes registrados"));
+		mostrarClientesButton.addActionListener(new MostrarClientesRegistrados());
+
 		setSize(400, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -74,10 +77,22 @@ public class GuiRegistrarCliente extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			cliente.registrarCliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), sexo.getSelection().getActionCommand(), Integer.parseInt(edad.getText()));
 
-			JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
+			if (nombreCliente.getText().equals("") || direccion.getText().equals("") || telefono.getText().equals("") || edad.getText().equals("")
+					|| (masculino.isSelected() == false & femenino.isSelected() == false)) {
+				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados");
+			} else {
 
+				cliente.registrarCliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), sexo.getSelection().getActionCommand(), Integer.parseInt(edad.getText()));
+
+				JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
+
+				nombreCliente.setText(null);
+				direccion.setText(null);
+				telefono.setText(null);
+				edad.setText(null);
+				sexo.clearSelection();
+			}
 		}
 	}
 
@@ -91,6 +106,18 @@ public class GuiRegistrarCliente extends JFrame {
 			sexo.clearSelection();
 
 			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+
+		}
+	}
+
+	class MostrarClientesRegistrados implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			if (cliente.getCont() == 0) {
+				JOptionPane.showMessageDialog(null, "No se han ingresado clientes");
+			} else {
+				JOptionPane.showMessageDialog(null, cliente.getCliente());
+			}
 
 		}
 	}
