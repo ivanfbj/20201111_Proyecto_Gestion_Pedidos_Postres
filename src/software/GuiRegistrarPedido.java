@@ -75,10 +75,17 @@ public class GuiRegistrarPedido extends JFrame {
 			// pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
 			// "cliente", LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
 			// llamar el contenido del atributo cliente
-			JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
+                        
+			JOptionPane.showMessageDialog(null, "los datos fueron almacenados con exito");
 
 		}
 	}
+        class AñadirPostre implements ActionListener {
+            public void actionPerformed (ActionEvent e){
+                Postre.addItem(Postre.getAccessibleContext());
+                JOptionPane.showMessageDialog(null, "el postre se añadio correctamente ");
+            }
+        }
 
 	class LimpiarCampos implements ActionListener {
 
@@ -96,4 +103,5 @@ public class GuiRegistrarPedido extends JFrame {
 
 		}
 	}
+        
 }
