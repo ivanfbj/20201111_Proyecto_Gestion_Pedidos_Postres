@@ -50,7 +50,7 @@ public class GuiRegistrarPostre extends JFrame {
 		add(new JLabel("Temperatura de mantenimiento:"));
 		add(temperaturaMantenimiento = new JTextField(10));
 
-		add(new JLabel("Tiempo máximo sin refrigeración:"));
+		add(new JLabel("Tiempo maximo sin refrigeracion:"));
 		add(tiempoMaximoSinRefrigeracionHoras = new JTextField(9));
 
 		add(guardarButton = new JButton("Guardar"));
@@ -60,7 +60,7 @@ public class GuiRegistrarPostre extends JFrame {
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		setSize(400, 500);
-		setResizable(false);// Establecemos si la ventana puede cambiar de tamaño o no
+		setResizable(false);// Establecemos si la ventana puede cambiar de tamaï¿½o o no
 		setLocationRelativeTo(null);
 		setVisible(true);
 
@@ -69,7 +69,7 @@ public class GuiRegistrarPostre extends JFrame {
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			JOptionPane.showMessageDialog(null, "Clic en el botón guardar");
+			JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
 
 		}
 	}
@@ -85,7 +85,7 @@ public class GuiRegistrarPostre extends JFrame {
 			tiempoMaximoSinRefrigeracionHoras.setText(null);
 			hojaldreRefrigeradoButtonGroup.clearSelection();
 
-			JOptionPane.showMessageDialog(null, "Clic en el botón Limpiar campos");
+			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
 
 		}
 	}
