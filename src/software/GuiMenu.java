@@ -11,7 +11,7 @@ public class GuiMenu extends JFrame {
 	JMenuItem registrarCliente, registrarPostre, registrarPedido, cantidadDePostresXPedido, edadPromedioClienteDomicilio;
 
 	public GuiMenu() {
-		setSize(600, 200);
+		//setSize(600, 200);
 
 		setLocationRelativeTo(null);
 		FlowLayout F = new FlowLayout();
@@ -45,6 +45,7 @@ public class GuiMenu extends JFrame {
 		edadPromedioClienteDomicilio = new JMenuItem("Edad promedio de clientes domicilio");
 		informe.add(edadPromedioClienteDomicilio);
 
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 

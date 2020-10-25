@@ -80,10 +80,10 @@ public class GuiRegistrarPedido extends JFrame {
 
 		}
 	}
-        class AñadirPostre implements ActionListener {
+        class AnadirPostre implements ActionListener {
             public void actionPerformed (ActionEvent e){
                 Postre.addItem(Postre.getAccessibleContext());
-                JOptionPane.showMessageDialog(null, "el postre se añadio correctamente ");
+                JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
             }
         }
 
