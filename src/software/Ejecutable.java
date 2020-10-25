@@ -6,11 +6,11 @@ public class Ejecutable {
 
 		GuiMenu menu = new GuiMenu();
 
-		 new GuiRegistrarCliente();
+		new GuiRegistrarCliente();
 
-		 new GuiRegistrarPostre();
+		new GuiRegistrarPostre();
 
-		 new GuiRegistrarPedido();
+		new GuiRegistrarPedido();
 	}
 
 }

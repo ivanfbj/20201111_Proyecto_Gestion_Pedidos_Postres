@@ -7,8 +7,8 @@ public class Cliente {
 	private int telefono;
 	private String sexo;
 	private int edad;
-	
-	//Constructor explicito
+
+	// Constructor explicito
 	public Cliente(String nombreCliente, String direccion, int telefono, String sexo, int edad) {
 		this.nombreCliente = nombreCliente;
 		this.direccion = direccion;
@@ -22,7 +22,5 @@ public class Cliente {
 		return "Nombre del cliente=" + nombreCliente + ", Direccion=" + direccion + ", Telefono=" + telefono + ", Sexo=" + sexo + ", Edad=" + edad;
 	}
 //este es el comentario de federico
-	
-	
-	
+
 }
