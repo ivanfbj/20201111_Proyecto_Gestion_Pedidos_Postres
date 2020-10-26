@@ -37,11 +37,12 @@ public class GuiRegistrarPedido extends JFrame {
 		add(new JLabel("Postre:"));
 		Postre = new JComboBox();
 		Postre.addItem("Postre 1");
-		Postre.addItem("Postre 2");
-		add(Postre);
-
-		add(new JLabel("Lugar entrega:"));
-		add(LugarEntrega = new JTextField(20));
+                Postre.addItem("Postre 2");
+                add(Postre);
+                Postre.addActionListener(new AccionPostre());
+            
+            add(new JLabel("Lugar entrega:"));
+            add(LugarEntrega = new JTextField(20));
 
 		add(new JLabel("Valor Total:"));
 		add(ValorTotal = new JTextField(26));
@@ -90,6 +91,13 @@ public class GuiRegistrarPedido extends JFrame {
 			Cliente.setSelectedIndex(0);
 		}
                 
+               class AccionPostre implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+                    
+                    
+                
+                }
 	}
         class AnadirPostre implements ActionListener {
             public void actionPerformed (ActionEvent e){
@@ -98,21 +106,22 @@ public class GuiRegistrarPedido extends JFrame {
             }
         }
 
-	class LimpiarCampos implements ActionListener {
+        class LimpiarCampos implements ActionListener {
 
-		public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
 
-			CodigoPedido.setText(null);
-			FechaPedido.setText(null);
-			FechaEntrega.setText(null);
-			LugarEntrega.setText(null);
-			ValorTotal.setText(null);
-			TiendaDomicilio.clearSelection();
-			Postre.setSelectedIndex(0);
-			Cliente.setSelectedIndex(0);
-			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+                CodigoPedido.setText(null);
+                FechaPedido.setText(null);
+                FechaEntrega.setText(null);
+                LugarEntrega.setText(null);
+                ValorTotal.setText(null);
+                TiendaDomicilio.clearSelection();
+                Postre.setSelectedIndex(0);
+                Cliente.setSelectedIndex(0);
+                JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
 
-		}
-	}
-        
+            }
+        }
+
+    }
 }

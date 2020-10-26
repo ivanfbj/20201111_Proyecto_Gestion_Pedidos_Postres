@@ -23,7 +23,27 @@ public class Pedido {
 		cantpostres = 0;
 
 	}
-
+        
+        public void AgregarPostre (Postre p){
+            
+            if (cantpostres<postre.length){
+                postre[cantpostres]=p;
+                cantpostres++;
+                        
+            }
+                
+            
+        }
+        
+        public void CalcularTotal(){
+            
+           double ContT=0;
+           
+           for(int i=0;i<cantpostres;i++){
+               //sumar la cantidad del valir de los postres y (asignar resultado del acumulador en totalValor(porfuera del ciclo))
+           }            
+        }
+        
 	@Override
 	public String toString() {
 		String cadena = "";
