@@ -3,6 +3,7 @@ package software;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,15 +13,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import software.GuiRegistrarCliente.Guardar;
-import software.GuiRegistrarCliente.LimpiarCampos;
-
 public class GuiRegistrarPostre extends JFrame {
 
 	JTextField nombreDelPostre, cantidadDeCalorias, fechaVencimiento, precio, temperaturaMantenimiento, tiempoMaximoSinRefrigeracionHoras;
 	ButtonGroup hojaldreRefrigeradoButtonGroup;
 	JRadioButton esHojaldrado, esRefrigerado;
-	JButton guardarButton, limpiarCamposButton;
+	JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
+
+	static ArrayList<Postre> postres = new ArrayList<Postre>();
 
 	public GuiRegistrarPostre() {
 		setTitle("Registrar Postre");
@@ -59,8 +59,11 @@ public class GuiRegistrarPostre extends JFrame {
 		add(limpiarCamposButton = new JButton("Limpiar campos"));
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
+		add(mostrarPostresButton = new JButton("Mostrar postres registrados"));
+		mostrarPostresButton.addActionListener(new AccionMostrarRegistros());
+
 		setSize(400, 500);
-		setResizable(false);// Establecemos si la ventana puede cambiar de tama�o o no
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
 
@@ -68,9 +71,13 @@ public class GuiRegistrarPostre extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
+					Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected());
+			postres.add(postreGuardado);
+			// JOptionPane.showMessageDialog(null,"El radio botón está " + esHojaldrado.isSelected());
 
-			JOptionPane.showMessageDialog(null, "Clic en el boton guardar");
-
+			JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
+			// Borrar campos al guardar
 		}
 	}
 
@@ -86,6 +93,19 @@ public class GuiRegistrarPostre extends JFrame {
 			hojaldreRefrigeradoButtonGroup.clearSelection();
 
 			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+
+		}
+	}
+
+	class AccionMostrarRegistros implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			String listadoDePostres = "";
+			for (int i = 0; i < postres.size(); i++) {
+				listadoDePostres += postres.get(i).toString() + "\n";
+
+			}
+			JOptionPane.showMessageDialog(null, listadoDePostres);
 
 		}
 	}

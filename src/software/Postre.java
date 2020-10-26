@@ -22,4 +22,10 @@ public class Postre {
 		this.esHojaldrado = esHojaldrado;
 	}
 
+	@Override
+	public String toString() {
+		return "Nombre del postre=" + nombrePostre + ", Cantidad de calorias=" + cantidadDeCalorias + ", Fecha de vencimiento=" + fechaVencimiento + ", Precio=" + precio
+				+ ", Temperatura de mantenimiento=" + temperaturaMantenimiento + ", Tiempo máximo sin refrigeración (horas)=" + tiempoMaximoSinRefrigeracionHoras + ", Hojaldrado=" + esHojaldrado;
+	}
+
 }
