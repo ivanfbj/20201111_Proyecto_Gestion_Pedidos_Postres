@@ -76,6 +76,15 @@ public class GuiRegistrarPedido extends JFrame {
 			// "cliente", LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
 			// llamar el contenido del atributo cliente
                         
+			CodigoPedido.setText(null);
+			FechaPedido.setText(null);
+			FechaEntrega.setText(null);
+			LugarEntrega.setText(null);
+			ValorTotal.setText(null);
+			TiendaDomicilio.clearSelection();
+			Postre.setSelectedIndex(0);
+			Cliente.setSelectedIndex(0);
+                        
 			JOptionPane.showMessageDialog(null, "los datos fueron almacenados con exito");
 
 		}
