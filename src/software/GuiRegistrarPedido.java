@@ -72,13 +72,24 @@ public class GuiRegistrarPedido extends JFrame {
 	class GuardarPedido implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			// pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
+			//pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
 			// "cliente", LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
 			// llamar el contenido del atributo cliente
                         
+	
+                        
 			JOptionPane.showMessageDialog(null, "los datos fueron almacenados con exito");
 
+                        CodigoPedido.setText(null);
+			FechaPedido.setText(null);
+			FechaEntrega.setText(null);
+			LugarEntrega.setText(null);
+			ValorTotal.setText(null);
+			TiendaDomicilio.clearSelection();
+			Postre.setSelectedIndex(0);
+			Cliente.setSelectedIndex(0);
 		}
+                
 	}
         class AnadirPostre implements ActionListener {
             public void actionPerformed (ActionEvent e){

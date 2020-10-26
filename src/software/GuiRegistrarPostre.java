@@ -15,99 +15,109 @@ import javax.swing.JTextField;
 
 public class GuiRegistrarPostre extends JFrame {
 
-	JTextField nombreDelPostre, cantidadDeCalorias, fechaVencimiento, precio, temperaturaMantenimiento, tiempoMaximoSinRefrigeracionHoras;
-	ButtonGroup hojaldreRefrigeradoButtonGroup;
-	JRadioButton esHojaldrado, esRefrigerado;
-	JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
+    JTextField nombreDelPostre, cantidadDeCalorias, fechaVencimiento, precio, temperaturaMantenimiento, tiempoMaximoSinRefrigeracionHoras;
+    ButtonGroup hojaldreRefrigeradoButtonGroup;
+    JRadioButton esHojaldrado, esRefrigerado;
+    JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
 
-	static ArrayList<Postre> postres = new ArrayList<Postre>();
+    static ArrayList<Postre> postres = new ArrayList<Postre>();
 
-	public GuiRegistrarPostre() {
-		setTitle("Registrar Postre");
-		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		// setLayout(null);
-		// pack();
+    public GuiRegistrarPostre() {
+        setTitle("Registrar Postre");
+        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        // setLayout(null);
+        // pack();
 
-		add(new JLabel("Nombre del postre:"));
-		add(nombreDelPostre = new JTextField(20));
+        add(new JLabel("Nombre del postre:"));
+        add(nombreDelPostre = new JTextField(20));
 
-		add(new JLabel("Cantidad de calorias:"));
-		add(cantidadDeCalorias = new JTextField(20));
+        add(new JLabel("Cantidad de calorias:"));
+        add(cantidadDeCalorias = new JTextField(20));
 
-		add(new JLabel("Fecha de vencimiento:"));
-		add(fechaVencimiento = new JTextField(20));
+        add(new JLabel("Fecha de vencimiento:"));
+        add(fechaVencimiento = new JTextField(20));
 
-		add(new JLabel("Precio:"));
-		add(precio = new JTextField(7));
+        add(new JLabel("Precio:"));
+        add(precio = new JTextField(7));
 
-		// add(new JLabel("Tipo de postre:"));
-		hojaldreRefrigeradoButtonGroup = new ButtonGroup();
-		add(esHojaldrado = new JRadioButton("Hojaldrado"));
-		add(esRefrigerado = new JRadioButton("Refrigerado"));
-		hojaldreRefrigeradoButtonGroup.add(esHojaldrado);
-		hojaldreRefrigeradoButtonGroup.add(esRefrigerado);
+        // add(new JLabel("Tipo de postre:"));
+        hojaldreRefrigeradoButtonGroup = new ButtonGroup();
+        add(esHojaldrado = new JRadioButton("Hojaldrado"));
+        add(esRefrigerado = new JRadioButton("Refrigerado"));
+        hojaldreRefrigeradoButtonGroup.add(esHojaldrado);
+        hojaldreRefrigeradoButtonGroup.add(esRefrigerado);
 
-		add(new JLabel("Temperatura de mantenimiento:"));
-		add(temperaturaMantenimiento = new JTextField(10));
+        add(new JLabel("Temperatura de mantenimiento:"));
+        add(temperaturaMantenimiento = new JTextField(10));
 
-		add(new JLabel("Tiempo maximo sin refrigeracion:"));
-		add(tiempoMaximoSinRefrigeracionHoras = new JTextField(9));
+        add(new JLabel("Tiempo maximo sin refrigeracion:"));
+        add(tiempoMaximoSinRefrigeracionHoras = new JTextField(9));
 
-		add(guardarButton = new JButton("Guardar"));
-		guardarButton.addActionListener(new Guardar());
+        add(guardarButton = new JButton("Guardar"));
+        guardarButton.addActionListener(new Guardar());
 
-		add(limpiarCamposButton = new JButton("Limpiar campos"));
-		limpiarCamposButton.addActionListener(new LimpiarCampos());
+        add(limpiarCamposButton = new JButton("Limpiar campos"));
+        limpiarCamposButton.addActionListener(new LimpiarCampos());
 
-		add(mostrarPostresButton = new JButton("Mostrar postres registrados"));
-		mostrarPostresButton.addActionListener(new AccionMostrarRegistros());
+        add(mostrarPostresButton = new JButton("Mostrar postres registrados"));
+        mostrarPostresButton.addActionListener(new AccionMostrarRegistros());
 
-		setSize(400, 500);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setVisible(true);
+        setSize(400, 500);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
 
-	}
+    }
 
-	class Guardar implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
-					Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected());
-			postres.add(postreGuardado);
-			// JOptionPane.showMessageDialog(null,"El radio botón está " + esHojaldrado.isSelected());
+    class Guardar implements ActionListener {
 
-			JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
-			// Borrar campos al guardar
-		}
-	}
+        public void actionPerformed(ActionEvent e) {
+            Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
+                    Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected());
+            postres.add(postreGuardado);
+            //JOptionPane.showMessageDialog(null, "El radio botón está " + esHojaldrado.isSelected());
 
-	class LimpiarCampos implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+            JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
 
-			nombreDelPostre.setText(null);
-			cantidadDeCalorias.setText(null);
-			fechaVencimiento.setText(null);
-			precio.setText(null);
-			temperaturaMantenimiento.setText(null);
-			tiempoMaximoSinRefrigeracionHoras.setText(null);
-			hojaldreRefrigeradoButtonGroup.clearSelection();
+            nombreDelPostre.setText(null);
+            cantidadDeCalorias.setText(null);
+            fechaVencimiento.setText(null);
+            precio.setText(null);
+            temperaturaMantenimiento.setText(null);
+            tiempoMaximoSinRefrigeracionHoras.setText(null);
+            hojaldreRefrigeradoButtonGroup.clearSelection();
+        }
+    }
 
-			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+    class LimpiarCampos implements ActionListener {
 
-		}
-	}
+        public void actionPerformed(ActionEvent e) {
 
-	class AccionMostrarRegistros implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+            nombreDelPostre.setText(null);
+            cantidadDeCalorias.setText(null);
+            fechaVencimiento.setText(null);
+            precio.setText(null);
+            temperaturaMantenimiento.setText(null);
+            tiempoMaximoSinRefrigeracionHoras.setText(null);
+            hojaldreRefrigeradoButtonGroup.clearSelection();
 
-			String listadoDePostres = "";
-			for (int i = 0; i < postres.size(); i++) {
-				listadoDePostres += postres.get(i).toString() + "\n";
+            JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
 
-			}
-			JOptionPane.showMessageDialog(null, listadoDePostres);
+        }
+    }
 
-		}
-	}
+    class AccionMostrarRegistros implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+
+            String listadoDePostres = "";
+            for (int i = 0; i < postres.size(); i++) {
+                listadoDePostres += postres.get(i).toString() + "\n";
+
+            }
+            JOptionPane.showMessageDialog(null, listadoDePostres);
+
+        }
+    }
 
 }
