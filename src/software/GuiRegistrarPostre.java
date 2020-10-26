@@ -71,29 +71,13 @@ public class GuiRegistrarPostre extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
+					Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected());
+			postres.add(postreGuardado);
+			// JOptionPane.showMessageDialog(null,"El radio botón está " + esHojaldrado.isSelected());
 
-			if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")
-					|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")
-					|| (esHojaldrado.isSelected() == false & esRefrigerado.isSelected() == false)) {
-
-				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados","FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
-
-			} else {
-
-				Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
-						Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected());
-				postres.add(postreGuardado);
-
-				JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
-
-				nombreDelPostre.setText(null);
-				cantidadDeCalorias.setText(null);
-				fechaVencimiento.setText(null);
-				precio.setText(null);
-				temperaturaMantenimiento.setText(null);
-				tiempoMaximoSinRefrigeracionHoras.setText(null);
-				hojaldreRefrigeradoButtonGroup.clearSelection();
-			}
+			JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
+			// Borrar campos al guardar
 		}
 	}
 
@@ -107,6 +91,8 @@ public class GuiRegistrarPostre extends JFrame {
 			temperaturaMantenimiento.setText(null);
 			tiempoMaximoSinRefrigeracionHoras.setText(null);
 			hojaldreRefrigeradoButtonGroup.clearSelection();
+
+			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
 
 		}
 	}
