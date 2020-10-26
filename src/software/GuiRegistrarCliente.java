@@ -80,7 +80,9 @@ public class GuiRegistrarCliente extends JFrame {
 
 			if (nombreCliente.getText().equals("") || direccion.getText().equals("") || telefono.getText().equals("") || edad.getText().equals("")
 					|| (masculino.isSelected() == false & femenino.isSelected() == false)) {
-				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados");
+				
+				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados","FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+			
 			} else {
 
 				cliente.registrarCliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), sexo.getSelection().getActionCommand(), Integer.parseInt(edad.getText()));
@@ -105,7 +107,6 @@ public class GuiRegistrarCliente extends JFrame {
 			edad.setText(null);
 			sexo.clearSelection();
 
-			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
 
 		}
 	}
