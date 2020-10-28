@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -24,7 +25,8 @@ public class GuiRegistrarCliente extends JFrame {
 	JRadioButton masculino, femenino;
 	JTextField nombreCliente, direccion, telefono, edad;
 	JButton guardarButton, limpiarCamposButton, mostrarClientesButton;
-	ControladorCliente cliente = new ControladorCliente(10);
+        static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
+	//ControladorCliente cliente = new ControladorCliente(10);
 
 	public GuiRegistrarCliente() {
 		setTitle("Registrar Cliente");
@@ -85,7 +87,8 @@ public class GuiRegistrarCliente extends JFrame {
 			
 			} else {
 
-				cliente.registrarCliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), sexo.getSelection().getActionCommand(), Integer.parseInt(edad.getText()));
+				Cliente clientes= new Cliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), sexo.getSelection().getActionCommand(), Integer.parseInt(edad.getText()));
+                                cliente.add(clientes);
 
 				JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
 
@@ -114,11 +117,12 @@ public class GuiRegistrarCliente extends JFrame {
 	class MostrarClientesRegistrados implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			if (cliente.getCont() == 0) {
-				JOptionPane.showMessageDialog(null, "No se han ingresado clientes");
-			} else {
-				JOptionPane.showMessageDialog(null, cliente.getCliente());
-			}
+			String listadoClientes="";
+                        for (int i = 0; i < cliente.size(); i++) {
+                       listadoClientes+=cliente.get(i).toString()+"\n";
+                        
+                    }
+                        JOptionPane.showMessageDialog(null, listadoClientes);
 
 		}
 	}
