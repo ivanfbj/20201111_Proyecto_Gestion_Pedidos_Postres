@@ -23,29 +23,14 @@ public class Pedido {
 		cantpostres = 0;
 
 	}
-
-        
-
-
-        
-        public void AgregarPostre (Postre p){
-            
-            if (cantpostres<postre.length){
-                postre[cantpostres]=p;
+       /* public void agregarPotre(Postre recibirpostre){
+            if(cantpostres<postre.length){
+                postre[cantpostres]=recibirpostre;
                 cantpostres++;
-                        
             }
-                
-            
-        }
-        
-        public void CalcularTotal(){
-            
-           double ContT=0;
-           
-           for(int i=0;i<cantpostres;i++){
-               //sumar la cantidad del valir de los postres y (asignar resultado del acumulador en totalValor(porfuera del ciclo))
-           }            
+        }*/
+        public void calcularvalortotal(){
+            //recorrer el vector, definir un acumulador de pecios
         }
         
 

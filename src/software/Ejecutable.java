@@ -8,10 +8,9 @@ public class Ejecutable {
 
 		//new GuiRegistrarCliente();
 
-		new GuiRegistrarPedido();
 		new GuiRegistrarPostre();
 
-		
+		//new GuiRegistrarPedido();
 	}
 
 }
