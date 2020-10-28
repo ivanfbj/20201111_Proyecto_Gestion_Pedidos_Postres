@@ -8,10 +8,11 @@ public class Postre {
 	private double precio;
 	private double temperaturaMantenimiento;
 	private double tiempoMaximoSinRefrigeracionHoras;
+	private boolean esHorneado;
 	private boolean esHojaldrado;
-
+	
 	public Postre(String nombrePostre, double cantidadDeCalorias, String fechaVencimiento, double precio, double temperaturaMantenimiento, double tiempoMaximoSinRefrigeracionHoras,
-			boolean esHojaldrado) {
+			boolean esHorneado,boolean esHojaldrado) {
 
 		this.nombrePostre = nombrePostre;
 		this.cantidadDeCalorias = cantidadDeCalorias;
@@ -19,13 +20,18 @@ public class Postre {
 		this.precio = precio;
 		this.temperaturaMantenimiento = temperaturaMantenimiento;
 		this.tiempoMaximoSinRefrigeracionHoras = tiempoMaximoSinRefrigeracionHoras;
+		this.esHorneado = esHorneado;
 		this.esHojaldrado = esHojaldrado;
 	}
 
 	@Override
 	public String toString() {
 		return "Nombre del postre=" + nombrePostre + ", Cantidad de calorias=" + cantidadDeCalorias + ", Fecha de vencimiento=" + fechaVencimiento + ", Precio=" + precio
-				+ ", Temperatura de mantenimiento=" + temperaturaMantenimiento + ", Tiempo máximo sin refrigeración (horas)=" + tiempoMaximoSinRefrigeracionHoras + ", Hojaldrado=" + esHojaldrado;
+				+ ", Temperatura de mantenimiento=" + temperaturaMantenimiento + ", Tiempo máximo sin refrigeración (horas)=" + tiempoMaximoSinRefrigeracionHoras + ", Horneado=" + esHorneado + ", Hojaldrado=" + esHojaldrado;
+	}
+	
+	public String getNombrePostre() {
+		return nombrePostre;
 	}
 
 }

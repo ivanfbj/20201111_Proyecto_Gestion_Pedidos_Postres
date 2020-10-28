@@ -7,12 +7,14 @@ import java.awt.event.*;
 public class GuiRegistrarPedido extends JFrame {
 
 	JTextField CodigoPedido, FechaPedido, FechaEntrega, LugarEntrega, ValorTotal;
-	JComboBox Cliente, Postre;
+	JComboBox <String> Cliente, postre;
 	JRadioButton Tienda, Domicilio;
 	ButtonGroup TiendaDomicilio;
 	JButton GuardarPedidoButton, AnadirPostreButton, LimpiarCamposButton;
 
 	ControladorPedido pedidos = new ControladorPedido(10);
+	
+	
 
 	public GuiRegistrarPedido() {
 
@@ -29,20 +31,23 @@ public class GuiRegistrarPedido extends JFrame {
 		add(FechaEntrega = new JTextField(20));
 
 		add(new JLabel("Cliente:"));
-		Cliente = new JComboBox();
+		Cliente = new JComboBox<>();
 		Cliente.addItem("Cliente 1");
 		Cliente.addItem("Cliente 2");
 		add(Cliente);
 
 		add(new JLabel("Postre:"));
-		Postre = new JComboBox();
-		Postre.addItem("Postre 1");
-                Postre.addItem("Postre 2");
-                add(Postre);
-                Postre.addActionListener(new AccionPostre());
-            
-            add(new JLabel("Lugar entrega:"));
-            add(LugarEntrega = new JTextField(20));
+		postre = new JComboBox<String>();
+		for (int i = 0; i < GuiRegistrarPostre.postres.size(); i++) {
+			postre.addItem(String.valueOf(GuiRegistrarPostre.postres.get(i).getNombrePostre()));
+		}
+		
+
+		add(postre);
+		postre.addActionListener(new AccionPostre());
+
+		add(new JLabel("Lugar entrega:"));
+		add(LugarEntrega = new JTextField(20));
 
 		add(new JLabel("Valor Total:"));
 		add(ValorTotal = new JTextField(26));
@@ -71,57 +76,51 @@ public class GuiRegistrarPedido extends JFrame {
 	}
 
 	class GuardarPedido implements ActionListener {
-
 		public void actionPerformed(ActionEvent e) {
-			//pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
+			// pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
 			// "cliente", LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
 			// llamar el contenido del atributo cliente
-                        
-	
-                        
+
 			JOptionPane.showMessageDialog(null, "los datos fueron almacenados con exito");
 
-                        CodigoPedido.setText(null);
+			CodigoPedido.setText(null);
 			FechaPedido.setText(null);
 			FechaEntrega.setText(null);
 			LugarEntrega.setText(null);
 			ValorTotal.setText(null);
 			TiendaDomicilio.clearSelection();
-			Postre.setSelectedIndex(0);
+			postre.setSelectedIndex(0);
 			Cliente.setSelectedIndex(0);
 		}
-                
-               class AccionPostre implements ActionListener {
 
-		public void actionPerformed(ActionEvent e) {
-                    
-                    
-                
-                }
 	}
-        class AnadirPostre implements ActionListener {
-            public void actionPerformed (ActionEvent e){
-                Postre.addItem(Postre.getAccessibleContext());
-                JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
-            }
-        }
 
-        class LimpiarCampos implements ActionListener {
+	class AccionPostre implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
 
-            public void actionPerformed(ActionEvent e) {
+		}
+	}
 
-                CodigoPedido.setText(null);
-                FechaPedido.setText(null);
-                FechaEntrega.setText(null);
-                LugarEntrega.setText(null);
-                ValorTotal.setText(null);
-                TiendaDomicilio.clearSelection();
-                Postre.setSelectedIndex(0);
-                Cliente.setSelectedIndex(0);
-                JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+	class AnadirPostre implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			postre.addItem(String.valueOf(postre.getAccessibleContext()));
+			JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
+		}
+	}
 
-            }
-        }
+	class LimpiarCampos implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
 
-    }
+			CodigoPedido.setText(null);
+			FechaPedido.setText(null);
+			FechaEntrega.setText(null);
+			LugarEntrega.setText(null);
+			ValorTotal.setText(null);
+			TiendaDomicilio.clearSelection();
+			postre.setSelectedIndex(0);
+			Cliente.setSelectedIndex(0);
+			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+
+		}
+	}
 }
