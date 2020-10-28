@@ -23,6 +23,16 @@ public class Pedido {
 		cantpostres = 0;
 
 	}
+       /* public void agregarPotre(Postre recibirpostre){
+            if(cantpostres<postre.length){
+                postre[cantpostres]=recibirpostre;
+                cantpostres++;
+            }
+        }*/
+        public void calcularvalortotal(){
+            //recorrer el vector, definir un acumulador de pecios
+        }
+        
 
 	@Override
 	public String toString() {
