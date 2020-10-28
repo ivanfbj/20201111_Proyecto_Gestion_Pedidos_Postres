@@ -28,4 +28,8 @@ public class Postre {
 				+ ", Temperatura de mantenimiento=" + temperaturaMantenimiento + ", Tiempo máximo sin refrigeración (horas)=" + tiempoMaximoSinRefrigeracionHoras + ", Hojaldrado=" + esHojaldrado;
 	}
 
+    public String getNombrePostre() {
+        return nombrePostre;
+    }
+
 }
