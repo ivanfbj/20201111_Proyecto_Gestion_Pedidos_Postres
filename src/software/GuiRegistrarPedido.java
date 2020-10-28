@@ -7,12 +7,14 @@ import java.awt.event.*;
 public class GuiRegistrarPedido extends JFrame {
 
 	JTextField CodigoPedido, FechaPedido, FechaEntrega, LugarEntrega, ValorTotal;
-	JComboBox Cliente, Postre;
+	JComboBox<String> Cliente, Postre;
+        
 	JRadioButton Tienda, Domicilio;
 	ButtonGroup TiendaDomicilio;
 	JButton GuardarPedidoButton, AnadirPostreButton, LimpiarCamposButton;
 
 	ControladorPedido pedidos = new ControladorPedido(10);
+        
 
 	public GuiRegistrarPedido() {
 
@@ -29,15 +31,16 @@ public class GuiRegistrarPedido extends JFrame {
 		add(FechaEntrega = new JTextField(20));
 
 		add(new JLabel("Cliente:"));
-		Cliente = new JComboBox();
-		Cliente.addItem("Cliente 1");
-		Cliente.addItem("Cliente 2");
+		Cliente = new JComboBox<String>();
+                for (int i = 0; i < GuiRegistrarCliente.cliente.size(); i++) 
+		Cliente.addItem(GuiRegistrarCliente.cliente.get(i).getNombreCliente());
+		
 		add(Cliente);
 
 		add(new JLabel("Postre:"));
-		Postre = new JComboBox();
-		Postre.addItem("Postre 1");
-		Postre.addItem("Postre 2");
+		Postre = new JComboBox<String>();
+                for (int i = 0; i <GuiRegistrarPostre.postres.size(); i++) 
+		Postre.addItem(String.valueOf(GuiRegistrarPostre.postres.get(i).getNombrePostre()));
 		add(Postre);
 
 		add(new JLabel("Lugar entrega:"));
@@ -72,10 +75,12 @@ public class GuiRegistrarPedido extends JFrame {
 	class GuardarPedido implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			//pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
-			// "cliente", LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
+		//pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
+			//Cliente, LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
 			// llamar el contenido del atributo cliente
-                        
+                 
+                    
+                
 	
                         
 			JOptionPane.showMessageDialog(null, "los datos fueron almacenados con exito");
@@ -93,7 +98,7 @@ public class GuiRegistrarPedido extends JFrame {
 	}
         class AnadirPostre implements ActionListener {
             public void actionPerformed (ActionEvent e){
-                Postre.addItem(Postre.getAccessibleContext());
+                Postre.addItem(String.valueOf(Postre.getAccessibleContext()));
                 JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
             }
         }
