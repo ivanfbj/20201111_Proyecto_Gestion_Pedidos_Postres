@@ -1,23 +1,15 @@
 package software;
 
+import javax.swing.*;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 public class GuiRegistrarPostre extends JFrame {
 
 	JTextField nombreDelPostre, cantidadDeCalorias, fechaVencimiento, precio, temperaturaMantenimiento, tiempoMaximoSinRefrigeracionHoras;
 	ButtonGroup hojaldreRefrigeradoButtonGroup;
-	JRadioButton esHojaldrado, esRefrigerado;
+	JRadioButton esHorneado, esRefrigerado, esHojaldrado;
 	JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
 
 	static ArrayList<Postre> postres = new ArrayList<Postre>();
@@ -42,10 +34,11 @@ public class GuiRegistrarPostre extends JFrame {
 
 		// add(new JLabel("Tipo de postre:"));
 		hojaldreRefrigeradoButtonGroup = new ButtonGroup();
-		add(esHojaldrado = new JRadioButton("Hojaldrado"));
+		add(esHorneado = new JRadioButton("Horneado"));
 		add(esRefrigerado = new JRadioButton("Refrigerado"));
-		hojaldreRefrigeradoButtonGroup.add(esHojaldrado);
+		hojaldreRefrigeradoButtonGroup.add(esHorneado);
 		hojaldreRefrigeradoButtonGroup.add(esRefrigerado);
+		add(esHojaldrado = new JRadioButton("Hojaldrado"));
 
 		add(new JLabel("Temperatura de mantenimiento:"));
 		add(temperaturaMantenimiento = new JTextField(10));
@@ -74,7 +67,7 @@ public class GuiRegistrarPostre extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")
 					|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")
-					|| (esHojaldrado.isSelected() == false & esRefrigerado.isSelected() == false)) {
+					|| (esHorneado.isSelected() == false & esRefrigerado.isSelected() == false)) {
 
 				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 
@@ -82,7 +75,7 @@ public class GuiRegistrarPostre extends JFrame {
 
 				Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()));
 				postres.add(postreGuardado);
-				//Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected()
+				// Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHorneado.isSelected()
 				JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
 
 				nombreDelPostre.setText(null);

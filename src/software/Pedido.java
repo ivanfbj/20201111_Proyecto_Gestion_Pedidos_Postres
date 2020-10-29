@@ -23,20 +23,21 @@ public class Pedido {
 		cantpostres = 0;
 
 	}
-        public void agregarPotre(Postre recibirpostre){
-            if(cantpostres<postre.length){
-                postre[cantpostres]=recibirpostre;
-                cantpostres++;
-            }
-        }
-        public void calcularvalortotal(){
-             double ContTotal=0;
-           
-           for(int i=0;i<cantpostres;i++){
-               //sumar la cantidad del valir de los postres y (asignar resultado del acumulador en totalValor(porfuera del ciclo))
-           }
-        }
-        
+
+	public void agregarPotre(Postre recibirpostre) {
+		if (cantpostres < postre.length) {
+			postre[cantpostres] = recibirpostre;
+			cantpostres++;
+		}
+	}
+
+	public void calcularvalortotal() {
+		double ContTotal = 0;
+
+		for (int i = 0; i < cantpostres; i++) {
+			// sumar la cantidad del valir de los postres y (asignar resultado del acumulador en totalValor(porfuera del ciclo))
+		}
+	}
 
 	@Override
 	public String toString() {

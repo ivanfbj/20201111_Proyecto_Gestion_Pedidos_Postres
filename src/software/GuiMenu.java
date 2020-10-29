@@ -11,7 +11,7 @@ public class GuiMenu extends JFrame {
 	JMenuItem registrarCliente, registrarPostre, registrarPedido, cantidadDePostresXPedido, edadPromedioClienteDomicilio;
 
 	public GuiMenu() {
-		//setSize(600, 200);
+		// setSize(600, 200);
 
 		setLocationRelativeTo(null);
 		FlowLayout F = new FlowLayout();

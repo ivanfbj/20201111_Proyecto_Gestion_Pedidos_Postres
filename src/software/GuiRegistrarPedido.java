@@ -13,8 +13,6 @@ public class GuiRegistrarPedido extends JFrame {
 	ButtonGroup TiendaDomicilio;
 	JButton GuardarPedidoButton, AnadirPostreButton, LimpiarCamposButton;
 
-	ControladorPedido pedidos = new ControladorPedido(10);
-
 	public GuiRegistrarPedido() {
 
 		setTitle("Registrar Pedido");

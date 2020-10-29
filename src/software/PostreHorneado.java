@@ -13,6 +13,5 @@ public class PostreHorneado extends Postre {
 	public String toString() {
 		return super.toString() + "Hojaldrado=" + esHojaldrado;
 	}
-	
-	
+
 }
