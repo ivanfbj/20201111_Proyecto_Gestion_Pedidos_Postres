@@ -17,14 +17,13 @@ public class Cliente {
 		this.edad = edad;
 	}
 
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
+	public String getNombreCliente() {
+		return nombreCliente;
+	}
 
 	@Override
 	public String toString() {
 		return "Nombre del cliente=" + nombreCliente + ", Direccion=" + direccion + ", Telefono=" + telefono + ", Sexo=" + sexo + ", Edad=" + edad;
 	}
-
 
 }

@@ -80,10 +80,9 @@ public class GuiRegistrarPostre extends JFrame {
 
 			} else {
 
-				Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
-						Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected());
+				Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()));
 				postres.add(postreGuardado);
-
+				//Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected()
 				JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
 
 				nombreDelPostre.setText(null);

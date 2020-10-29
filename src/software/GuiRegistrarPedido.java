@@ -8,13 +8,12 @@ public class GuiRegistrarPedido extends JFrame {
 
 	JTextField CodigoPedido, FechaPedido, FechaEntrega, LugarEntrega, ValorTotal;
 	JComboBox<String> Cliente, Postre;
-        
+
 	JRadioButton Tienda, Domicilio;
 	ButtonGroup TiendaDomicilio;
 	JButton GuardarPedidoButton, AnadirPostreButton, LimpiarCamposButton;
 
 	ControladorPedido pedidos = new ControladorPedido(10);
-        
 
 	public GuiRegistrarPedido() {
 
@@ -31,16 +30,17 @@ public class GuiRegistrarPedido extends JFrame {
 		add(FechaEntrega = new JTextField(20));
 
 		add(new JLabel("Cliente:"));
-		Cliente = new JComboBox<String>();
-                for (int i = 0; i < GuiRegistrarCliente.cliente.size(); i++) 
-		Cliente.addItem(GuiRegistrarCliente.cliente.get(i).getNombreCliente());
-		
+		Cliente = new JComboBox<>();
+		for (int i = 0; i < GuiRegistrarCliente.cliente.size(); i++) {
+			Cliente.addItem(GuiRegistrarCliente.cliente.get(i).getNombreCliente());
+		}
 		add(Cliente);
 
 		add(new JLabel("Postre:"));
-		Postre = new JComboBox<String>();
-                for (int i = 0; i <GuiRegistrarPostre.postres.size(); i++) 
-		Postre.addItem(String.valueOf(GuiRegistrarPostre.postres.get(i).getNombrePostre()));
+		Postre = new JComboBox<>();
+		for (int i = 0; i < GuiRegistrarPostre.postres.size(); i++) {
+			Postre.addItem(String.valueOf(GuiRegistrarPostre.postres.get(i).getNombrePostre()));
+		}
 		add(Postre);
 
 		add(new JLabel("Lugar entrega:"));
@@ -75,17 +75,13 @@ public class GuiRegistrarPedido extends JFrame {
 	class GuardarPedido implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-		//pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
-			//Cliente, LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
+			// pedidos.registrarPedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(),
+			// Cliente, LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));//se presentan problemas para
 			// llamar el contenido del atributo cliente
-                 
-                    
-                
-	
-                        
+
 			JOptionPane.showMessageDialog(null, "los datos fueron almacenados con exito");
 
-                        CodigoPedido.setText(null);
+			CodigoPedido.setText(null);
 			FechaPedido.setText(null);
 			FechaEntrega.setText(null);
 			LugarEntrega.setText(null);
@@ -94,14 +90,15 @@ public class GuiRegistrarPedido extends JFrame {
 			Postre.setSelectedIndex(0);
 			Cliente.setSelectedIndex(0);
 		}
-                
+
 	}
-        class AnadirPostre implements ActionListener {
-            public void actionPerformed (ActionEvent e){
-                Postre.addItem(String.valueOf(Postre.getAccessibleContext()));
-                JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
-            }
-        }
+
+	class AnadirPostre implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Postre.addItem(String.valueOf(Postre.getAccessibleContext()));
+			JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
+		}
+	}
 
 	class LimpiarCampos implements ActionListener {
 
@@ -119,5 +116,5 @@ public class GuiRegistrarPedido extends JFrame {
 
 		}
 	}
-        
+
 }
