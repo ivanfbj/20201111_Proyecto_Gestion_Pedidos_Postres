@@ -33,7 +33,6 @@ public class GuiRegistrarPostre extends JFrame {
 		add(new JLabel("Precio:"));
 		add(precio = new JTextField(7));
 
-		// add(new JLabel("Tipo de postre:"));
 		horneadoRefrigeradoButtonGroup = new ButtonGroup();
 		add(esHorneado = new JRadioButton("Horneado"));
 		esHorneado.addActionListener(new AccionRadioButtonHorneado());
@@ -48,11 +47,10 @@ public class GuiRegistrarPostre extends JFrame {
 		esHojaldrado.setVisible(false);
 
 		add(jLabeltemperaturaMantenimiento = new JLabel("Temperatura de mantenimiento:")).setVisible(false);
-
 		add(temperaturaMantenimiento = new JTextField(10));
 		temperaturaMantenimiento.setVisible(false);
 
-		add(jLabeltiempoMaximoSinRefrigeracionHoras = new JLabel("Tiempo maximo sin refrigeracion:")).setVisible(false);
+		add(jLabeltiempoMaximoSinRefrigeracionHoras = new JLabel("Tiempo máximo sin refrigeracion(horas):")).setVisible(false);
 		add(tiempoMaximoSinRefrigeracionHoras = new JTextField(9));
 		tiempoMaximoSinRefrigeracionHoras.setVisible(false);
 
@@ -73,29 +71,73 @@ public class GuiRegistrarPostre extends JFrame {
 	}
 
 	class Guardar implements ActionListener {
-
 		public void actionPerformed(ActionEvent e) {
-			if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")
-					|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")
-					|| (esHorneado.isSelected() == false & esRefrigerado.isSelected() == false)) {
 
-				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+			if (esHorneado.isSelected() == true) {
 
+				if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.WARNING_MESSAGE);
+				} else {
+					PostreHorneado postreCreadoHorneado = new PostreHorneado(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(),
+							Double.parseDouble(precio.getText()), esHojaldrado.isSelected());
+
+					postres.add(postreCreadoHorneado);
+
+					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Horneado", JOptionPane.INFORMATION_MESSAGE);
+
+					nombreDelPostre.setText(null);
+					cantidadDeCalorias.setText(null);
+					fechaVencimiento.setText(null);
+					precio.setText(null);
+					temperaturaMantenimiento.setText(null);
+					tiempoMaximoSinRefrigeracionHoras.setText(null);
+					horneadoRefrigeradoButtonGroup.clearSelection();
+					esHojaldrado.setVisible(false);
+					esHojaldrado.setSelected(false);
+
+					jLabeltemperaturaMantenimiento.setVisible(false);
+					temperaturaMantenimiento.setVisible(false);
+
+					jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
+					tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+				}
+
+			} else if (esRefrigerado.isSelected() == true) {
+
+				if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")
+						|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")) {
+
+					JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.WARNING_MESSAGE);
+
+				} else {
+
+					PostreRefrigerado postreCreadoRefrigerado = new PostreRefrigerado(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(),
+							Double.parseDouble(precio.getText()), Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()));
+
+					postres.add(postreCreadoRefrigerado);
+
+					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Refrigerado", JOptionPane.INFORMATION_MESSAGE);
+
+					nombreDelPostre.setText(null);
+					cantidadDeCalorias.setText(null);
+					fechaVencimiento.setText(null);
+					precio.setText(null);
+					temperaturaMantenimiento.setText(null);
+					tiempoMaximoSinRefrigeracionHoras.setText(null);
+					horneadoRefrigeradoButtonGroup.clearSelection();
+					esHojaldrado.setVisible(false);
+					esHojaldrado.setSelected(false);
+
+					jLabeltemperaturaMantenimiento.setVisible(false);
+					temperaturaMantenimiento.setVisible(false);
+
+					jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
+					tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+				}
 			} else {
-
-				Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()));
-				postres.add(postreGuardado);
-				// Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHorneado.isSelected()
-				JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
-
-				nombreDelPostre.setText(null);
-				cantidadDeCalorias.setText(null);
-				fechaVencimiento.setText(null);
-				precio.setText(null);
-				temperaturaMantenimiento.setText(null);
-				tiempoMaximoSinRefrigeracionHoras.setText(null);
-				horneadoRefrigeradoButtonGroup.clearSelection();
+				JOptionPane.showMessageDialog(null, "Pendiente por seleccionar si el postre es horneado o refrigerado", "Verificar", JOptionPane.QUESTION_MESSAGE);
 			}
+
 		}
 	}
 
