@@ -46,6 +46,7 @@ public class GuiMenu extends JFrame {
 		informe.add(edadPromedioClienteDomicilio);
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setMinimumSize(new Dimension(400, 200));
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 

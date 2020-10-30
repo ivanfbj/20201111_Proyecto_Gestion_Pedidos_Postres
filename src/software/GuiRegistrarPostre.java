@@ -8,9 +8,10 @@ import java.util.ArrayList;
 public class GuiRegistrarPostre extends JFrame {
 
 	JTextField nombreDelPostre, cantidadDeCalorias, fechaVencimiento, precio, temperaturaMantenimiento, tiempoMaximoSinRefrigeracionHoras;
-	ButtonGroup hojaldreRefrigeradoButtonGroup;
+	ButtonGroup horneadoRefrigeradoButtonGroup;
 	JRadioButton esHorneado, esRefrigerado, esHojaldrado;
 	JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
+	JLabel jLabeltemperaturaMantenimiento, jLabeltiempoMaximoSinRefrigeracionHoras;
 
 	static ArrayList<Postre> postres = new ArrayList<Postre>();
 
@@ -33,18 +34,27 @@ public class GuiRegistrarPostre extends JFrame {
 		add(precio = new JTextField(7));
 
 		// add(new JLabel("Tipo de postre:"));
-		hojaldreRefrigeradoButtonGroup = new ButtonGroup();
+		horneadoRefrigeradoButtonGroup = new ButtonGroup();
 		add(esHorneado = new JRadioButton("Horneado"));
+		esHorneado.addActionListener(new AccionRadioButtonHorneado());
+
 		add(esRefrigerado = new JRadioButton("Refrigerado"));
-		hojaldreRefrigeradoButtonGroup.add(esHorneado);
-		hojaldreRefrigeradoButtonGroup.add(esRefrigerado);
+		esRefrigerado.addActionListener(new AccionRadioButtonRefrigerado());
+
+		horneadoRefrigeradoButtonGroup.add(esHorneado);
+		horneadoRefrigeradoButtonGroup.add(esRefrigerado);
+
 		add(esHojaldrado = new JRadioButton("Hojaldrado"));
+		esHojaldrado.setVisible(false);
 
-		add(new JLabel("Temperatura de mantenimiento:"));
+		add(jLabeltemperaturaMantenimiento = new JLabel("Temperatura de mantenimiento:")).setVisible(false);
+
 		add(temperaturaMantenimiento = new JTextField(10));
+		temperaturaMantenimiento.setVisible(false);
 
-		add(new JLabel("Tiempo maximo sin refrigeracion:"));
+		add(jLabeltiempoMaximoSinRefrigeracionHoras = new JLabel("Tiempo maximo sin refrigeracion:")).setVisible(false);
 		add(tiempoMaximoSinRefrigeracionHoras = new JTextField(9));
+		tiempoMaximoSinRefrigeracionHoras.setVisible(false);
 
 		add(guardarButton = new JButton("Guardar"));
 		guardarButton.addActionListener(new Guardar());
@@ -84,7 +94,7 @@ public class GuiRegistrarPostre extends JFrame {
 				precio.setText(null);
 				temperaturaMantenimiento.setText(null);
 				tiempoMaximoSinRefrigeracionHoras.setText(null);
-				hojaldreRefrigeradoButtonGroup.clearSelection();
+				horneadoRefrigeradoButtonGroup.clearSelection();
 			}
 		}
 	}
@@ -99,7 +109,15 @@ public class GuiRegistrarPostre extends JFrame {
 			precio.setText(null);
 			temperaturaMantenimiento.setText(null);
 			tiempoMaximoSinRefrigeracionHoras.setText(null);
-			hojaldreRefrigeradoButtonGroup.clearSelection();
+			horneadoRefrigeradoButtonGroup.clearSelection();
+			esHojaldrado.setVisible(false);
+			esHojaldrado.setSelected(false);
+
+			jLabeltemperaturaMantenimiento.setVisible(false);
+			temperaturaMantenimiento.setVisible(false);
+
+			jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
+			tiempoMaximoSinRefrigeracionHoras.setVisible(false);
 
 		}
 	}
@@ -115,6 +133,33 @@ public class GuiRegistrarPostre extends JFrame {
 			}
 			JOptionPane.showMessageDialog(null, listadoDePostres);
 
+		}
+	}
+
+	class AccionRadioButtonHorneado implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			// JOptionPane.showMessageDialog(null, "Radio Boton Horneado seleccionado");
+			esHojaldrado.setVisible(true);
+
+			jLabeltemperaturaMantenimiento.setVisible(false);
+			temperaturaMantenimiento.setVisible(false);
+
+			jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
+			tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+		}
+	}
+
+	class AccionRadioButtonRefrigerado implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			// JOptionPane.showMessageDialog(null, "Radio Boton Refrigerado seleccionado");
+			esHojaldrado.setVisible(false);
+			esHojaldrado.setSelected(false);
+
+			jLabeltemperaturaMantenimiento.setVisible(true);
+			temperaturaMantenimiento.setVisible(true);
+
+			jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(true);
+			tiempoMaximoSinRefrigeracionHoras.setVisible(true);
 		}
 	}
 

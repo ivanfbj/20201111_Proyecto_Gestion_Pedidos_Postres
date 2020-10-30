@@ -34,8 +34,4 @@ public class GuiPromedioCliente extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
-		GuiPromedioCliente ventana = new GuiPromedioCliente();
-	}
-
 }
