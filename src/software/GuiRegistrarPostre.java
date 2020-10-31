@@ -16,7 +16,7 @@ public class GuiRegistrarPostre extends JFrame {
 	static ArrayList<Postre> postres = new ArrayList<Postre>();
 
 	public GuiRegistrarPostre() {
-		setTitle("Registrar Postre");
+		setTitle("Registrar Postre - IVAN");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		// setLayout(null);
 		// pack();

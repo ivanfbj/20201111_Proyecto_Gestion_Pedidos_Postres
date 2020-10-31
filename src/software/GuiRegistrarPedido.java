@@ -15,7 +15,7 @@ public class GuiRegistrarPedido extends JFrame {
 
 	public GuiRegistrarPedido() {
 
-		setTitle("Registrar Pedido");
+		setTitle("Registrar Pedido - IVAN");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		add(new JLabel("Codigo del pedido:"));
@@ -68,7 +68,7 @@ public class GuiRegistrarPedido extends JFrame {
 		add(LimpiarCamposButton = new JButton("Limpiar Campos"));
 		LimpiarCamposButton.addActionListener(new LimpiarCampos());
 
-		setSize(370, 500);
+		setSize(400, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);

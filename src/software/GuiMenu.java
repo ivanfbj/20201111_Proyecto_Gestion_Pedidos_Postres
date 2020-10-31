@@ -17,7 +17,7 @@ public class GuiMenu extends JFrame {
 		FlowLayout F = new FlowLayout();
 		F.setAlignment(0);
 		setLayout(F);
-		setTitle("Sistema de Postres la U");
+		setTitle("Sistema de Postres la U - IVAN");
 
 		barra = new JMenuBar();
 		add(barra);

@@ -15,7 +15,7 @@ public class GuiRegistrarCliente extends JFrame {
 	// ControladorCliente cliente = new ControladorCliente(10);
 
 	public GuiRegistrarCliente() {
-		setTitle("Registrar Cliente");
+		setTitle("Registrar Cliente - IVAN");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		// setLayout(new GridLayout(10,3));
 
