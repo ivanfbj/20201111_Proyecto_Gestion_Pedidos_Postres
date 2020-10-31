@@ -1,15 +1,17 @@
 package software;
 
+import java.util.ArrayList;
+
 public class Pedido {
 
 	private String codigoPedido;
 	private String fechaPedido;
 	private String fechaEntregaPedido;
 	private Cliente cliente;
-	private Postre[] postre;
 	private String lugarDeEntrega;
 	private double valorTotal;
 	// private int cantpostres;
+	static ArrayList<String> postresDelPedidoList;
 
 	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal/* , int p */) {
 		this.codigoPedido = codigoPedido;
@@ -18,10 +20,22 @@ public class Pedido {
 		this.cliente = cliente;
 		this.lugarDeEntrega = lugarDeEntrega;
 		this.valorTotal = valorTotal;
+		postresDelPedidoList = new ArrayList<String>();
 
 //		postre = new Postre[p];
 //		cantpostres = 0;
 
+	}
+
+	@Override
+	public String toString() {
+		return "Código del pedido=" + codigoPedido + ", Fecha del pedido=" + fechaPedido + ", Fecha de entrega del Pedido=" + fechaEntregaPedido + ", Lugar de entrega=" + lugarDeEntrega
+				+ ", valorTotal=" + valorTotal 
+				+ "\n" + cliente + "\n";
+	}
+
+	public void AgregarPostreAlPedido(String postreAgregado) {
+		postresDelPedidoList.add(postreAgregado);
 	}
 
 //	public void agregarPotre(Postre recibirpostre) {
@@ -52,4 +66,5 @@ public class Pedido {
 //		}
 //		return cadena;
 //	}
+
 }

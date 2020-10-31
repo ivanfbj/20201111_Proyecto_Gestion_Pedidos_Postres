@@ -14,11 +14,12 @@ public class Ejecutable {
 		
 		PostreHorneado postreNoHojaldrado = new PostreHorneado("Mora", 100, "11 noviembre", 2000, false);
 		PostreHorneado postreSiHojaldrado = new PostreHorneado("Fresa", 200, "12 noviembre", 3000, true);
-		PostreRefrigerado postreR = new PostreRefrigerado("Maracuya", 300, "13 noviembre", 4000, 15, 24.5);
+		//PostreRefrigerado postreR = new PostreRefrigerado("Maracuya", 300, "13 noviembre", 4000, 15, 24.5);
 		
 		GuiRegistrarPostre.postres.add(postreNoHojaldrado);
 		GuiRegistrarPostre.postres.add(postreSiHojaldrado);
-		GuiRegistrarPostre.postres.add(postreR);
+		//GuiRegistrarPostre.postres.add(postreR);
+		GuiRegistrarPostre.postres.add(new PostreRefrigerado("Maracuya", 300, "13 noviembre", 4000, 15, 24.5));
 		
 		
 		// new GuiRegistrarCliente();
