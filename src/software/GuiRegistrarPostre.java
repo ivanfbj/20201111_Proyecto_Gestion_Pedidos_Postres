@@ -15,10 +15,11 @@ import javax.swing.JTextField;
 
 public class GuiRegistrarPostre extends JFrame {
 
-	JTextField nombreDelPostre, cantidadDeCalorias, fechaVencimiento, precio, temperaturaMantenimiento, tiempoMaximoSinRefrigeracionHoras;
-	ButtonGroup hojaldreRefrigeradoButtonGroup;
-	JRadioButton esHojaldrado, esRefrigerado;
-	JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
+    JTextField nombreDelPostre, cantidadDeCalorias, fechaVencimiento, precio, temperaturaMantenimiento, tiempoMaximoSinRefrigeracionHoras;
+    ButtonGroup HorneadoRefrigeradoButtonGroup;
+    JRadioButton esHorneado, esRefrigerado, esHojaldrado;
+    JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
+    JLabel temperatura, tiempoSinRefrigerar;
 
 	static ArrayList<Postre> postres = new ArrayList<Postre>();
 
@@ -41,18 +42,29 @@ public class GuiRegistrarPostre extends JFrame {
 		add(precio = new JTextField(7));
 
 		// add(new JLabel("Tipo de postre:"));
-		hojaldreRefrigeradoButtonGroup = new ButtonGroup();
-		add(esHojaldrado = new JRadioButton("Hojaldrado"));
+		HorneadoRefrigeradoButtonGroup = new ButtonGroup();
+		add(esHorneado = new JRadioButton("Horneado"));
 		add(esRefrigerado = new JRadioButton("Refrigerado"));
-		hojaldreRefrigeradoButtonGroup.add(esHojaldrado);
-		hojaldreRefrigeradoButtonGroup.add(esRefrigerado);
+                add(esHojaldrado = new JRadioButton("Hojaldrado"));
+                HorneadoRefrigeradoButtonGroup.add(esHorneado);
+                HorneadoRefrigeradoButtonGroup.add(esRefrigerado);
 
-		add(new JLabel("Temperatura de mantenimiento:"));
+                esHojaldrado.setVisible(false);
+                
+                esHorneado.addActionListener(new esHorneadoAccion());
+                
+		add(temperatura = new JLabel("Temperatura de mantenimiento:")).setVisible(false);
 		add(temperaturaMantenimiento = new JTextField(10));
 
-		add(new JLabel("Tiempo maximo sin refrigeracion:"));
+		add(tiempoSinRefrigerar = new JLabel("Tiempo maximo sin refrigeracion:")).setVisible(false);
 		add(tiempoMaximoSinRefrigeracionHoras = new JTextField(9));
-
+                
+                temperaturaMantenimiento.setVisible(false);
+                tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+                
+                esRefrigerado.addActionListener(new esRefrigeradoAccion());
+                
+                
 		add(guardarButton = new JButton("Guardar"));
 		guardarButton.addActionListener(new Guardar());
 
@@ -74,14 +86,14 @@ public class GuiRegistrarPostre extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")
 					|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")
-					|| (esHojaldrado.isSelected() == false & esRefrigerado.isSelected() == false)) {
+					|| (esHorneado.isSelected() == false & esRefrigerado.isSelected() == false)) {
 
 				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 
 			} else {
 
 				Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
-						Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHojaldrado.isSelected());
+						Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHorneado.isSelected());
 				postres.add(postreGuardado);
 
 				JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
@@ -92,7 +104,7 @@ public class GuiRegistrarPostre extends JFrame {
 				precio.setText(null);
 				temperaturaMantenimiento.setText(null);
 				tiempoMaximoSinRefrigeracionHoras.setText(null);
-				hojaldreRefrigeradoButtonGroup.clearSelection();
+				HorneadoRefrigeradoButtonGroup.clearSelection();
 			}
 		}
 	}
@@ -107,7 +119,7 @@ public class GuiRegistrarPostre extends JFrame {
 			precio.setText(null);
 			temperaturaMantenimiento.setText(null);
 			tiempoMaximoSinRefrigeracionHoras.setText(null);
-			hojaldreRefrigeradoButtonGroup.clearSelection();
+			HorneadoRefrigeradoButtonGroup.clearSelection();
 
 		}
 	}
@@ -125,5 +137,32 @@ public class GuiRegistrarPostre extends JFrame {
 
 		}
 	}
+        
+        class esHorneadoAccion implements ActionListener {
 
+		public void actionPerformed(ActionEvent e) {
+                    
+                    esHojaldrado.setVisible(true);
+                    
+                     temperaturaMantenimiento.setVisible(false);
+                tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+                temperatura.setVisible(false);
+                tiempoSinRefrigerar.setVisible(false);
+
+                }
+        }
+        
+        class esRefrigeradoAccion implements ActionListener {
+
+		          public void actionPerformed(ActionEvent e) {
+
+                esHojaldrado.setVisible(false);
+
+                temperaturaMantenimiento.setVisible(true);
+                tiempoMaximoSinRefrigeracionHoras.setVisible(true);
+                temperatura.setVisible(true);
+                tiempoSinRefrigerar.setVisible(true);
+
+            }
+        }
 }
