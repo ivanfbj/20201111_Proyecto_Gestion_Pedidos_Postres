@@ -11,16 +11,16 @@ public class Pedido {
 	private String lugarDeEntrega;
 	private double valorTotal;
 	// private int cantpostres;
-	static ArrayList<Postre> postresDelPedidoList;
+	static ArrayList<Postre> postresDelPedidoList = new ArrayList<Postre>();
 
-	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal/* , int p */) {
+	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal, Postre postrePedido) {
 		this.codigoPedido = codigoPedido;
 		this.fechaPedido = fechaPedido;
 		this.fechaEntregaPedido = fechaEntregaPedido;
 		this.cliente = cliente;
 		this.lugarDeEntrega = lugarDeEntrega;
 		this.valorTotal = valorTotal;
-		postresDelPedidoList = new ArrayList<Postre>();
+		postresDelPedidoList.add(postrePedido) ;
 
 //		postre = new Postre[p];
 //		cantpostres = 0;
@@ -43,6 +43,18 @@ public class Pedido {
 
 	public String getCodigoPedido() {
 		return codigoPedido;
+	}
+	
+	public String listaPostresPedido() {
+		
+		String listadoPostresPedidoString = "Los postres son";
+		
+		for (int i = 0; i < postresDelPedidoList.size(); i++) {
+			listadoPostresPedidoString += postresDelPedidoList.get(i) + "\n";
+		}
+		
+		return listadoPostresPedidoString;
+		
 	}
 	
 //	public void agregarPotre(Postre recibirpostre) {

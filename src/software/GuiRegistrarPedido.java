@@ -94,13 +94,14 @@ public class GuiRegistrarPedido extends JFrame {
 			// Cliente clienteDosPedido = new Cliente("Luisa", "Cra 50", 2702345, "Femenino", 28);
 
 			Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
-					TiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()));
+					TiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()),GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
 			pedidosList.add(pedidoRealizado);
 
-			pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+			//pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
-			JOptionPane.showMessageDialog(null, "Pedido guardado, código del pedido guardado" + pedidosList.get(pedidosList.size() - 1).getCodigoPedido());
+						
+			JOptionPane.showMessageDialog(null, pedidosList, "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
 			/*
 			 * codigoPedido.setText(null); fechaPedido.setText(null); fechaEntrega.setText(null); // LugarEntrega.setText(null); valorTotal.setText(null);
 			 * TiendaDomicilio.clearSelection(); postre.setSelectedIndex(0); cliente.setSelectedIndex(0);
