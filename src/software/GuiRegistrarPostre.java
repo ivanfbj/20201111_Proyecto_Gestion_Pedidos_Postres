@@ -100,6 +100,8 @@ public class GuiRegistrarPostre extends JFrame {
 
 					jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
 					tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+
+					GuiRegistrarPedido.postre.addItem(postreCreadoHorneado.getNombrePostre());
 				}
 
 			} else if (esRefrigerado.isSelected() == true) {
@@ -133,6 +135,9 @@ public class GuiRegistrarPostre extends JFrame {
 
 					jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
 					tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+
+					GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado.getNombrePostre());
+
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Pendiente por seleccionar si el postre es horneado o refrigerado", "Verificar", JOptionPane.QUESTION_MESSAGE);

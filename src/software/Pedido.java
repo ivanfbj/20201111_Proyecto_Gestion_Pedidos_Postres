@@ -11,7 +11,7 @@ public class Pedido {
 	private String lugarDeEntrega;
 	private double valorTotal;
 	// private int cantpostres;
-	static ArrayList<String> postresDelPedidoList;
+	static ArrayList<Postre> postresDelPedidoList;
 
 	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal/* , int p */) {
 		this.codigoPedido = codigoPedido;
@@ -20,7 +20,7 @@ public class Pedido {
 		this.cliente = cliente;
 		this.lugarDeEntrega = lugarDeEntrega;
 		this.valorTotal = valorTotal;
-		postresDelPedidoList = new ArrayList<String>();
+		postresDelPedidoList = new ArrayList<Postre>();
 
 //		postre = new Postre[p];
 //		cantpostres = 0;
@@ -31,13 +31,20 @@ public class Pedido {
 	public String toString() {
 		return "Código del pedido=" + codigoPedido + ", Fecha del pedido=" + fechaPedido + ", Fecha de entrega del Pedido=" + fechaEntregaPedido + ", Lugar de entrega=" + lugarDeEntrega
 				+ ", valorTotal=" + valorTotal 
-				+ "\n" + cliente + "\n";
+				+ "\n" + cliente + "\n"
+				+ "DE AQUI HACIA ABAJO VAN LOS POSTRES\n"
+				+ postresDelPedidoList
+				+ "\n";
 	}
 
-	public void AgregarPostreAlPedido(String postreAgregado) {
+	public void AgregarPostreAlPedido(Postre postreAgregado) {
 		postresDelPedidoList.add(postreAgregado);
 	}
 
+	public String getCodigoPedido() {
+		return codigoPedido;
+	}
+	
 //	public void agregarPotre(Postre recibirpostre) {
 //		if (cantpostres < postre.length) {
 //			postre[cantpostres] = recibirpostre;

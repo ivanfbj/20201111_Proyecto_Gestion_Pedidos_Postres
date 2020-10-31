@@ -84,6 +84,8 @@ public class GuiRegistrarCliente extends JFrame {
 				telefono.setText(null);
 				edad.setText(null);
 				sexo.clearSelection();
+
+				GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
 			}
 		}
 	}

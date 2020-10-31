@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class GuiRegistrarPedido extends JFrame {
 
 	JTextField codigoPedido, fechaPedido, fechaEntrega, valorTotal;
-	JComboBox<String> cliente, postre;
+	static JComboBox<String> cliente;
+	static JComboBox<String> postre;
 
 	JRadioButton Tienda, Domicilio;
 	ButtonGroup TiendaDomicilio;
@@ -94,15 +95,12 @@ public class GuiRegistrarPedido extends JFrame {
 
 			Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
 					TiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()));
-			
-			
-			
+
 			pedidosList.add(pedidoRealizado);
-			
-			//pedidosList.get(0).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(0));
-			
-			
-			JOptionPane.showMessageDialog(null, "los datos fueron almacenados con exito");
+
+			pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+
+			JOptionPane.showMessageDialog(null, "Pedido guardado, código del pedido guardado" + pedidosList.get(pedidosList.size() - 1).getCodigoPedido());
 			/*
 			 * codigoPedido.setText(null); fechaPedido.setText(null); fechaEntrega.setText(null); // LugarEntrega.setText(null); valorTotal.setText(null);
 			 * TiendaDomicilio.clearSelection(); postre.setSelectedIndex(0); cliente.setSelectedIndex(0);

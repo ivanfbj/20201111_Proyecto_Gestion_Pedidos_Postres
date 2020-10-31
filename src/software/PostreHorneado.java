@@ -13,7 +13,7 @@ public class PostreHorneado extends Postre {
 	public String toString() {
 		String validaHojaldrado = (esHojaldrado == true) ? "Si" : "No";// operador ternario
 
-		return super.toString() + ", Hojaldrado=" + validaHojaldrado;
+		return super.toString() + ", Hojaldrado=" + validaHojaldrado + "\n";
 	}
 
 }
