@@ -44,7 +44,7 @@ public class GuiMenu extends JFrame {
 		informe.add(cantidadDePostresXPedido);
 		edadPromedioClienteDomicilio = new JMenuItem("Edad promedio de clientes domicilio");
 		informe.add(edadPromedioClienteDomicilio);
-
+                
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,6 +67,12 @@ public class GuiMenu extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			GuiRegistrarPedido registrarPedido = new GuiRegistrarPedido();
+		}
+	}
+        class ActioncantidadDePostresXPedido implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			GuiConsultas consultas = new GuiConsultas();
 		}
 	}
 
