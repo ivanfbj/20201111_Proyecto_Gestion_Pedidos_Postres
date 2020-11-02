@@ -84,17 +84,13 @@ public class GuiRegistrarPostre extends JFrame {
 	class Guardar implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")
-					|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")
-					|| (esHorneado.isSelected() == false & esRefrigerado.isSelected() == false)) {
+			//if (nombreDelPostre.getText().equals("") || cantidadDeCalorias.getText().equals("") || fechaVencimiento.getText().equals("") || precio.getText().equals("")
+					//|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")
+					//|| (esHorneado.isSelected() == false & esRefrigerado.isSelected() == false)) {
 
 				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 
-			} else {
-
-				Postre postreGuardado = new Postre(nombreDelPostre.getText(), Double.parseDouble(cantidadDeCalorias.getText()), fechaVencimiento.getText(), Double.parseDouble(precio.getText()),
-						Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()), esHorneado.isSelected());
-				postres.add(postreGuardado);
+                                
 
 				JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
 
