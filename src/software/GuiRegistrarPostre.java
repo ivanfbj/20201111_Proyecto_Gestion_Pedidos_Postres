@@ -96,7 +96,7 @@ public class GuiRegistrarPostre extends JFrame {
                                 
                                 if(esHorneado.isSelected()){
                                     
-                                    //PostreHorneado Horneado = new PostreHorneado(nombrePostre.getText(), cantidadDeCalorias,  fechaVencimiento,  precio,  esHojaldrado);
+                                    PostreHorneado Horneado = new PostreHorneado(nombreDelPostre.getText(),Double.parseDouble(cantidadDeCalorias.getText()),  fechaVencimiento.getText(),Double.parseDouble(precio.getText()),  esHojaldrado.isSelected());
                                     
                                     JOptionPane.showMessageDialog(null, "Es horneado ha sido selecionado");
                                 }
