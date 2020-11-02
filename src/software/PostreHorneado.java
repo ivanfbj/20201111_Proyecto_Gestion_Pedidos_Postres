@@ -8,7 +8,10 @@ public class PostreHorneado extends Postre {
         super(nombrePostre, cantidadDeCalorias, fechaVencimiento, precio);
 
         this.esHojaldrado = esHojaldrado;
+        
     }
+    
+    
 
     @Override
     public String toString() {

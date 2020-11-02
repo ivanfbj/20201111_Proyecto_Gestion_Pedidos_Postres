@@ -88,11 +88,18 @@ public class GuiRegistrarPostre extends JFrame {
 					//|| temperaturaMantenimiento.getText().equals("") || tiempoMaximoSinRefrigeracionHoras.getText().equals("")
 					//|| (esHorneado.isSelected() == false & esRefrigerado.isSelected() == false)) {
 
-				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 
-                                
+                
 
 				JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.");
+                                
+                                if(esHorneado.isSelected()){
+                                    
+                                    //PostreHorneado Horneado = new PostreHorneado(nombrePostre.getText(), cantidadDeCalorias,  fechaVencimiento,  precio,  esHojaldrado);
+                                    
+                                    JOptionPane.showMessageDialog(null, "Es horneado ha sido selecionado");
+                                }
 
 				nombreDelPostre.setText(null);
 				cantidadDeCalorias.setText(null);
@@ -108,7 +115,7 @@ public class GuiRegistrarPostre extends JFrame {
 	class LimpiarCampos implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-
+/*
 			nombreDelPostre.setText(null);
 			cantidadDeCalorias.setText(null);
 			fechaVencimiento.setText(null);
@@ -116,42 +123,42 @@ public class GuiRegistrarPostre extends JFrame {
 			temperaturaMantenimiento.setText(null);
 			tiempoMaximoSinRefrigeracionHoras.setText(null);
 			HorneadoRefrigeradoButtonGroup.clearSelection();
-
+*/
 		}
 	}
 
 	class AccionMostrarRegistros implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-
+/*
 			String listadoDePostres = "";
 			for (int i = 0; i < postres.size(); i++) {
 				listadoDePostres += postres.get(i).toString() + "\n";
 
 			}
 			JOptionPane.showMessageDialog(null, listadoDePostres);
-
+*/
 		}
 	}
         
         class esHorneadoAccion implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-                    
+           /*         
                     esHojaldrado.setVisible(true);
                     
                      temperaturaMantenimiento.setVisible(false);
                 tiempoMaximoSinRefrigeracionHoras.setVisible(false);
                 temperatura.setVisible(false);
                 tiempoSinRefrigerar.setVisible(false);
-
+*/
                 }
         }
         
         class esRefrigeradoAccion implements ActionListener {
 
 		          public void actionPerformed(ActionEvent e) {
-
+/*
                 esHojaldrado.setVisible(false);
 
                 temperaturaMantenimiento.setVisible(true);
@@ -161,4 +168,7 @@ public class GuiRegistrarPostre extends JFrame {
 
             }
         }
+*/
+
 }
+        }//quitar al descomentarear
