@@ -11,7 +11,7 @@ public class Pedido {
 	private String lugarDeEntrega;
 	private double valorTotal;
 	// private int cantpostres;
-	static ArrayList<Postre> postresDelPedidoList = new ArrayList<Postre>();
+	ArrayList<Postre> postresDelPedidoList = new ArrayList<Postre>();
 
 	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal, Postre postrePedido) {
 		this.codigoPedido = codigoPedido;
