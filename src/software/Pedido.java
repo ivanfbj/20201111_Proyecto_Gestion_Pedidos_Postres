@@ -20,7 +20,7 @@ public class Pedido {
 		this.cliente = cliente;
 		this.lugarDeEntrega = lugarDeEntrega;
 		this.valorTotal = valorTotal;
-		postresDelPedidoList.add(postrePedido) ;
+		postresDelPedidoList.add(postrePedido);
 
 //		postre = new Postre[p];
 //		cantpostres = 0;
@@ -32,7 +32,7 @@ public class Pedido {
 		return "Código del pedido=" + codigoPedido + ", Fecha del pedido=" + fechaPedido + ", Fecha de entrega del Pedido=" + fechaEntregaPedido + ", Lugar de entrega=" + lugarDeEntrega
 				+ ", valorTotal=" + valorTotal 
 				+ "\n" + cliente + "\n"
-				+ "DE AQUI HACIA ABAJO VAN LOS POSTRES\n"
+				+ "Los postres del pedido son:\n"
 				+ postresDelPedidoList
 				+ "\n";
 	}
@@ -44,19 +44,19 @@ public class Pedido {
 	public String getCodigoPedido() {
 		return codigoPedido;
 	}
-	
+
 	public String listaPostresPedido() {
-		
+
 		String listadoPostresPedidoString = "Los postres son";
-		
+
 		for (int i = 0; i < postresDelPedidoList.size(); i++) {
 			listadoPostresPedidoString += postresDelPedidoList.get(i) + "\n";
 		}
-		
+
 		return listadoPostresPedidoString;
-		
+
 	}
-	
+
 //	public void agregarPotre(Postre recibirpostre) {
 //		if (cantpostres < postre.length) {
 //			postre[cantpostres] = recibirpostre;

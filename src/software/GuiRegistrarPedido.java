@@ -17,6 +17,12 @@ public class GuiRegistrarPedido extends JFrame {
 
 	static ArrayList<Pedido> pedidosList = new ArrayList<Pedido>();
 
+	/* Lineas temporales */
+	int p = 1;
+	int f1 = 1;
+	int f2 = 15;
+	int tt = 1000;
+
 	public GuiRegistrarPedido() {
 
 		setTitle("Registrar Pedido - IVAN");
@@ -80,6 +86,14 @@ public class GuiRegistrarPedido extends JFrame {
 		add(GuardarPedidoButton = new JButton("Guardar Pedido"));
 		GuardarPedidoButton.addActionListener(new GuardarPedido());
 
+		/* Lineas temporales */
+		codigoPedido.setText("Pedido_" + p);
+		fechaEntrega.setText("Dic " + f1);
+		fechaPedido.setText("Nov " + f2);
+		Tienda.setSelected(true);
+		valorTotal.setText(String.valueOf(tt));
+		/* Fin lineas temporales */
+
 		setSize(400, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -91,21 +105,31 @@ public class GuiRegistrarPedido extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 
-			// Cliente clienteDosPedido = new Cliente("Luisa", "Cra 50", 2702345, "Femenino", 28);
-
 			Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
-					TiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()),GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+					TiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()), GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
 			pedidosList.add(pedidoRealizado);
 
-			//pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+			// pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
-						
 			JOptionPane.showMessageDialog(null, pedidosList, "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
 			/*
 			 * codigoPedido.setText(null); fechaPedido.setText(null); fechaEntrega.setText(null); // LugarEntrega.setText(null); valorTotal.setText(null);
 			 * TiendaDomicilio.clearSelection(); postre.setSelectedIndex(0); cliente.setSelectedIndex(0);
 			 */
+
+			/* Lineas temporales */
+			p++;
+			f1++;
+			f2++;
+			tt += 1000;
+
+			codigoPedido.setText("Pedido_" + p);
+			fechaEntrega.setText("Dic " + f1);
+			fechaPedido.setText("Nov " + f2);
+			Tienda.setSelected(true);
+			valorTotal.setText(String.valueOf(tt));
+			/* Fin lineas temporales */
 		}
 
 	}
@@ -143,6 +167,7 @@ public class GuiRegistrarPedido extends JFrame {
 				listadoDePedidos += pedidosList.get(i).toString() + "\n";
 
 			}
+
 			JOptionPane.showMessageDialog(null, listadoDePedidos);
 
 		}
