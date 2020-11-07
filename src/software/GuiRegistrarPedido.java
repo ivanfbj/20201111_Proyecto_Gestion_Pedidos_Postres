@@ -1,6 +1,9 @@
 package software;
 
 import javax.swing.*;
+
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -75,7 +78,7 @@ public class GuiRegistrarPedido extends JFrame {
 		add(valorTotal = new JTextField(26));
 
 		add(AnadirPostreButton = new JButton("Anadir Postre"));
-		// AnadirPostreButton.addActionListener(new AnadirPostre());
+		AnadirPostreButton.addActionListener(new AnadirPostre());
 
 		add(LimpiarCamposButton = new JButton("Limpiar Campos"));
 		LimpiarCamposButton.addActionListener(new LimpiarCampos());
@@ -112,7 +115,7 @@ public class GuiRegistrarPedido extends JFrame {
 
 			// pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
-			JOptionPane.showMessageDialog(null, pedidosList, "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
+			JOptionPane.showMessageDialog(null, "Se guardó el pedido", "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
 			/*
 			 * codigoPedido.setText(null); fechaPedido.setText(null); fechaEntrega.setText(null); // LugarEntrega.setText(null); valorTotal.setText(null);
 			 * TiendaDomicilio.clearSelection(); postre.setSelectedIndex(0); cliente.setSelectedIndex(0);
@@ -136,8 +139,25 @@ public class GuiRegistrarPedido extends JFrame {
 
 	class AnadirPostre implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			postre.addItem(String.valueOf(postre.getAccessibleContext()));
-			JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
+
+			// PostreHorneado postreTiramisu = new PostreHorneado("Tiramizú", 300, "2 mayo", 5000, true);
+
+			// pedidosList.get(0).postresDelPedidoList.add(postreTiramisu);
+
+			// JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
+
+			// JOptionPane.showMessageDialog(null, "getcodigoPedido del pedido 0 : " + pedidosList.get(3).getCodigoPedido());
+			// JOptionPane.showMessageDialog(null, "probando el indexOf : " + pedidosList.get(3).getCodigoPedido().indexOf("Pedido_2"));
+
+			if (pedidosList.isEmpty()) {
+				
+				
+				
+				JOptionPane.showMessageDialog(null, "No se puede añadir postres si la lista de pedidos está vacía");
+			} else {
+				pedidosList.get((pedidosList.size() - 1)).postresDelPedidoList.add(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+				JOptionPane.showMessageDialog(null, "El postre seleccionador se añade al primer pedido");
+			}
 		}
 	}
 
