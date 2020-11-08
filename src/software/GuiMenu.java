@@ -74,7 +74,7 @@ public class GuiMenu extends JFrame {
 
 	class ActionInformes implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			new GuiPromedioCliente();
+			new GuiInformes();
 		}
 	}
 

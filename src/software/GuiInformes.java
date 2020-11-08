@@ -3,11 +3,11 @@ package software;
 import java.awt.*;
 import javax.swing.*;
 
-public class GuiPromedioCliente extends JFrame {
+public class GuiInformes extends JFrame {
 	JTextField TotalClientes, TotalClientesDomicilio, EdadPromedioClientes, EdadPromedioClientesDomicilio;
 	JButton CalcularPromedio;
 
-	public GuiPromedioCliente() {
+	public GuiInformes() {
 		setTitle("Promedio clientes");
 		setLayout(null);
 		// setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));

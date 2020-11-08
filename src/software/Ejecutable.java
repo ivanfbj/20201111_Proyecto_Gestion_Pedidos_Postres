@@ -42,7 +42,7 @@ public class Ejecutable {
 		// new GuiPromedioCliente();
 		
 		
-		new GuiPromedioCliente();
+		new GuiInformes();
 	}
 
 }
