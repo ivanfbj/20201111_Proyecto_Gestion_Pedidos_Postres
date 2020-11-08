@@ -8,12 +8,12 @@ public class Postre {
 	private double precio;
 	private boolean esRefrigerado = false;
 
+	//Contructor explicito
 	public Postre(String nombrePostre, double cantidadDeCalorias, String fechaVencimiento, double precio) {
 		this.nombrePostre = nombrePostre;
 		this.cantidadDeCalorias = cantidadDeCalorias;
 		this.fechaVencimiento = fechaVencimiento;
 		this.precio = precio;
-
 	}
 
 	@Override

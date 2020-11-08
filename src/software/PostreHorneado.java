@@ -9,7 +9,6 @@ public class PostreHorneado extends Postre {
 		this.esHojaldrado = esHojaldrado;
 	}
 
-	@Override
 	public String toString() {
 		String validaHojaldrado = (esHojaldrado == true) ? "Si" : "No";// operador ternario
 

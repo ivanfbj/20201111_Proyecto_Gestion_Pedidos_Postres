@@ -16,10 +16,8 @@ public class GuiRegistrarPostre extends JFrame {
 	static ArrayList<Postre> postres = new ArrayList<Postre>();
 
 	public GuiRegistrarPostre() {
-		setTitle("Registrar Postre - IVAN");
+		setTitle("Registrar Postre");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-		// setLayout(null);
-		// pack();
 
 		add(new JLabel("Nombre del postre:"));
 		add(nombreDelPostre = new JTextField(20));
@@ -67,9 +65,12 @@ public class GuiRegistrarPostre extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
-
 	}
 
+//Si el postre es Horneado, si hay algún  campo vacío no crea el Postre Horneado
+//Se el postre es Refrigerado, si hay algún campo vacío no crea el Postre Refrigerado
+//Condición "sino": crea el postre Horneado o Refrigerado, oculta, limpia los campos y quita los campos seleccionados
+//Si no selecciona Horneado o Refrigerado genera mensaje para que seleccione una opción.
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
@@ -84,6 +85,8 @@ public class GuiRegistrarPostre extends JFrame {
 					postres.add(postreCreadoHorneado);
 
 					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Horneado", JOptionPane.INFORMATION_MESSAGE);
+//Desde la creación del postre horneado lo añade al JComboBox de la ventana de Registrar Pedidos
+					GuiRegistrarPedido.postre.addItem(postreCreadoHorneado.getNombrePostre());
 
 					nombreDelPostre.setText(null);
 					cantidadDeCalorias.setText(null);
@@ -101,7 +104,6 @@ public class GuiRegistrarPostre extends JFrame {
 					jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
 					tiempoMaximoSinRefrigeracionHoras.setVisible(false);
 
-					GuiRegistrarPedido.postre.addItem(postreCreadoHorneado.getNombrePostre());
 				}
 
 			} else if (esRefrigerado.isSelected() == true) {
@@ -119,6 +121,8 @@ public class GuiRegistrarPostre extends JFrame {
 					postres.add(postreCreadoRefrigerado);
 
 					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Refrigerado", JOptionPane.INFORMATION_MESSAGE);
+//Desde la creación del postre refrigerado lo añade al JComboBox de la ventana de Registrar Pedidos
+					GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado.getNombrePostre());
 
 					nombreDelPostre.setText(null);
 					cantidadDeCalorias.setText(null);
@@ -135,14 +139,10 @@ public class GuiRegistrarPostre extends JFrame {
 
 					jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
 					tiempoMaximoSinRefrigeracionHoras.setVisible(false);
-
-					GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado.getNombrePostre());
-
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Pendiente por seleccionar si el postre es horneado o refrigerado", "Verificar", JOptionPane.QUESTION_MESSAGE);
 			}
-
 		}
 	}
 
@@ -183,9 +183,10 @@ public class GuiRegistrarPostre extends JFrame {
 		}
 	}
 
+//Dependendiendo del Radio botón que seleccione el usuario mostrará u ocultará los campos que no se requieren
 	class AccionRadioButtonHorneado implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			// JOptionPane.showMessageDialog(null, "Radio Boton Horneado seleccionado");
+
 			esHojaldrado.setVisible(true);
 
 			jLabeltemperaturaMantenimiento.setVisible(false);
@@ -198,7 +199,7 @@ public class GuiRegistrarPostre extends JFrame {
 
 	class AccionRadioButtonRefrigerado implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			// JOptionPane.showMessageDialog(null, "Radio Boton Refrigerado seleccionado");
+
 			esHojaldrado.setVisible(false);
 			esHojaldrado.setSelected(false);
 
@@ -216,15 +217,10 @@ public class GuiRegistrarPostre extends JFrame {
 		double cantidadPostresRefrigerados = 0;
 
 		for (int i = 0; i < postres.size(); i++) {
-
 			if (postres.get(i).esRefrigerado() == true) {
 				cantidadPostresRefrigerados += 1;
 			}
 		}
-
-		porcentaje = (cantidadPostresRefrigerados * 100) / totalPostres;
-
-		return porcentaje;
+		return porcentaje = (cantidadPostresRefrigerados * 100) / totalPostres;
 	}
-
 }

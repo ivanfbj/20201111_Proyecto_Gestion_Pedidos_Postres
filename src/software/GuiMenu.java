@@ -11,13 +11,12 @@ public class GuiMenu extends JFrame {
 	JMenuItem registrarCliente, registrarPostre, registrarPedido, detalleDeInforme;
 
 	public GuiMenu() {
-		setSize(400, 200);
 
 		setLocationRelativeTo(null);
 		FlowLayout F = new FlowLayout();
 		F.setAlignment(0);
 		setLayout(F);
-		setTitle("Sistema de Postres la U - IVAN");
+		setTitle("Sistema de Postres la U");
 
 		barra = new JMenuBar();
 		add(barra);
@@ -44,10 +43,9 @@ public class GuiMenu extends JFrame {
 		detalleDeInforme = new JMenuItem("Informe detallado");
 		informe.add(detalleDeInforme);
 		detalleDeInforme.addActionListener(new ActionInformes());
-//		edadPromedioClienteDomicilio = new JMenuItem("Edad promedio de clientes domicilio");
-//		informe.add(edadPromedioClienteDomicilio);
 
-		// setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// setSize(400, 200);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(400, 200));
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

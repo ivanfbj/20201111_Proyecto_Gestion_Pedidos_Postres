@@ -10,9 +10,9 @@ public class Pedido {
 	private Cliente cliente;
 	private String lugarDeEntrega;
 	private double valorTotal;
-	// private int cantpostres;
 	ArrayList<Postre> postresDelPedidoList = new ArrayList<Postre>();
-
+	
+	//Contructor explicito
 	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal, Postre postrePedido) {
 		this.codigoPedido = codigoPedido;
 		this.fechaPedido = fechaPedido;
@@ -21,10 +21,6 @@ public class Pedido {
 		this.lugarDeEntrega = lugarDeEntrega;
 		this.valorTotal = valorTotal;
 		postresDelPedidoList.add(postrePedido);
-
-//		postre = new Postre[p];
-//		cantpostres = 0;
-
 	}
 
 	@Override
@@ -38,15 +34,12 @@ public class Pedido {
 	}
 
 	public String listaPostresPedido() {
-
 		String listadoPostresPedidoString = "Los postres son";
 
 		for (int i = 0; i < postresDelPedidoList.size(); i++) {
 			listadoPostresPedidoString += postresDelPedidoList.get(i) + "\n";
 		}
-
 		return listadoPostresPedidoString;
-
 	}
 
 	public void setValorTotal(double valorTotal) {
@@ -60,34 +53,4 @@ public class Pedido {
 	public Cliente getCliente() {
 		return cliente;
 	}
-
-//	public void agregarPotre(Postre recibirpostre) {
-//		if (cantpostres < postre.length) {
-//			postre[cantpostres] = recibirpostre;
-//			cantpostres++;
-//		}
-//	}
-
-//	public void calcularvalortotal() {
-//		double ContTotal = 0;
-//
-//		for (int i = 0; i < cantpostres; i++) {
-//			// sumar la cantidad del valir de los postres y (asignar resultado del acumulador en totalValor(porfuera del ciclo))
-//		}
-//	}
-
-//	@Override
-//	public String toString() {
-//		String cadena = "";
-//		cadena = "codigoPedido=" + codigoPedido + ", fechaPedido=" + fechaPedido + ", fechaEntregaPedido=" + fechaEntregaPedido + ", cliente=" + cliente + ", postre=" + postre + ", lugarDeEntrega="
-//				+ lugarDeEntrega + ", valorTotal=" + valorTotal;
-//		for (int i = 0; cantpostres >= i; i++) {
-//			cadena = "\ncantidad de postres\n";
-//			cadena += postre[i].toString();
-//			// se organiza el error para recorre el vector postre
-//
-//		}
-//		return cadena;
-//	}
-
 }

@@ -19,20 +19,14 @@ public class GuiRegistrarPedido extends JFrame {
 
 	static ArrayList<Pedido> pedidosList = new ArrayList<Pedido>();
 
-	/* Lineas temporales */
-	int p = 1;
-	int f1 = 1;
-	int f2 = 15;
-	// int tt = 1000;
-
 	public GuiRegistrarPedido() {
 
-		setTitle("Registrar Pedido - IVAN");
+		setTitle("Registrar Pedido");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		add(new JLabel("Codigo del pedido:"));
 		add(codigoPedido = new JTextField(20));
-		codigoPedido.addFocusListener(new AccionPrueba());
+		codigoPedido.addFocusListener(new AccionValidarSiExisteCodigoPedidoAntesDeGuardar());
 
 		add(new JLabel("Fecha del pedido:"));
 		add(fechaPedido = new JTextField(20));
@@ -55,14 +49,6 @@ public class GuiRegistrarPedido extends JFrame {
 			postre.addItem(GuiRegistrarPostre.postres.get(i).getNombrePostre());
 		}
 		add(postre);
-
-//		add(new JLabel("Lugar entrega:"));
-//		// add(LugarEntrega = new JTextField(20));
-//		lugarEntrega = new JComboBox<String>();
-//		lugarEntrega.addItem("Sin seleccionar");
-//		lugarEntrega.addItem("tienda");
-//		lugarEntrega.addItem("Domicilio");
-//		add(lugarEntrega);
 
 		add(new JLabel("Lugar de entrega:"));
 		tiendaDomicilio = new ButtonGroup();
@@ -91,14 +77,6 @@ public class GuiRegistrarPedido extends JFrame {
 		add(guardarPedidoButton = new JButton("Guardar Pedido"));
 		guardarPedidoButton.addActionListener(new GuardarPedido());
 
-		/* Lineas temporales */
-		codigoPedido.setText("Pedido_" + p);
-		fechaEntrega.setText("Dic " + f1);
-		fechaPedido.setText("Nov " + f2);
-		// tienda.setSelected(true);
-		// valorTotal.setText(String.valueOf(tt));
-		/* Fin lineas temporales */
-
 		setSize(400, 500);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -106,42 +84,25 @@ public class GuiRegistrarPedido extends JFrame {
 
 	}
 
+//Si el código del pedido no existe, si todos los campos están llenos, calcula el valor total del pedido, crea el pedido, lo añade al ArrayList de pedidos, limpia campos,habilita los campos y quita la selección. 
+//(condición sino): Si el código del pedido existe, limpia campos,habilita los campos y quita la selección.
 	class GuardarPedido implements ActionListener {
-
 		public void actionPerformed(ActionEvent e) {
 
 			if (validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
-
 				if (!codigoPedido.getText().equals("") & !fechaPedido.getText().equals("") & !fechaEntrega.getText().equals("") & cliente.getSelectedIndex() != 0
 						& (tienda.isSelected() != false || domicilio.isSelected() != false) & postre.getSelectedIndex() != 0) {
-
 					if (domicilio.isSelected() == true) {
 						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio() + valorDomicilio));
 					} else {
 						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio()));
 					}
-
 					Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
 							tiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()), GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
 					pedidosList.add(pedidoRealizado);
 
-					// pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
-
-					JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente, el valor total es de $" + valorTotal.getText(), "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
-
-					/* Lineas temporales */
-					p++;
-					f1++;
-					f2++;
-					// tt += 1000;
-
-					codigoPedido.setText("Pedido_" + p);
-					fechaEntrega.setText("Dic " + f1);
-					fechaPedido.setText("Nov " + f2);
-					tienda.setSelected(true);
-					// valorTotal.setText(String.valueOf(tt));
-					/* Fin lineas temporales */
+					JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente, el valor total es de $" + valorTotal.getText(), "Pedido guardado", JOptionPane.DEFAULT_OPTION);
 
 					codigoPedido.setEditable(true);
 					fechaPedido.setEditable(true);
@@ -154,11 +115,11 @@ public class GuiRegistrarPedido extends JFrame {
 					tiendaDomicilio.clearSelection();
 					valorTotal.setText("0");
 				} else {
-					JOptionPane.showMessageDialog(null, "Verificar que todos los campos esten diligenciados", "VENTANA IVAN MIS MENSAJES", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Verificar que todos los campos estén diligenciados", "VALIDAR INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente", "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
+				JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente, el valor total es de $" + valorTotal.getText(), "Pedido guardado", JOptionPane.DEFAULT_OPTION);
 				codigoPedido.setText(null);
 				codigoPedido.setEditable(true);
 				fechaPedido.setEditable(true);
@@ -176,19 +137,13 @@ public class GuiRegistrarPedido extends JFrame {
 		}
 	}
 
+//Si la lista de pedidos está vacía o el pedido no existe, si todos los campos están llenos, calcula el valor total del pedido, crea el pedido, lo añade al ArrayList de pedidos, desahabilita los campos y solo deja el JcomboBox de postres para seguir añadiendo.
+//Condición (Sino) Si hay algún campo vacío o sin seleccionar genera un mensaje para cverificar la información.
+//Condición (Sino) Si el pedidio existe, coge el ultimo pedido y le añade el postre seleccionado, actualizar el valor total del pedido, y actualizar el valor total en la ventana.
+
 	class AnadirPostre implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			// PostreHorneado postreTiramisu = new PostreHorneado("Tiramizú", 300, "2 mayo", 5000, true);
-
-			// pedidosList.get(0).postresDelPedidoList.add(postreTiramisu);
-
-			// JOptionPane.showMessageDialog(null, "el postre se a agregado correctamente ");
-
-			// JOptionPane.showMessageDialog(null, "getcodigoPedido del pedido 0 : " + pedidosList.get(3).getCodigoPedido());
-			// JOptionPane.showMessageDialog(null, "probando el indexOf : " + pedidosList.get(3).getCodigoPedido().indexOf("Pedido_2"));
-
-			// Inicio repetir guardar pedido
 			if (pedidosList.isEmpty() || validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
 
 				if (!codigoPedido.getText().equals("") & !fechaPedido.getText().equals("") & !fechaEntrega.getText().equals("") & cliente.getSelectedIndex() != 0
@@ -206,9 +161,7 @@ public class GuiRegistrarPedido extends JFrame {
 
 					pedidosList.add(pedidoRealizado);
 
-					// pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
-
-					JOptionPane.showMessageDialog(null, "Se a creado el pedido ahora podrá añadir los postres que necesite a dicho pedido");
+					JOptionPane.showMessageDialog(null, "Se a creado el pedido ahora podrá seguir añadiendo los postres que necesite a dicho pedido", "Pedido guardado", JOptionPane.DEFAULT_OPTION);
 
 					codigoPedido.setEditable(false);
 					fechaPedido.setEditable(false);
@@ -218,10 +171,8 @@ public class GuiRegistrarPedido extends JFrame {
 					cliente.setEnabled(false);
 					postre.setSelectedIndex(0);
 
-					// Fin repetir guardar pedido
-
 				} else {
-					JOptionPane.showMessageDialog(null, "Verificar que todos los campos esten diligenciados", "VENTANA IVAN MIS MENSAJES", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Verificar que todos los campos estén diligenciados", "VALIDAR INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 				}
 
 			} else {
@@ -229,7 +180,6 @@ public class GuiRegistrarPedido extends JFrame {
 				pedidosList.get((pedidosList.size() - 1)).postresDelPedidoList.add(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
 				valorTotal.setText(String.valueOf(calcularValorTotalDelPedido()));
-				// pedidosList.get(pedidosList.size()-1);
 
 				pedidosList.get(pedidosList.size() - 1).setValorTotal(Double.parseDouble(valorTotal.getText()));
 
@@ -245,7 +195,6 @@ public class GuiRegistrarPedido extends JFrame {
 			codigoPedido.setText(null);
 			fechaPedido.setText(null);
 			fechaEntrega.setText(null);
-			// LugarEntrega.setText(null);
 			valorTotal.setText(null);
 			tiendaDomicilio.clearSelection();
 			postre.setSelectedIndex(0);
@@ -258,7 +207,6 @@ public class GuiRegistrarPedido extends JFrame {
 			cliente.setEnabled(true);
 			valorTotal.setText("0");
 			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
-
 		}
 	}
 
@@ -274,22 +222,18 @@ public class GuiRegistrarPedido extends JFrame {
 		}
 	}
 
-	class AccionPrueba implements FocusListener {
-
-		@Override
+//En caso de que el usuario ingrese un código de pedido que ya existe se validará antes de guardar el pedido o añadir el postre
+	class AccionValidarSiExisteCodigoPedidoAntesDeGuardar implements FocusListener {
 		public void focusLost(FocusEvent e) {
 
 			if (codigoPedido.isEditable() == true) {
-
 				if (validarSiExisteCodigoPedido(codigoPedido.getText()) == true) {
-
-					JOptionPane.showMessageDialog(null, "EL PEDIDO QUE USTED INGRESO YA EXISTE, POR FAVOR INGRESAR UN CÓDIGO DIFERENTE");
+					JOptionPane.showMessageDialog(null, "EL PEDIDO QUE USTED INGRESO YA EXISTE, POR FAVOR INGRESAR UN CÓDIGO DIFERENTE", "CÓDIGO PEDIDO REPETIDO", JOptionPane.ERROR_MESSAGE);
 					codigoPedido.setText(null);
 				}
 			}
 		}
 
-		@Override
 		public void focusGained(FocusEvent e) {
 		}
 	}
@@ -339,9 +283,7 @@ public class GuiRegistrarPedido extends JFrame {
 				totalPedidosADomicilio++;
 				sumaEdad += pedidosList.get(i).getCliente().getEdad();
 			}
-
 		}
 		return edadPromedio = sumaEdad / totalPedidosADomicilio;
-
 	}
 }

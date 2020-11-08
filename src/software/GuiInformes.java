@@ -1,15 +1,11 @@
 package software;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
 import javax.swing.*;
 
 public class GuiInformes extends JFrame {
 
-	// JTextField totalClientes, totalClientesDomicilio, edadPromedioClientes, edadPromedioClientesDomicilio;
-	// JButton CalcularPromedio;
 	JTextField codigoPedidoTextField;
 	JLabel cantidadPostresXPedidoLabel, codigoPedidoLabel, porcentajePostresRefrigeradosLabel;
 	JButton consultarCantidadPostresXPedidoButton, consultarPoscentajePostresRefrigeradosButton, consultarEdadPromedioClientesDomicilio;
@@ -39,23 +35,6 @@ public class GuiInformes extends JFrame {
 		add(consultarEdadPromedioClientesDomicilio = new JButton("Consultar")).setBounds(150, 200, 90, 30);
 		;
 		consultarEdadPromedioClientesDomicilio.addActionListener(new AccionConsultarEdadPromedioClientesDomicilio());
-
-//		totalClientes = new JTextField(20);
-//		totalClientes.setLocation(100, 100);
-//		add(totalClientes);
-//
-//		add(new JLabel("Total clientes domicilio:"));
-//		add(totalClientesDomicilio = new JTextField(20));
-//
-//		add(new JLabel("Edad promedio clientes:"));
-//		add(edadPromedioClientes = new JTextField(20));
-//
-//		add(new JLabel("Edad promedio clientes domicilio:"));
-//		add(edadPromedioClientesDomicilio = new JTextField(10));
-//
-//		add(CalcularPromedio = new JButton("Calcular promedio"));
-		// CalcularPromedio.addActionListener(new CalcularPromedio());
-		// se crea el boton para calcular la edad promedio del total de ambos clientes.
 
 		setSize(400, 500);
 		setResizable(false);

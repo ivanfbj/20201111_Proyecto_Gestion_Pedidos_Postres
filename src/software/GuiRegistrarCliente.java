@@ -12,19 +12,15 @@ public class GuiRegistrarCliente extends JFrame {
 	JTextField nombreCliente, direccion, telefono, edad;
 	JButton guardarButton, limpiarCamposButton, mostrarClientesButton;
 	static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
-	// ControladorCliente cliente = new ControladorCliente(10);
 
 	public GuiRegistrarCliente() {
-		setTitle("Registrar Cliente - IVAN");
+		setTitle("Registrar Cliente");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		// setLayout(new GridLayout(10,3));
 
 		add(new JLabel("Nombre del cliente:"));
 		add(nombreCliente = new JTextField(20));
 
-		/*
-		 * nombreCliente = new JTextField(20); add(nombreCliente);
-		 */
 		add(new JLabel("Direccion:"));
 		add(direccion = new JTextField(25));
 
@@ -65,7 +61,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 	class Guardar implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
+//Si hay algún campo vacío no se podrá guardar el cliente.
 			if (nombreCliente.getText().equals("") || direccion.getText().equals("") || telefono.getText().equals("") || edad.getText().equals("")
 					|| (masculino.isSelected() == false & femenino.isSelected() == false)) {
 
