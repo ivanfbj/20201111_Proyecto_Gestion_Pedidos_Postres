@@ -209,5 +209,22 @@ public class GuiRegistrarPostre extends JFrame {
 			tiempoMaximoSinRefrigeracionHoras.setVisible(true);
 		}
 	}
+	
+	public double PorcentajePostresRefrigerado() {
+		double porcentaje = 0;
+		double totalPostres = postres.size();
+		double cantidadPostresRefrigerados = 0;
+		
+		for (int i = 0; i < postres.size(); i++) {
+			
+			//if(postres.get(i).esRefrigerado()== true) {}
+			
+			
+		}
+		
+		
+		
+		return porcentaje;
+	}
 
 }

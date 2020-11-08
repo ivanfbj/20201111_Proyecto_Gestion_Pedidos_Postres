@@ -293,7 +293,7 @@ public class GuiRegistrarPedido extends JFrame {
 		}
 	}
 
-	public boolean validarSiExisteCodigoPedido(String codigoPedidoActual) {
+	public static boolean validarSiExisteCodigoPedido(String codigoPedidoActual) {
 		boolean existePedido = false;
 
 		for (int i = 0; i < pedidosList.size(); i++) {
@@ -315,5 +315,20 @@ public class GuiRegistrarPedido extends JFrame {
 			calcularValorTotal += valorDomicilio;
 		}
 		return calcularValorTotal;
+	}
+	
+	public static int cantidadDePostresXPedido(String codigoPedidoAConsultar) {
+		int totalPostresXPedido = 0;
+		
+		for (int i = 0; i < pedidosList.size(); i++) {
+			if (pedidosList.get(i).getCodigoPedido().equals(codigoPedidoAConsultar)) {
+				
+				totalPostresXPedido = pedidosList.get(i).postresDelPedidoList.size();
+				
+			}
+		}
+		
+		
+		return totalPostresXPedido;
 	}
 }

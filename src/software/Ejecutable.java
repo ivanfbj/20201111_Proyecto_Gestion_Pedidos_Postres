@@ -38,7 +38,7 @@ public class Ejecutable {
 
 		// new GuiRegistrarPostre();
 
-		new GuiRegistrarPedido();
+		//new GuiRegistrarPedido();
 		// new GuiPromedioCliente();
 		
 		
