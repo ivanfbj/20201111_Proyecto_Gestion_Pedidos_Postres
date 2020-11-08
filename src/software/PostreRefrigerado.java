@@ -9,16 +9,12 @@ public class PostreRefrigerado extends Postre {
 		super(nombrePostre, cantidadDeCalorias, fechaVencimiento, precio);
 		this.temperaturaMantenimiento = temperaturaMantenimiento;
 		this.tiempoMaximoSinRefrigeracionHoras = tiempoMaximoSinRefrigeracionHoras;
-
+		setEsRefrigerado(true);
 	}
 
 	@Override
 	public String toString() {
 		return super.toString() + ", Temperatura de Mantenimiento=" + temperaturaMantenimiento + ", Tiempo Maximo sin refrigeracion (Horas)=" + tiempoMaximoSinRefrigeracionHoras + "\n";
-	}
-
-	public boolean esRefrigerado() {
-		return true;
 	}
 
 }

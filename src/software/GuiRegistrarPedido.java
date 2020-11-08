@@ -143,7 +143,6 @@ public class GuiRegistrarPedido extends JFrame {
 					// valorTotal.setText(String.valueOf(tt));
 					/* Fin lineas temporales */
 
-					valorTotal.setText("0");
 					codigoPedido.setEditable(true);
 					fechaPedido.setEditable(true);
 					fechaEntrega.setEditable(true);
@@ -152,6 +151,8 @@ public class GuiRegistrarPedido extends JFrame {
 					cliente.setEnabled(true);
 					cliente.setSelectedIndex(0);
 					postre.setSelectedIndex(0);
+					tiendaDomicilio.clearSelection();
+					valorTotal.setText("0");
 				} else {
 					JOptionPane.showMessageDialog(null, "Verificar que todos los campos esten diligenciados", "VENTANA IVAN MIS MENSAJES", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -316,19 +317,31 @@ public class GuiRegistrarPedido extends JFrame {
 		}
 		return calcularValorTotal;
 	}
-	
+
 	public static int cantidadDePostresXPedido(String codigoPedidoAConsultar) {
 		int totalPostresXPedido = 0;
-		
+
 		for (int i = 0; i < pedidosList.size(); i++) {
 			if (pedidosList.get(i).getCodigoPedido().equals(codigoPedidoAConsultar)) {
-				
 				totalPostresXPedido = pedidosList.get(i).postresDelPedidoList.size();
-				
 			}
 		}
-		
-		
 		return totalPostresXPedido;
+	}
+
+	public static double edadPromedioClientesDomicilio() {
+		double edadPromedio = 0;
+		double sumaEdad = 0;
+		double totalPedidosADomicilio = 0;
+
+		for (int i = 0; i < pedidosList.size(); i++) {
+			if (pedidosList.get(i).getLugarDeEntrega().equals("Domicilio")) {
+				totalPedidosADomicilio++;
+				sumaEdad += pedidosList.get(i).getCliente().getEdad();
+			}
+
+		}
+		return edadPromedio = sumaEdad / totalPedidosADomicilio;
+
 	}
 }

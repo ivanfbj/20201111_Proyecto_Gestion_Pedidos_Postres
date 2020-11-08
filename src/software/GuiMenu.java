@@ -8,7 +8,7 @@ public class GuiMenu extends JFrame {
 
 	JMenuBar barra;
 	JMenu registro, informe;
-	JMenuItem registrarCliente, registrarPostre, registrarPedido, cantidadDePostresXPedido, edadPromedioClienteDomicilio;
+	JMenuItem registrarCliente, registrarPostre, registrarPedido, detalleDeInforme;
 
 	public GuiMenu() {
 		setSize(400, 200);
@@ -41,9 +41,9 @@ public class GuiMenu extends JFrame {
 		barra.add(informe);
 		informe.addActionListener(new ActionInformes());
 
-		cantidadDePostresXPedido = new JMenuItem("Cantidad de postres por pedido");
-		informe.add(cantidadDePostresXPedido);
-		cantidadDePostresXPedido.addActionListener(new ActionInformes());
+		detalleDeInforme = new JMenuItem("Informe detallado");
+		informe.add(detalleDeInforme);
+		detalleDeInforme.addActionListener(new ActionInformes());
 //		edadPromedioClienteDomicilio = new JMenuItem("Edad promedio de clientes domicilio");
 //		informe.add(edadPromedioClienteDomicilio);
 

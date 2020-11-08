@@ -6,6 +6,7 @@ public class Postre {
 	private double cantidadDeCalorias;
 	private String fechaVencimiento;
 	private double precio;
+	private boolean esRefrigerado = false;
 
 	public Postre(String nombrePostre, double cantidadDeCalorias, String fechaVencimiento, double precio) {
 		this.nombrePostre = nombrePostre;
@@ -23,9 +24,17 @@ public class Postre {
 	public String getNombrePostre() {
 		return nombrePostre;
 	}
-	
+
 	public double getPrecio() {
 		return precio;
+	}
+
+	public boolean esRefrigerado() {
+		return esRefrigerado;
+	}
+
+	public void setEsRefrigerado(boolean esRefrigerado) {
+		this.esRefrigerado = esRefrigerado;
 	}
 
 }

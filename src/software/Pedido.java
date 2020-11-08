@@ -53,6 +53,14 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 
+	public String getLugarDeEntrega() {
+		return lugarDeEntrega;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
 //	public void agregarPotre(Postre recibirpostre) {
 //		if (cantpostres < postre.length) {
 //			postre[cantpostres] = recibirpostre;

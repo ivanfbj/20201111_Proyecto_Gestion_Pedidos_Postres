@@ -12,10 +12,10 @@ public class GuiInformes extends JFrame {
 	// JButton CalcularPromedio;
 	JTextField codigoPedidoTextField;
 	JLabel cantidadPostresXPedidoLabel, codigoPedidoLabel, porcentajePostresRefrigeradosLabel;
-	JButton consultarCantidadPostresXPedidoButton,consultarPoscentajePostresRefrigeradosButton;
+	JButton consultarCantidadPostresXPedidoButton, consultarPoscentajePostresRefrigeradosButton, consultarEdadPromedioClientesDomicilio;
 
 	public GuiInformes() {
-		setTitle("Promedio clientes");
+		setTitle("Informe detallado");
 		setLayout(null);
 		// setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
@@ -27,15 +27,19 @@ public class GuiInformes extends JFrame {
 		add(codigoPedidoTextField = new JTextField()).setBounds(160, 45, 100, 20);
 		add(consultarCantidadPostresXPedidoButton = new JButton("Consultar")).setBounds(270, 45, 90, 20);
 		consultarCantidadPostresXPedidoButton.addActionListener(new AccionConsultarPostreXPedido());
-		
+
 		add(porcentajePostresRefrigeradosLabel = new JLabel("Porcentaje de postres refrigerados: ")).setBounds(30, 80, 350, 30);
 		porcentajePostresRefrigeradosLabel.setFont(new Font("arial", Font.PLAIN, 20));
 
 		add(consultarPoscentajePostresRefrigeradosButton = new JButton("Consultar")).setBounds(150, 110, 90, 30);
 		consultarPoscentajePostresRefrigeradosButton.addActionListener(new AccionConsultarPorcentajePostresRefrigerados());
-		
-		
-		
+
+		add(porcentajePostresRefrigeradosLabel = new JLabel("<html>Edad promedio de clientes:<br>(Pedidos a Domicilio) <html>")).setBounds(60, 150, 350, 45);
+		porcentajePostresRefrigeradosLabel.setFont(new Font("arial", Font.PLAIN, 20));
+		add(consultarEdadPromedioClientesDomicilio = new JButton("Consultar")).setBounds(150, 200, 90, 30);
+		;
+		consultarEdadPromedioClientesDomicilio.addActionListener(new AccionConsultarEdadPromedioClientesDomicilio());
+
 //		totalClientes = new JTextField(20);
 //		totalClientes.setLocation(100, 100);
 //		add(totalClientes);
@@ -62,29 +66,23 @@ public class GuiInformes extends JFrame {
 
 	class AccionConsultarPostreXPedido implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
 			if (GuiRegistrarPedido.validarSiExisteCodigoPedido(codigoPedidoTextField.getText()) == true) {
-
 				JOptionPane.showMessageDialog(null, "El pedido tiene en total: " + GuiRegistrarPedido.cantidadDePostresXPedido(codigoPedidoTextField.getText()) + " postre(s)");
-
 			} else {
 				JOptionPane.showMessageDialog(null, "El pedido consultado no existe, por favor verificar");
 			}
-
 		}
-
 	}
-	
-	
+
 	class AccionConsultarPorcentajePostresRefrigerados implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
-			JOptionPane.showMessageDialog(null, "Consultando porcentaje de postres");
-
+			JOptionPane.showMessageDialog(null, "El porcentaje de los postres refrigerados almacenados es de " + GuiRegistrarPostre.PorcentajePostresRefrigerado() + "%");
 		}
+	}
 
-	}	
-	
-	
-
+	class AccionConsultarEdadPromedioClientesDomicilio implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null, "La edad promedio de los clientes que realizan pedidios a domicilio es " + GuiRegistrarPedido.edadPromedioClientesDomicilio());
+		}
+	}
 }
