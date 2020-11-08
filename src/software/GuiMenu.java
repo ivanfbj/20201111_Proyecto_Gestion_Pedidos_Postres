@@ -11,7 +11,7 @@ public class GuiMenu extends JFrame {
 	JMenuItem registrarCliente, registrarPostre, registrarPedido, cantidadDePostresXPedido, edadPromedioClienteDomicilio;
 
 	public GuiMenu() {
-		 setSize(400, 200);
+		setSize(400, 200);
 
 		setLocationRelativeTo(null);
 		FlowLayout F = new FlowLayout();
@@ -39,13 +39,15 @@ public class GuiMenu extends JFrame {
 
 		informe = new JMenu("Informes");
 		barra.add(informe);
+		informe.addActionListener(new ActionInformes());
 
 		cantidadDePostresXPedido = new JMenuItem("Cantidad de postres por pedido");
 		informe.add(cantidadDePostresXPedido);
-		edadPromedioClienteDomicilio = new JMenuItem("Edad promedio de clientes domicilio");
-		informe.add(edadPromedioClienteDomicilio);
+		cantidadDePostresXPedido.addActionListener(new ActionInformes());
+//		edadPromedioClienteDomicilio = new JMenuItem("Edad promedio de clientes domicilio");
+//		informe.add(edadPromedioClienteDomicilio);
 
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(400, 200));
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -54,20 +56,25 @@ public class GuiMenu extends JFrame {
 
 	class ActionRegistrarCliente implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			GuiRegistrarCliente registrarCliente = new GuiRegistrarCliente();
+			new GuiRegistrarCliente();
 		}
 	}
 
 	class ActionRegistrarPostre implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			GuiRegistrarPostre registrarPostre = new GuiRegistrarPostre();
+			new GuiRegistrarPostre();
 		}
 	}
 
 	class ActionRegistrarPedido implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			new GuiRegistrarPedido();
+		}
+	}
 
-			GuiRegistrarPedido registrarPedido = new GuiRegistrarPedido();
+	class ActionInformes implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			new GuiPromedioCliente();
 		}
 	}
 

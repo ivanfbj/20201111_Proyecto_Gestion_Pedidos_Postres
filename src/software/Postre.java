@@ -23,5 +23,9 @@ public class Postre {
 	public String getNombrePostre() {
 		return nombrePostre;
 	}
+	
+	public double getPrecio() {
+		return precio;
+	}
 
 }

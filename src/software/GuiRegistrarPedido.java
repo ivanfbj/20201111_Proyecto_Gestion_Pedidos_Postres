@@ -2,21 +2,20 @@ package software;
 
 import javax.swing.*;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 public class GuiRegistrarPedido extends JFrame {
 
+	double valorDomicilio = 5000;
 	JTextField codigoPedido, fechaPedido, fechaEntrega, valorTotal;
 	static JComboBox<String> cliente;
 	static JComboBox<String> postre;
 
-	JRadioButton Tienda, Domicilio;
-	ButtonGroup TiendaDomicilio;
-	JButton GuardarPedidoButton, AnadirPostreButton, LimpiarCamposButton, mostrarPedidosButton;
+	JRadioButton tienda, domicilio;
+	ButtonGroup tiendaDomicilio;
+	JButton guardarPedidoButton, anadirPostreButton, limpiarCamposButton, mostrarPedidosButton;
 
 	static ArrayList<Pedido> pedidosList = new ArrayList<Pedido>();
 
@@ -24,7 +23,7 @@ public class GuiRegistrarPedido extends JFrame {
 	int p = 1;
 	int f1 = 1;
 	int f2 = 15;
-	int tt = 1000;
+	// int tt = 1000;
 
 	public GuiRegistrarPedido() {
 
@@ -33,6 +32,7 @@ public class GuiRegistrarPedido extends JFrame {
 
 		add(new JLabel("Codigo del pedido:"));
 		add(codigoPedido = new JTextField(20));
+		codigoPedido.addFocusListener(new AccionPrueba());
 
 		add(new JLabel("Fecha del pedido:"));
 		add(fechaPedido = new JTextField(20));
@@ -60,41 +60,43 @@ public class GuiRegistrarPedido extends JFrame {
 //		// add(LugarEntrega = new JTextField(20));
 //		lugarEntrega = new JComboBox<String>();
 //		lugarEntrega.addItem("Sin seleccionar");
-//		lugarEntrega.addItem("Tienda");
+//		lugarEntrega.addItem("tienda");
 //		lugarEntrega.addItem("Domicilio");
 //		add(lugarEntrega);
 
 		add(new JLabel("Lugar de entrega:"));
-		TiendaDomicilio = new ButtonGroup();
-		add(Tienda = new JRadioButton("Tienda"));
-		Tienda.setActionCommand("Tienda");
-		add(Domicilio = new JRadioButton("Domicilio"));
-		Domicilio.setActionCommand("Domicilio");
+		tiendaDomicilio = new ButtonGroup();
+		add(tienda = new JRadioButton("Tienda"));
+		tienda.setActionCommand("Tienda");
+		add(domicilio = new JRadioButton("Domicilio($" + valorDomicilio + ")"));
+		domicilio.setActionCommand("Domicilio");
 
-		TiendaDomicilio.add(Tienda);
-		TiendaDomicilio.add(Domicilio);
+		tiendaDomicilio.add(tienda);
+		tiendaDomicilio.add(domicilio);
 
 		add(new JLabel("Valor Total:"));
 		add(valorTotal = new JTextField(26));
+		valorTotal.setEditable(false);
+		valorTotal.setText("0");
 
-		add(AnadirPostreButton = new JButton("Anadir Postre"));
-		AnadirPostreButton.addActionListener(new AnadirPostre());
+		add(anadirPostreButton = new JButton("Añadir Postre"));
+		anadirPostreButton.addActionListener(new AnadirPostre());
 
-		add(LimpiarCamposButton = new JButton("Limpiar Campos"));
-		LimpiarCamposButton.addActionListener(new LimpiarCampos());
+		add(limpiarCamposButton = new JButton("Limpiar Campos"));
+		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		add(mostrarPedidosButton = new JButton("Mostrar Pedidos"));
 		mostrarPedidosButton.addActionListener(new AccionMostrarPedidos());
 
-		add(GuardarPedidoButton = new JButton("Guardar Pedido"));
-		GuardarPedidoButton.addActionListener(new GuardarPedido());
+		add(guardarPedidoButton = new JButton("Guardar Pedido"));
+		guardarPedidoButton.addActionListener(new GuardarPedido());
 
 		/* Lineas temporales */
 		codigoPedido.setText("Pedido_" + p);
 		fechaEntrega.setText("Dic " + f1);
 		fechaPedido.setText("Nov " + f2);
-		Tienda.setSelected(true);
-		valorTotal.setText(String.valueOf(tt));
+		// tienda.setSelected(true);
+		// valorTotal.setText(String.valueOf(tt));
 		/* Fin lineas temporales */
 
 		setSize(400, 500);
@@ -108,33 +110,69 @@ public class GuiRegistrarPedido extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 
-			Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
-					TiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()), GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+			if (validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
 
-			pedidosList.add(pedidoRealizado);
+				if (!codigoPedido.getText().equals("") & !fechaPedido.getText().equals("") & !fechaEntrega.getText().equals("") & cliente.getSelectedIndex() != 0
+						& (tienda.isSelected() != false || domicilio.isSelected() != false) & postre.getSelectedIndex() != 0) {
 
-			// pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+					if (domicilio.isSelected() == true) {
+						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio() + valorDomicilio));
+					} else {
+						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio()));
+					}
 
-			JOptionPane.showMessageDialog(null, "Se guardó el pedido", "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
-			/*
-			 * codigoPedido.setText(null); fechaPedido.setText(null); fechaEntrega.setText(null); // LugarEntrega.setText(null); valorTotal.setText(null);
-			 * TiendaDomicilio.clearSelection(); postre.setSelectedIndex(0); cliente.setSelectedIndex(0);
-			 */
+					Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
+							tiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()), GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
-			/* Lineas temporales */
-			p++;
-			f1++;
-			f2++;
-			tt += 1000;
+					pedidosList.add(pedidoRealizado);
 
-			codigoPedido.setText("Pedido_" + p);
-			fechaEntrega.setText("Dic " + f1);
-			fechaPedido.setText("Nov " + f2);
-			Tienda.setSelected(true);
-			valorTotal.setText(String.valueOf(tt));
-			/* Fin lineas temporales */
+					// pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+
+					JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente, el valor total es de $" + valorTotal.getText(), "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
+
+					/* Lineas temporales */
+					p++;
+					f1++;
+					f2++;
+					// tt += 1000;
+
+					codigoPedido.setText("Pedido_" + p);
+					fechaEntrega.setText("Dic " + f1);
+					fechaPedido.setText("Nov " + f2);
+					tienda.setSelected(true);
+					// valorTotal.setText(String.valueOf(tt));
+					/* Fin lineas temporales */
+
+					valorTotal.setText("0");
+					codigoPedido.setEditable(true);
+					fechaPedido.setEditable(true);
+					fechaEntrega.setEditable(true);
+					domicilio.setEnabled(true);
+					tienda.setEnabled(true);
+					cliente.setEnabled(true);
+					cliente.setSelectedIndex(0);
+					postre.setSelectedIndex(0);
+				} else {
+					JOptionPane.showMessageDialog(null, "Verificar que todos los campos esten diligenciados", "VENTANA IVAN MIS MENSAJES", JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			} else {
+				JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente", "VENTANA IVAN MIS MENSAJES", JOptionPane.DEFAULT_OPTION);
+				codigoPedido.setText(null);
+				codigoPedido.setEditable(true);
+				fechaPedido.setEditable(true);
+				fechaPedido.setText(null);
+				fechaEntrega.setEditable(true);
+				fechaEntrega.setText(null);
+				cliente.setEnabled(true);
+				cliente.setSelectedIndex(0);
+				postre.setSelectedIndex(0);
+				domicilio.setEnabled(true);
+				tienda.setEnabled(true);
+				tiendaDomicilio.clearSelection();
+				valorTotal.setText("0");
+			}
 		}
-
 	}
 
 	class AnadirPostre implements ActionListener {
@@ -149,14 +187,52 @@ public class GuiRegistrarPedido extends JFrame {
 			// JOptionPane.showMessageDialog(null, "getcodigoPedido del pedido 0 : " + pedidosList.get(3).getCodigoPedido());
 			// JOptionPane.showMessageDialog(null, "probando el indexOf : " + pedidosList.get(3).getCodigoPedido().indexOf("Pedido_2"));
 
-			if (pedidosList.isEmpty()) {
-				
-				
-				
-				JOptionPane.showMessageDialog(null, "No se puede añadir postres si la lista de pedidos está vacía");
+			// Inicio repetir guardar pedido
+			if (pedidosList.isEmpty() || validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
+
+				if (!codigoPedido.getText().equals("") & !fechaPedido.getText().equals("") & !fechaEntrega.getText().equals("") & cliente.getSelectedIndex() != 0
+						& (tienda.isSelected() != false || domicilio.isSelected() != false) & postre.getSelectedIndex() != 0) {
+
+					if (domicilio.isSelected() == true) {
+
+						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio() + valorDomicilio));
+					} else {
+						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio()));
+					}
+
+					Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
+							tiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()), GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+
+					pedidosList.add(pedidoRealizado);
+
+					// pedidosList.get(pedidosList.size() - 1).AgregarPostreAlPedido(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
+
+					JOptionPane.showMessageDialog(null, "Se a creado el pedido ahora podrá añadir los postres que necesite a dicho pedido");
+
+					codigoPedido.setEditable(false);
+					fechaPedido.setEditable(false);
+					fechaEntrega.setEditable(false);
+					domicilio.setEnabled(false);
+					tienda.setEnabled(false);
+					cliente.setEnabled(false);
+					postre.setSelectedIndex(0);
+
+					// Fin repetir guardar pedido
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Verificar que todos los campos esten diligenciados", "VENTANA IVAN MIS MENSAJES", JOptionPane.INFORMATION_MESSAGE);
+				}
+
 			} else {
+
 				pedidosList.get((pedidosList.size() - 1)).postresDelPedidoList.add(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
-				JOptionPane.showMessageDialog(null, "El postre seleccionador se añade al primer pedido");
+
+				valorTotal.setText(String.valueOf(calcularValorTotalDelPedido()));
+				// pedidosList.get(pedidosList.size()-1);
+
+				pedidosList.get(pedidosList.size() - 1).setValorTotal(Double.parseDouble(valorTotal.getText()));
+
+				JOptionPane.showMessageDialog(null, "El postre seleccionado se añade al pedido con código " + pedidosList.get((pedidosList.size() - 1)).getCodigoPedido());
 			}
 		}
 	}
@@ -170,9 +246,16 @@ public class GuiRegistrarPedido extends JFrame {
 			fechaEntrega.setText(null);
 			// LugarEntrega.setText(null);
 			valorTotal.setText(null);
-			TiendaDomicilio.clearSelection();
+			tiendaDomicilio.clearSelection();
 			postre.setSelectedIndex(0);
 			cliente.setSelectedIndex(0);
+			codigoPedido.setEditable(true);
+			fechaPedido.setEditable(true);
+			fechaEntrega.setEditable(true);
+			domicilio.setEnabled(true);
+			tienda.setEnabled(true);
+			cliente.setEnabled(true);
+			valorTotal.setText("0");
 			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
 
 		}
@@ -185,12 +268,52 @@ public class GuiRegistrarPedido extends JFrame {
 			String listadoDePedidos = "";
 			for (int i = 0; i < pedidosList.size(); i++) {
 				listadoDePedidos += pedidosList.get(i).toString() + "\n";
-
 			}
-
 			JOptionPane.showMessageDialog(null, listadoDePedidos);
-
 		}
 	}
 
+	class AccionPrueba implements FocusListener {
+
+		@Override
+		public void focusLost(FocusEvent e) {
+
+			if (codigoPedido.isEditable() == true) {
+
+				if (validarSiExisteCodigoPedido(codigoPedido.getText()) == true) {
+
+					JOptionPane.showMessageDialog(null, "EL PEDIDO QUE USTED INGRESO YA EXISTE, POR FAVOR INGRESAR UN CÓDIGO DIFERENTE");
+					codigoPedido.setText(null);
+				}
+			}
+		}
+
+		@Override
+		public void focusGained(FocusEvent e) {
+		}
+	}
+
+	public boolean validarSiExisteCodigoPedido(String codigoPedidoActual) {
+		boolean existePedido = false;
+
+		for (int i = 0; i < pedidosList.size(); i++) {
+			if (pedidosList.get(i).getCodigoPedido().equals(codigoPedidoActual)) {
+				existePedido = true;
+			}
+		}
+
+		return existePedido;
+	}
+
+	public double calcularValorTotalDelPedido() {
+		double calcularValorTotal = 0;
+
+		for (int i = 0; i < pedidosList.get(pedidosList.size() - 1).postresDelPedidoList.size(); i++) {
+			calcularValorTotal += pedidosList.get(pedidosList.size() - 1).postresDelPedidoList.get(i).getPrecio();
+		}
+		if (domicilio.isSelected() == true) {
+			calcularValorTotal += valorDomicilio;
+		}
+		return calcularValorTotal;
+	}
 }
