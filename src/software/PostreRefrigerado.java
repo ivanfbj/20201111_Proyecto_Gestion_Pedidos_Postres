@@ -15,5 +15,4 @@ public class PostreRefrigerado extends Postre {
 	public String toString() {
 		return super.toString() + ", Temperatura de Mantenimiento=" + temperaturaMantenimiento + ", Tiempo Maximo sin refrigeracion (Horas)=" + tiempoMaximoSinRefrigeracionHoras + "\n";
 	}
-
 }
