@@ -81,7 +81,7 @@ public class GuiRegistrarPedido extends JFrame {
 
         public void actionPerformed(ActionEvent e) {
 
-            Pedido pedidos = new Pedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(), GuiRegistrarCliente.cliente.get(Cliente.getSelectedIndex()), LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()), Integer.parseInt(Postre.toString()));
+            Pedido pedidos = new Pedido(CodigoPedido.getText(), FechaPedido.getText(), FechaEntrega.getText(), GuiRegistrarCliente.cliente.get(Cliente.getSelectedIndex()), LugarEntrega.getText(), Double.parseDouble(ValorTotal.getText()),GuiRegistrarPostre.postres.get(Postre.getSelectedIndex()));
 
             pedido.add(pedidos);
 
