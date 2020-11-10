@@ -12,7 +12,7 @@ public class GuiRegistrarPedido extends JFrame {
 
     JRadioButton Tienda, Domicilio;
     ButtonGroup TiendaDomicilio;
-    JButton GuardarPedidoButton, AnadirPostreButton, LimpiarCamposButton;
+    JButton GuardarPedidoButton, AnadirPostreButton, LimpiarCamposButton,mostrarPedidosButton;
 
     static ArrayList<Pedido> pedido = new ArrayList<Pedido>();
 
@@ -63,9 +63,9 @@ public class GuiRegistrarPedido extends JFrame {
 
         add(AnadirPostreButton = new JButton("Anadir Postre"));
         AnadirPostreButton.addActionListener(new AnadirPostre());
-        
-         add(LimpiarCamposButton = new JButton("Mostrar Pedidos"));
-        LimpiarCamposButton.addActionListener(new MostrarPedidos());
+
+        add(mostrarPedidosButton = new JButton("Mostrar Pedidos"));
+        mostrarPedidosButton.addActionListener(new AccionMostrarPedidos());
 
         add(LimpiarCamposButton = new JButton("Limpiar Campos"));
         LimpiarCamposButton.addActionListener(new LimpiarCampos());
@@ -127,10 +127,17 @@ public class GuiRegistrarPedido extends JFrame {
     class AccionMostrarPedidos implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
+
             
+            String listadoDePedidos="";
             
+            for(int i=0;i<pedido.size();i++){
+                listadoDePedidos+=pedido.get(i).toString()+"\n";
+            }        
+            
+             JOptionPane.showMessageDialog(null, listadoDePedidos);
         }
-        
-        }
+
+    }
 
 }
