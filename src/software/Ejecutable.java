@@ -28,6 +28,9 @@ public class Ejecutable {
                 PostreRefrigerado oreo = new PostreRefrigerado("Oreo",150.50,"31 de diciembre",7500.50,22,1);
                 
                 GuiRegistrarPostre.postres.add(oreo); 
+                PostreRefrigerado mora = new PostreRefrigerado("mora",320.2,"01 de agosto",7500,22,1);
+                
+                GuiRegistrarPostre.postres.add(mora);
 
 		new GuiRegistrarPedido();
 	}
