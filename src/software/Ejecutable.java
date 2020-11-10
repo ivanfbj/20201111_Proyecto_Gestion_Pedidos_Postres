@@ -24,6 +24,10 @@ public class Ejecutable {
                 GuiRegistrarCliente.cliente.add(jose);
 
 		new GuiRegistrarPostre();
+                
+                PostreRefrigerado oreo = new PostreRefrigerado("Oreo",150.50,"31 de diciembre",7500.50,22,1);
+                
+                GuiRegistrarPostre.postres.add(oreo); 
 
 		new GuiRegistrarPedido();
 	}
