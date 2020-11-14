@@ -49,6 +49,7 @@ public class GuiRegistrarPedido extends JFrame {
         add(LugarEntrega = new JTextField(20));
 
         add(new JLabel("Valor Total:"));
+        ValorTotal.setEditable(false);
         add(ValorTotal = new JTextField(26));
 
         add(new JLabel("Tipo de lugar:"));
