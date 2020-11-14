@@ -23,12 +23,6 @@ public class Pedido {
 		postresDelPedidoList.add(postrePedido);
 	}
 
-	@Override
-	public String toString() {
-		return "Código del pedido=" + codigoPedido + ", Fecha del pedido=" + fechaPedido + ", Fecha de entrega del Pedido=" + fechaEntregaPedido + ", Lugar de entrega=" + lugarDeEntrega
-				+ ", valorTotal=" + valorTotal + "\n" + cliente + "\n" + "Los postres del pedido son:\n" + postresDelPedidoList + "\n";
-	}
-
 	public String getCodigoPedido() {
 		return codigoPedido;
 	}
@@ -43,5 +37,11 @@ public class Pedido {
 
 	public Cliente getCliente() {
 		return cliente;
+	}
+
+	@Override
+	public String toString() {
+		return "Código del pedido=" + codigoPedido + ", Fecha del pedido=" + fechaPedido + ", Fecha de entrega del Pedido=" + fechaEntregaPedido + ", Lugar de entrega=" + lugarDeEntrega
+				+ ", valorTotal=" + valorTotal + "\n" + cliente + "\n" + "Los postres del pedido son:\n" + postresDelPedidoList + "\n";
 	}
 }

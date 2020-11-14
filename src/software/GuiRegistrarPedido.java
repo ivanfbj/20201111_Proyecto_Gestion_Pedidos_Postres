@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 public class GuiRegistrarPedido extends JFrame {
 
-	double valorDomicilio = 5000;
+	static double valorDomicilio = 5000;
 	JTextField codigoPedido, fechaPedido, fechaEntrega, valorTotal;
 	static JComboBox<String> cliente;
 	static JComboBox<String> postre;
 
-	JRadioButton tienda, domicilio;
+	JRadioButton tienda;
+	static JRadioButton domicilio;
 	ButtonGroup tiendaDomicilio;
 	JButton guardarPedidoButton, anadirPostreButton, limpiarCamposButton, mostrarPedidosButton;
 
@@ -89,7 +90,7 @@ public class GuiRegistrarPedido extends JFrame {
 	class GuardarPedido implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			if (validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
+			if (ControladorPedido.validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
 				if (!codigoPedido.getText().equals("") & !fechaPedido.getText().equals("") & !fechaEntrega.getText().equals("") & cliente.getSelectedIndex() != 0
 						& (tienda.isSelected() != false || domicilio.isSelected() != false) & postre.getSelectedIndex() != 0) {
 					if (domicilio.isSelected() == true) {
@@ -144,7 +145,7 @@ public class GuiRegistrarPedido extends JFrame {
 	class AnadirPostre implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
-			if (pedidosList.isEmpty() || validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
+			if (pedidosList.isEmpty() || ControladorPedido.validarSiExisteCodigoPedido(codigoPedido.getText()) == false) {
 
 				if (!codigoPedido.getText().equals("") & !fechaPedido.getText().equals("") & !fechaEntrega.getText().equals("") & cliente.getSelectedIndex() != 0
 						& (tienda.isSelected() != false || domicilio.isSelected() != false) & postre.getSelectedIndex() != 0) {
@@ -179,7 +180,7 @@ public class GuiRegistrarPedido extends JFrame {
 
 				pedidosList.get((pedidosList.size() - 1)).postresDelPedidoList.add(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
-				valorTotal.setText(String.valueOf(calcularValorTotalDelPedido()));
+				valorTotal.setText(String.valueOf(ControladorPedido.calcularValorTotalDelPedido()));
 
 				pedidosList.get(pedidosList.size() - 1).setValorTotal(Double.parseDouble(valorTotal.getText()));
 
@@ -227,7 +228,7 @@ public class GuiRegistrarPedido extends JFrame {
 		public void focusLost(FocusEvent e) {
 
 			if (codigoPedido.isEditable() == true) {
-				if (validarSiExisteCodigoPedido(codigoPedido.getText()) == true) {
+				if (ControladorPedido.validarSiExisteCodigoPedido(codigoPedido.getText()) == true) {
 					JOptionPane.showMessageDialog(null, "EL PEDIDO QUE USTED INGRESO YA EXISTE, POR FAVOR INGRESAR UN CÓDIGO DIFERENTE", "CÓDIGO PEDIDO REPETIDO", JOptionPane.ERROR_MESSAGE);
 					codigoPedido.setText(null);
 				}
@@ -236,54 +237,5 @@ public class GuiRegistrarPedido extends JFrame {
 
 		public void focusGained(FocusEvent e) {
 		}
-	}
-
-	public static boolean validarSiExisteCodigoPedido(String codigoPedidoActual) {
-		boolean existePedido = false;
-
-		for (int i = 0; i < pedidosList.size(); i++) {
-			if (pedidosList.get(i).getCodigoPedido().equals(codigoPedidoActual)) {
-				existePedido = true;
-			}
-		}
-
-		return existePedido;
-	}
-
-	public double calcularValorTotalDelPedido() {
-		double calcularValorTotal = 0;
-
-		for (int i = 0; i < pedidosList.get(pedidosList.size() - 1).postresDelPedidoList.size(); i++) {
-			calcularValorTotal += pedidosList.get(pedidosList.size() - 1).postresDelPedidoList.get(i).getPrecio();
-		}
-		if (domicilio.isSelected() == true) {
-			calcularValorTotal += valorDomicilio;
-		}
-		return calcularValorTotal;
-	}
-
-	public static int cantidadDePostresXPedido(String codigoPedidoAConsultar) {
-		int totalPostresXPedido = 0;
-
-		for (int i = 0; i < pedidosList.size(); i++) {
-			if (pedidosList.get(i).getCodigoPedido().equals(codigoPedidoAConsultar)) {
-				totalPostresXPedido = pedidosList.get(i).postresDelPedidoList.size();
-			}
-		}
-		return totalPostresXPedido;
-	}
-
-	public static double edadPromedioClientesDomicilio() {
-		double edadPromedio = 0;
-		double sumaEdad = 0;
-		double totalPedidosADomicilio = 0;
-
-		for (int i = 0; i < pedidosList.size(); i++) {
-			if (pedidosList.get(i).getLugarDeEntrega().equals("Domicilio")) {
-				totalPedidosADomicilio++;
-				sumaEdad += pedidosList.get(i).getCliente().getEdad();
-			}
-		}
-		return edadPromedio = sumaEdad / totalPedidosADomicilio;
 	}
 }

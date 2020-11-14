@@ -16,11 +16,6 @@ public class Postre {
 		this.precio = precio;
 	}
 
-	@Override
-	public String toString() {
-		return "Nombre del postre=" + nombrePostre + ", Cantidad de calorias=" + cantidadDeCalorias + ", Fecha de vencimiento=" + fechaVencimiento + ", Precio=" + precio;
-	}
-
 	public String getNombrePostre() {
 		return nombrePostre;
 	}
@@ -35,6 +30,11 @@ public class Postre {
 
 	public void setEsRefrigerado(boolean esRefrigerado) {
 		this.esRefrigerado = esRefrigerado;
+	}
+	
+	@Override
+	public String toString() {
+		return "Nombre del postre=" + nombrePostre + ", Cantidad de calorias=" + cantidadDeCalorias + ", Fecha de vencimiento=" + fechaVencimiento + ", Precio=" + precio;
 	}
 
 }

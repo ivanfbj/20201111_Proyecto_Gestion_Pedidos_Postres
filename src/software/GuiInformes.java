@@ -45,8 +45,8 @@ public class GuiInformes extends JFrame {
 
 	class AccionConsultarPostreXPedido implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (GuiRegistrarPedido.validarSiExisteCodigoPedido(codigoPedidoTextField.getText()) == true) {
-				JOptionPane.showMessageDialog(null, "El pedido tiene en total: " + GuiRegistrarPedido.cantidadDePostresXPedido(codigoPedidoTextField.getText()) + " postre(s)");
+			if (ControladorPedido.validarSiExisteCodigoPedido(codigoPedidoTextField.getText()) == true) {
+				JOptionPane.showMessageDialog(null, "El pedido tiene en total: " + ControladorPedido.cantidadDePostresXPedido(codigoPedidoTextField.getText()) + " postre(s)");
 			} else {
 				JOptionPane.showMessageDialog(null, "El pedido consultado no existe, por favor verificar");
 			}
@@ -55,13 +55,13 @@ public class GuiInformes extends JFrame {
 
 	class AccionConsultarPorcentajePostresRefrigerados implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, "El porcentaje de los postres refrigerados almacenados es de " + GuiRegistrarPostre.PorcentajePostresRefrigerado() + "%");
+			JOptionPane.showMessageDialog(null, "El porcentaje de los postres refrigerados almacenados es de " + ControladorPostre.PorcentajePostresRefrigerado() + "%");
 		}
 	}
 
 	class AccionConsultarEdadPromedioClientesDomicilio implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, "La edad promedio de los clientes que realizan pedidios a domicilio es " + GuiRegistrarPedido.edadPromedioClientesDomicilio());
+			JOptionPane.showMessageDialog(null, "La edad promedio de los clientes que realizan pedidios a domicilio es " + ControladorPedido.edadPromedioClientesDomicilio());
 		}
 	}
 }
