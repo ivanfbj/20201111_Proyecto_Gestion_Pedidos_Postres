@@ -69,10 +69,11 @@ public class GuiRegistrarCliente extends JFrame {
 
 			} else {
 
-				Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Integer.parseInt(telefono.getText()), sexo.getSelection().getActionCommand(),
+				Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Long.parseLong(telefono.getText()), sexo.getSelection().getActionCommand(),
 						Integer.parseInt(edad.getText()));
 				cliente.add(clientes);
-
+				GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
+				
 				JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
 
 				nombreCliente.setText(null);
@@ -81,7 +82,7 @@ public class GuiRegistrarCliente extends JFrame {
 				edad.setText(null);
 				sexo.clearSelection();
 
-				GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
+				
 			}
 		}
 	}

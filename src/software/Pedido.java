@@ -11,8 +11,8 @@ public class Pedido {
 	private String lugarDeEntrega;
 	private double valorTotal;
 	ArrayList<Postre> postresDelPedidoList = new ArrayList<Postre>();
-	
-	//Contructor explicito
+
+	// Contructor explicito
 	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal, Postre postrePedido) {
 		this.codigoPedido = codigoPedido;
 		this.fechaPedido = fechaPedido;
@@ -31,15 +31,6 @@ public class Pedido {
 
 	public String getCodigoPedido() {
 		return codigoPedido;
-	}
-
-	public String listaPostresPedido() {
-		String listadoPostresPedidoString = "Los postres son";
-
-		for (int i = 0; i < postresDelPedidoList.size(); i++) {
-			listadoPostresPedidoString += postresDelPedidoList.get(i) + "\n";
-		}
-		return listadoPostresPedidoString;
 	}
 
 	public void setValorTotal(double valorTotal) {

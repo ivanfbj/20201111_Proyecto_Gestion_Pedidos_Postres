@@ -4,12 +4,12 @@ public class Cliente {
 
 	private String nombreCliente;
 	private String direccion;
-	private int telefono;
+	private long telefono;
 	private String sexo;
 	private int edad;
 
 	// Constructor explicito
-	public Cliente(String nombreCliente, String direccion, int telefono, String sexo, int edad) {
+	public Cliente(String nombreCliente, String direccion, long telefono, String sexo, int edad) {
 		this.nombreCliente = nombreCliente;
 		this.direccion = direccion;
 		this.telefono = telefono;

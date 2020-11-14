@@ -191,9 +191,11 @@ public class GuiRegistrarPostre extends JFrame {
 
 			jLabeltemperaturaMantenimiento.setVisible(false);
 			temperaturaMantenimiento.setVisible(false);
+			temperaturaMantenimiento.setText(null);
 
 			jLabeltiempoMaximoSinRefrigeracionHoras.setVisible(false);
 			tiempoMaximoSinRefrigeracionHoras.setVisible(false);
+			tiempoMaximoSinRefrigeracionHoras.setText(null);
 		}
 	}
 
