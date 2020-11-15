@@ -215,11 +215,15 @@ public class GuiRegistrarPedido extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 
-			String listadoDePedidos = "";
-			for (int i = 0; i < pedidosList.size(); i++) {
-				listadoDePedidos += pedidosList.get(i).toString() + "\n";
+			if (pedidosList.isEmpty() == false) {
+				String listadoDePedidos = "";
+				for (int i = 0; i < pedidosList.size(); i++) {
+					listadoDePedidos += pedidosList.get(i).toString() + "\n";
+				}
+				JOptionPane.showMessageDialog(null, listadoDePedidos);
+			} else {
+				JOptionPane.showMessageDialog(null, "Actualmente no existen pedidos registrados", "Sin pedidos registrados", JOptionPane.INFORMATION_MESSAGE);
 			}
-			JOptionPane.showMessageDialog(null, listadoDePedidos);
 		}
 	}
 

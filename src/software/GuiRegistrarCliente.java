@@ -73,7 +73,7 @@ public class GuiRegistrarCliente extends JFrame {
 							Integer.parseInt(edad.getText()));
 					cliente.add(clientes);
 
-					JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
+					JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.", "Cliente Registrado", JOptionPane.INFORMATION_MESSAGE);
 
 					nombreCliente.setText(null);
 					direccion.setText(null);

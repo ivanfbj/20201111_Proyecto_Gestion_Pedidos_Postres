@@ -47,6 +47,12 @@ public class ControladorPedido {
 				sumaEdad += GuiRegistrarPedido.pedidosList.get(i).getCliente().getEdad();
 			}
 		}
-		return edadPromedio = sumaEdad / totalPedidosADomicilio;
+		
+		if (totalPedidosADomicilio == 0) {
+			return 0;
+		} else {
+			return edadPromedio = sumaEdad / totalPedidosADomicilio;
+		}
+		
 	}
 }
