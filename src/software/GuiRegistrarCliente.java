@@ -9,7 +9,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 	ButtonGroup sexo;
 	JRadioButton masculino, femenino;
-	JTextField nombreCliente, direccion, telefono, edad;
+	static JTextField nombreCliente, direccion, telefono, edad;
 	JButton guardarButton, limpiarCamposButton, mostrarClientesButton;
 	static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
 
@@ -68,21 +68,24 @@ public class GuiRegistrarCliente extends JFrame {
 				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
 
 			} else {
+				if (ControladorCliente.validarSiExisteCliente(nombreCliente.getText() + telefono.getText()) == false) {
+					Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Long.parseLong(telefono.getText()), sexo.getSelection().getActionCommand(),
+							Integer.parseInt(edad.getText()));
+					cliente.add(clientes);
 
-				Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Long.parseLong(telefono.getText()), sexo.getSelection().getActionCommand(),
-						Integer.parseInt(edad.getText()));
-				cliente.add(clientes);
-				GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
-				
-				JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
+					JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.");
 
-				nombreCliente.setText(null);
-				direccion.setText(null);
-				telefono.setText(null);
-				edad.setText(null);
-				sexo.clearSelection();
+					nombreCliente.setText(null);
+					direccion.setText(null);
+					telefono.setText(null);
+					edad.setText(null);
+					sexo.clearSelection();
 
-				
+					GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
+				} else {
+					JOptionPane.showMessageDialog(null, "El cliente ya existe por favor verificar la lista de clientes existentes", "CLIENTE DUPLICADO", JOptionPane.INFORMATION_MESSAGE);
+				}
+
 			}
 		}
 	}

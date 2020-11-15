@@ -21,6 +21,10 @@ public class Cliente {
 		return nombreCliente;
 	}
 
+	public long getTelefono() {
+		return telefono;
+	}
+	
 	public int getEdad() {
 		return edad;
 	}

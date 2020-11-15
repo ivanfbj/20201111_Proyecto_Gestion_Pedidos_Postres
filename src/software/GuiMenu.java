@@ -44,8 +44,8 @@ public class GuiMenu extends JFrame {
 		informe.add(detalleDeInforme);
 		detalleDeInforme.addActionListener(new ActionInformes());
 
-		// setSize(400, 200);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		 setSize(400, 200);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(400, 200));
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
