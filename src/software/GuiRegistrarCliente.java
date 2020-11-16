@@ -110,7 +110,7 @@ public class GuiRegistrarCliente extends JFrame {
 				listadoClientes += cliente.get(i).toString() + "\n";
 
 			}
-			JOptionPane.showMessageDialog(null, listadoClientes);
+			JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
 
 		}
 	}

@@ -120,20 +120,26 @@ public class GuiRegistrarPedido extends JFrame {
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente, el valor total es de $" + valorTotal.getText(), "Pedido guardado", JOptionPane.DEFAULT_OPTION);
-				codigoPedido.setText(null);
-				codigoPedido.setEditable(true);
-				fechaPedido.setEditable(true);
-				fechaPedido.setText(null);
-				fechaEntrega.setEditable(true);
-				fechaEntrega.setText(null);
-				cliente.setEnabled(true);
-				cliente.setSelectedIndex(0);
-				postre.setSelectedIndex(0);
-				domicilio.setEnabled(true);
-				tienda.setEnabled(true);
-				tiendaDomicilio.clearSelection();
-				valorTotal.setText("0");
+
+				if (postre.getSelectedIndex() == 0) {
+					JOptionPane.showMessageDialog(null, "El pedido se guardó exitosamente, el valor total es de $" + valorTotal.getText(), "Pedido guardado", JOptionPane.DEFAULT_OPTION);
+					codigoPedido.setText(null);
+					codigoPedido.setEditable(true);
+					fechaPedido.setEditable(true);
+					fechaPedido.setText(null);
+					fechaEntrega.setEditable(true);
+					fechaEntrega.setText(null);
+					cliente.setEnabled(true);
+					cliente.setSelectedIndex(0);
+					postre.setSelectedIndex(0);
+					domicilio.setEnabled(true);
+					tienda.setEnabled(true);
+					tiendaDomicilio.clearSelection();
+					valorTotal.setText("0");
+				} else {
+					JOptionPane.showMessageDialog(null, "Si desea guardar el pedido, NO debe de haber ningún postre seleccionado", "VALIDAR POSTRE SELECCIONADO", JOptionPane.WARNING_MESSAGE);
+				}
+
 			}
 		}
 	}

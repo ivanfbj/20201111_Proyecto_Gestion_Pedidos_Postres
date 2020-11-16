@@ -45,10 +45,15 @@ public class GuiInformes extends JFrame {
 
 	class AccionConsultarPostreXPedido implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (ControladorPedido.validarSiExisteCodigoPedido(codigoPedidoTextField.getText()) == true) {
-				JOptionPane.showMessageDialog(null, "El pedido tiene en total: " + ControladorPedido.cantidadDePostresXPedido(codigoPedidoTextField.getText()) + " postre(s)");
+			if (!codigoPedidoTextField.getText().equals("")) {
+				if (ControladorPedido.validarSiExisteCodigoPedido(codigoPedidoTextField.getText()) == true) {
+					JOptionPane.showMessageDialog(null, "El pedido tiene en total: " + ControladorPedido.cantidadDePostresXPedido(codigoPedidoTextField.getText()) + " postre(s)",
+							"Pedido" + codigoPedidoTextField.getText(), JOptionPane.DEFAULT_OPTION);
+				} else {
+					JOptionPane.showMessageDialog(null, "El pedido consultado no existe, por favor verificar", "Pedido NO existe", JOptionPane.INFORMATION_MESSAGE);
+				}
 			} else {
-				JOptionPane.showMessageDialog(null, "El pedido consultado no existe, por favor verificar");
+				JOptionPane.showMessageDialog(null, "Debe ingresar el código del pedido que va a consultar", "Ingresar código del Pedido", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
