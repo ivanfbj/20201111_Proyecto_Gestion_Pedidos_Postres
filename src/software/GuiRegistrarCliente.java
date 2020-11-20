@@ -1,61 +1,118 @@
 package software;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import javax.swing.*;
 
 public class GuiRegistrarCliente extends JFrame {
 
+	ButtonGroup sexo;
+	JRadioButton masculino, femenino;
+	static JTextField nombreCliente, direccion, telefono, edad;
+	JButton guardarButton, limpiarCamposButton, mostrarClientesButton;
+	static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
+
 	public GuiRegistrarCliente() {
 		setTitle("Registrar Cliente");
-		setLayout(new FlowLayout());
+		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		// setLayout(new GridLayout(10,3));
-		
-
-		ButtonGroup sexo;
-		JRadioButton masculino, femenino;
-		JTextField nombreCliente, direccion, telefono, edad;
-		JButton guardarButton, limpiarCamposButton;
 
 		add(new JLabel("Nombre del cliente:"));
 		add(nombreCliente = new JTextField(20));
-		
 
-		add(new JLabel("Direcci�n:"));
+		add(new JLabel("Direccion:"));
 		add(direccion = new JTextField(25));
 
 		add(new JLabel("Telefono:"));
-		add(telefono = new JTextField(27));
+		add(telefono = new JTextField(26));
 
 		add(new JLabel("Edad:"));
-		add(edad = new JTextField(28));
-		
+		add(edad = new JTextField(7));
+
 		add(new JLabel("Sexo:"));
 		sexo = new ButtonGroup();
-		add(masculino = new JRadioButton("Masculino"));
-		add(femenino = new JRadioButton("Femenino"));
+		masculino = new JRadioButton("Masculino");
+		masculino.setActionCommand("Masculino");
+		add(masculino);
+
+		femenino = new JRadioButton("Femenino");
+		femenino.setActionCommand("Femenino");
+		add(femenino);
+
 		sexo.add(masculino);
 		sexo.add(femenino);
-		
-		
-		add(guardarButton = new JButton("Guardar"));
-		
-		add(limpiarCamposButton = new JButton("Limpiar campos"));
 
+		add(guardarButton = new JButton("Guardar"));
+		guardarButton.addActionListener(new Guardar());
+
+		add(limpiarCamposButton = new JButton("Limpiar campos"));
+		limpiarCamposButton.addActionListener(new LimpiarCampos());
+
+		add(mostrarClientesButton = new JButton("Mostrar clientes registrados"));
+		mostrarClientesButton.addActionListener(new MostrarClientesRegistrados());
 
 		setSize(400, 500);
-		setResizable(false);// Establecemos si la ventana puede cambiar de tama�o o no
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
 
 	}
+
+	class Guardar implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+//Si hay algún campo vacío no se podrá guardar el cliente.
+			if (nombreCliente.getText().equals("") || direccion.getText().equals("") || telefono.getText().equals("") || edad.getText().equals("")
+					|| (masculino.isSelected() == false & femenino.isSelected() == false)) {
+
+				JOptionPane.showMessageDialog(null, "Por favor verificar que todos los campos esten diligenciados", "FALTA INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+
+			} else {
+				if (ControladorCliente.validarSiExisteCliente(nombreCliente.getText() + telefono.getText()) == false) {
+					Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Long.parseLong(telefono.getText()), sexo.getSelection().getActionCommand(),
+							Integer.parseInt(edad.getText()));
+					cliente.add(clientes);
+
+					JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.", "Cliente Registrado", JOptionPane.INFORMATION_MESSAGE);
+
+					nombreCliente.setText(null);
+					direccion.setText(null);
+					telefono.setText(null);
+					edad.setText(null);
+					sexo.clearSelection();
+
+					GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
+				} else {
+					JOptionPane.showMessageDialog(null, "El cliente ya existe por favor verificar la lista de clientes existentes", "CLIENTE DUPLICADO", JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			}
+		}
+	}
+
+	class LimpiarCampos implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			nombreCliente.setText(null);
+			direccion.setText(null);
+			telefono.setText(null);
+			edad.setText(null);
+			sexo.clearSelection();
+
+		}
+	}
+
+	class MostrarClientesRegistrados implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			String listadoClientes = "";
+			for (int i = 0; i < cliente.size(); i++) {
+				listadoClientes += cliente.get(i).toString() + "\n";
+
+			}
+			JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
+
+		}
+	}
+
 }
