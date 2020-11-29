@@ -81,7 +81,13 @@ public class GuiRegistrarCliente extends JFrame {
 					edad.setText(null);
 					sexo.clearSelection();
 
-					GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
+					//Controlar el error en consola cuando no se abre primero la ventana de pedido antes de registrar cliente
+					try {
+						GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
+					} catch (Exception e2) {
+						System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
+					}
+
 				} else {
 					JOptionPane.showMessageDialog(null, "El cliente ya existe por favor verificar la lista de clientes existentes", "CLIENTE DUPLICADO", JOptionPane.INFORMATION_MESSAGE);
 				}
