@@ -20,9 +20,17 @@ public class Cliente {
 	public String getNombreCliente() {
 		return nombreCliente;
 	}
+	
+	public String getDireccion() {
+		return direccion;
+	}
 
 	public long getTelefono() {
 		return telefono;
+	}
+	
+	public String getSexo() {
+		return sexo;
 	}
 	
 	public int getEdad() {

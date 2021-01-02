@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+import daoInterfaces.DAOCliente;
+
 public class GuiRegistrarCliente extends JFrame {
 
 	ButtonGroup sexo;
@@ -13,6 +15,8 @@ public class GuiRegistrarCliente extends JFrame {
 	JButton guardarButton, limpiarCamposButton, mostrarClientesButton;
 	static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
 
+	DAOCliente daoClienteDB = new DAOCliente();
+	
 	public GuiRegistrarCliente() {
 		setTitle("Registrar Cliente");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -71,8 +75,18 @@ public class GuiRegistrarCliente extends JFrame {
 				if (ControladorCliente.validarSiExisteCliente(nombreCliente.getText() + telefono.getText()) == false) {
 					Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Long.parseLong(telefono.getText()), sexo.getSelection().getActionCommand(),
 							Integer.parseInt(edad.getText()));
+					
 					cliente.add(clientes);
-
+					
+					try {
+						daoClienteDB.registrarCliente(clientes);
+					} catch (Exception e1) {
+						System.out.println("GuiRegistrarCliente, falla al guardar cliente en la base de datos");
+						e1.printStackTrace();
+						System.out.println("otro mensaje a ver que aparece");
+						
+					}
+						
 					JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.", "Cliente Registrado", JOptionPane.INFORMATION_MESSAGE);
 
 					nombreCliente.setText(null);
