@@ -3,14 +3,15 @@ package daoInterfaces;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import dao.ConexionSql;
 import software.Cliente;
 
 public class DAOCliente extends ConexionSql {
 
-	PreparedStatement pst = null;
-	ResultSet rs = null;
+	static PreparedStatement pst = null;
+	static ResultSet rs = null;
 
 	public void registrarCliente(Cliente objCliente) throws Exception {
 
@@ -44,19 +45,19 @@ public class DAOCliente extends ConexionSql {
 	public void eliminarCliente(Cliente cliente) throws Exception {
 	};
 
-	public ArrayList<Cliente> listaClientes() throws Exception {
+	public static ArrayList<Cliente> listaClientes() throws Exception {
 		ArrayList<Cliente> listaClientesDeDB = new ArrayList<Cliente>();
 
 		try {
-			this.conectar();
-			pst = this.conexion.prepareStatement("Select sNombreCliente,sDireccion,nTelefono,sSexo,nEdad from tbcliente");
+			DAOCliente.conectar();
+			pst = DAOCliente.conexion.prepareStatement("Select sNombreCliente,sDireccion,nTelefono,sSexo,nEdad from tbcliente");
 			rs = pst.executeQuery();
 
 			while (rs.next()) {
 				Cliente clienteDB = new Cliente(rs.getString("sNombreCliente"), rs.getString("sDireccion"), rs.getLong("nTelefono"), rs.getString("sSexo"), rs.getInt("nEdad"));
 				listaClientesDeDB.add(clienteDB);
 			}
-			System.out.println("DAOCliente, Se consultan correctamente la tabla tbcliente");
+			//System.out.println("DAOCliente, Se consultan correctamente la tabla tbcliente");
 
 		} catch (Exception e) {
 			System.out.println("DAOCliente, Error en el select tbcliente");
@@ -72,17 +73,19 @@ public class DAOCliente extends ConexionSql {
 		return listaClientesDeDB;
 	}
 
-//	public boolean validarSiExisteCliente() {
-//		boolean existeCliente = false;
-//		
-//		if(DAOCliente.listaClientes().isEmpty()==false) {
-//			
-//		}
-//		
-//		
-//		
-//		return existeCliente;
-//		
-//	}
-	
+	public boolean validarSiExisteCliente(String nombreTelefonoCliente) throws Exception {
+		boolean existeCliente = false;
+
+		if (DAOCliente.listaClientes().isEmpty() == false) {
+			for (int i = 0; i < DAOCliente.listaClientes().size(); i++) {
+				String clienteRegistrado = DAOCliente.listaClientes().get(i).getNombreCliente() + DAOCliente.listaClientes().get(i).getTelefono();
+
+				if (nombreTelefonoCliente.equalsIgnoreCase(clienteRegistrado)) {
+					existeCliente = true;
+				}
+			}
+		}
+		return existeCliente;
+	}
+
 }

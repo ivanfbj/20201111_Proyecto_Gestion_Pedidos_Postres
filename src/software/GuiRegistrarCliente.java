@@ -75,9 +75,11 @@ public class GuiRegistrarCliente extends JFrame {
 				if (ControladorCliente.validarSiExisteCliente(nombreCliente.getText() + telefono.getText()) == false) {
 					Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Long.parseLong(telefono.getText()), sexo.getSelection().getActionCommand(),
 							Integer.parseInt(edad.getText()));
-					
+
+					//LINEA PARA BORRAR CON LA MIGRACIÓN A MySQL					
 					cliente.add(clientes);
 					
+					//En este bloque TRY CATCH, se comenzó a implementar el envío de información a la base de datos MySQL.
 					try {
 						daoClienteDB.registrarCliente(clientes);
 					} catch (Exception e1) {
@@ -121,7 +123,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 		}
 	}
-
+//METODO QUE SE DEBE CAMBIAR YA QUE LA CONSULTA SE REALIZARÁ HACÍA LA BASE DE DATOS
 	class MostrarClientesRegistrados implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 

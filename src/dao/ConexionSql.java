@@ -11,7 +11,7 @@ public class ConexionSql {
 	private static final String URL_DB = "jdbc:mysql://localhost:3306/db_apppostres?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private static final String USER_DB = "AppPostres";
 	private static final String PASS_DB = "Postres2021*";
-	protected Connection conexion = null;
+	protected static Connection conexion = null;
 	
 //Bloque de código para utilizar el controlador de conexión una sola vez sin estarlo utilizando en cada conexión
 	static {
@@ -24,7 +24,7 @@ public class ConexionSql {
 	}
 
 	// Método para establecer la conexión con la base de datos
-	public Connection conectar() {
+	public static Connection conectar() {
 
 		try {
 

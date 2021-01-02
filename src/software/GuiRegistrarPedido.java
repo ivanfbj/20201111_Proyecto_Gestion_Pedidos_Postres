@@ -38,6 +38,8 @@ public class GuiRegistrarPedido extends JFrame {
 		add(new JLabel("Cliente:"));
 		cliente = new JComboBox<>();
 		cliente.addItem("Sin seleccionar");
+		
+		//ESTA LÓGICA DEBE CAMBIAR YA QUE LOS CLIENTES SE GUARDAN EN LA BASE DE DATOS
 		for (int i = 0; i < GuiRegistrarCliente.cliente.size(); i++) {
 			cliente.addItem(GuiRegistrarCliente.cliente.get(i).getNombreCliente());
 		}

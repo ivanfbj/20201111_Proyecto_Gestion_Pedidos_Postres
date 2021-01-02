@@ -1,8 +1,5 @@
 package software;
 
-import java.util.Iterator;
-
-import dao.ConexionSql;
 import daoInterfaces.DAOCliente;
 
 public class Ejecutable {
@@ -50,7 +47,10 @@ public class Ejecutable {
 		} else {
 			System.out.println("No hay clientes registrados");
 		}
-
+		
+		System.out.println("");
+		System.out.println(proabdoCliente.validarSiExisteCliente("ivanf2701234"));;
+		
 	}
 }
 

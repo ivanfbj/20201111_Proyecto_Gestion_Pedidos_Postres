@@ -1,5 +1,6 @@
 package software;
 
+//ESTA CLASE ES REMPLAZADA POR DAOCliente y el método validarSiExisteCliente, YA QUE AHORA LA CONEXIÓN ES A UNA BASE DE DATOS MySQL
 public class ControladorCliente {
 
 	public static boolean validarSiExisteCliente(String nombreTelefonoCliente) {

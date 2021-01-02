@@ -2,6 +2,7 @@ package software;
 
 public class Cliente {
 
+	private Long nId;
 	private String nombreCliente;
 	private String direccion;
 	private long telefono;
@@ -17,10 +18,18 @@ public class Cliente {
 		this.edad = edad;
 	}
 
+	public Long getnId() {
+		return nId;
+	}
+
+	public void setnId(Long nId) {
+		this.nId = nId;
+	}
+
 	public String getNombreCliente() {
 		return nombreCliente;
 	}
-	
+
 	public String getDireccion() {
 		return direccion;
 	}
@@ -28,11 +37,11 @@ public class Cliente {
 	public long getTelefono() {
 		return telefono;
 	}
-	
+
 	public String getSexo() {
 		return sexo;
 	}
-	
+
 	public int getEdad() {
 		return edad;
 	}

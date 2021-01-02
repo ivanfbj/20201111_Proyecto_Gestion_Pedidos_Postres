@@ -2,6 +2,9 @@ package software;
 
 import java.util.ArrayList;
 
+
+//LA LÓGICA DEL CLIENTE DEBE CAMBIAR YA QUE NO SE GUARDARÁ UN OBJETO DENTRO DE UN OBJETO
+//AHORA SE DEBERÁ DE TENER UNA RELACIÓN EN BASE DE DATOS
 public class Pedido {
 
 	private String codigoPedido;
