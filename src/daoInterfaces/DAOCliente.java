@@ -17,7 +17,7 @@ public class DAOCliente extends ConexionSql {
 
 		try {
 			this.conectar();
-			pst = this.conexion.prepareStatement("Insert into tbcliente (sNombreCliente,sDireccion,nTelefono,sSexo,nEdad) values (?,?,?,?,?)");
+			pst = this.conexion.prepareStatement("Insert into tbclientes (sNombreCliente,sDireccion,nTelefono,sSexo,nEdad) values (?,?,?,?,?)");
 			pst.setString(1, objCliente.getNombreCliente());
 			pst.setString(2, objCliente.getDireccion());
 			pst.setLong(3, objCliente.getTelefono());
@@ -25,7 +25,7 @@ public class DAOCliente extends ConexionSql {
 			pst.setInt(5, objCliente.getEdad());
 			pst.execute();
 
-			System.out.println("DAOCliente, Se ejecutó el insert tbcliente correctamente");
+			System.out.println("DAOCliente, Se ejecutó el insert tbclientes correctamente");
 
 		} catch (Exception e) {
 			System.out.println("DAOCliente, Error en el insert tbcliente");
@@ -50,11 +50,13 @@ public class DAOCliente extends ConexionSql {
 
 		try {
 			DAOCliente.conectar();
-			pst = DAOCliente.conexion.prepareStatement("Select sNombreCliente,sDireccion,nTelefono,sSexo,nEdad from tbcliente");
+			pst = DAOCliente.conexion.prepareStatement("Select nId,sNombreCliente,sDireccion,nTelefono,sSexo,nEdad from tbclientes");
 			rs = pst.executeQuery();
 
 			while (rs.next()) {
 				Cliente clienteDB = new Cliente(rs.getString("sNombreCliente"), rs.getString("sDireccion"), rs.getLong("nTelefono"), rs.getString("sSexo"), rs.getInt("nEdad"));
+				//Se retorna el nId de la base de datos al objeto en la aplicación, con el fin de poder utilizar un ID único en la asignación de pedidos.
+				clienteDB.setnId(rs.getLong("nId"));
 				listaClientesDeDB.add(clienteDB);
 			}
 			//System.out.println("DAOCliente, Se consultan correctamente la tabla tbcliente");

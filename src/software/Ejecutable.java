@@ -40,16 +40,16 @@ public class Ejecutable {
 //		conexionDataBase.conectar();
 		DAOCliente proabdoCliente = new DAOCliente();
 //		
-		if (!proabdoCliente.listaClientes().isEmpty()) {
-			for (Cliente c : proabdoCliente.listaClientes()) {
-				System.out.println(c.toString());
-			}
-		} else {
-			System.out.println("No hay clientes registrados");
-		}
+//		if (!proabdoCliente.listaClientes().isEmpty()) {
+//			for (Cliente c : proabdoCliente.listaClientes()) {
+//				System.out.println(c.toString());
+//			}
+//		} else {
+//			System.out.println("No hay clientes registrados");
+//		}
 		
-		System.out.println("");
-		System.out.println(proabdoCliente.validarSiExisteCliente("ivanf2701234"));;
+		//System.out.println("");
+		System.out.println(proabdoCliente.validarSiExisteCliente("ivan270123456"));;
 		
 	}
 }

@@ -100,6 +100,8 @@ public class GuiRegistrarPedido extends JFrame {
 					} else {
 						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio()));
 					}
+					
+					//ESTA LOGICA TAMBIÉN DEBE CAMBIAR YA QUE NO SE GUARDARÁ UN OBJETO DENTRO DE UN OBJETO, SINO QUE EL PEDIDO TENDRÁ EL ID DEL CLIENTE PARA LA RELACIÓN DE PEDIDOXCLIENTEXPOSTRE.
 					Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
 							tiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()), GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 

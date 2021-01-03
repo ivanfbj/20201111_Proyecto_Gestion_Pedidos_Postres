@@ -16,7 +16,7 @@ public class GuiRegistrarCliente extends JFrame {
 	static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
 
 	DAOCliente daoClienteDB = new DAOCliente();
-	
+
 	public GuiRegistrarCliente() {
 		setTitle("Registrar Cliente");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -54,7 +54,7 @@ public class GuiRegistrarCliente extends JFrame {
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		add(mostrarClientesButton = new JButton("Mostrar clientes registrados"));
-		mostrarClientesButton.addActionListener(new MostrarClientesRegistrados());
+		mostrarClientesButton.addActionListener(new MostrarClientesRegistradosDB());
 
 		setSize(400, 500);
 		setResizable(false);
@@ -76,19 +76,19 @@ public class GuiRegistrarCliente extends JFrame {
 					Cliente clientes = new Cliente(nombreCliente.getText(), direccion.getText(), Long.parseLong(telefono.getText()), sexo.getSelection().getActionCommand(),
 							Integer.parseInt(edad.getText()));
 
-					//LINEA PARA BORRAR CON LA MIGRACIÓN A MySQL					
+					// LINEA PARA BORRAR CON LA MIGRACIÓN A MySQL
 					cliente.add(clientes);
-					
-					//En este bloque TRY CATCH, se comenzó a implementar el envío de información a la base de datos MySQL.
+
+					// En este bloque TRY CATCH, se comenzó a implementar el envío de información a la base de datos MySQL.
 					try {
 						daoClienteDB.registrarCliente(clientes);
 					} catch (Exception e1) {
 						System.out.println("GuiRegistrarCliente, falla al guardar cliente en la base de datos");
 						e1.printStackTrace();
 						System.out.println("otro mensaje a ver que aparece");
-						
+
 					}
-						
+
 					JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.", "Cliente Registrado", JOptionPane.INFORMATION_MESSAGE);
 
 					nombreCliente.setText(null);
@@ -97,7 +97,7 @@ public class GuiRegistrarCliente extends JFrame {
 					edad.setText(null);
 					sexo.clearSelection();
 
-					//Controlar el error en consola cuando no se abre primero la ventana de pedido antes de registrar cliente
+					// Controlar el error en consola cuando no se abre primero la ventana de pedido antes de registrar cliente
 					try {
 						GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
 					} catch (Exception e2) {
@@ -123,6 +123,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 		}
 	}
+
 //METODO QUE SE DEBE CAMBIAR YA QUE LA CONSULTA SE REALIZARÁ HACÍA LA BASE DE DATOS
 	class MostrarClientesRegistrados implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -133,6 +134,31 @@ public class GuiRegistrarCliente extends JFrame {
 
 			}
 			JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
+
+		}
+	}
+
+	class MostrarClientesRegistradosDB implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			String listadoClientes = "";
+			try {
+			
+				if(!DAOCliente.listaClientes().isEmpty()) {
+					for (Cliente c : DAOCliente.listaClientes()) {
+						listadoClientes += c.toString() + "\n";
+					}
+					JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "No hay cliente reglistrados", "SIN Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
+				}
+			
+			
+			
+			
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 
 		}
 	}
