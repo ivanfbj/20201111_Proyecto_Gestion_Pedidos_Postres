@@ -49,7 +49,12 @@ public class Ejecutable {
 //		}
 		
 		//System.out.println("");
-		System.out.println(proabdoCliente.validarSiExisteCliente("ivan270123456"));;
+		System.out.println(proabdoCliente.validarSiExisteCliente("ivan270123456"));
+		
+boolean primerValor = true;
+
+int segundoValor = primerValor ? 1:0;
+System.out.println("este valor corresponde a " + segundoValor);
 		
 	}
 }

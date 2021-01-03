@@ -50,13 +50,13 @@ public class DAOCliente extends ConexionSql {
 
 		try {
 			DAOCliente.conectar();
-			pst = DAOCliente.conexion.prepareStatement("Select nId,sNombreCliente,sDireccion,nTelefono,sSexo,nEdad from tbclientes");
+			pst = DAOCliente.conexion.prepareStatement("Select nIdCliente,sNombreCliente,sDireccion,nTelefono,sSexo,nEdad from tbclientes");
 			rs = pst.executeQuery();
 
 			while (rs.next()) {
 				Cliente clienteDB = new Cliente(rs.getString("sNombreCliente"), rs.getString("sDireccion"), rs.getLong("nTelefono"), rs.getString("sSexo"), rs.getInt("nEdad"));
 				//Se retorna el nId de la base de datos al objeto en la aplicación, con el fin de poder utilizar un ID único en la asignación de pedidos.
-				clienteDB.setnId(rs.getLong("nId"));
+				clienteDB.setnId(rs.getLong("nIdCliente"));
 				listaClientesDeDB.add(clienteDB);
 			}
 			//System.out.println("DAOCliente, Se consultan correctamente la tabla tbcliente");

@@ -1,7 +1,8 @@
 package software;
 
 public class Postre {
-
+	
+	private Long nIdPostre;
 	private String nombrePostre;
 	private double cantidadDeCalorias;
 	private String fechaVencimiento;
@@ -16,6 +17,14 @@ public class Postre {
 		this.precio = precio;
 	}
 
+	public Long getnId() {
+		return nId;
+	}
+	
+	public void setnId(Long nId) {
+		this.nId = nId;
+	}
+	
 	public String getNombrePostre() {
 		return nombrePostre;
 	}

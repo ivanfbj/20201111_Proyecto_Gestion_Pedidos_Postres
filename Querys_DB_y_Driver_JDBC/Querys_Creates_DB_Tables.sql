@@ -17,7 +17,7 @@ CREATE TABLE `tbclientes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `tbpostres` (
-  `nIdPostre` int NOT NULL AUTO_INCREMENT,
+  `nIdPostre` bigint NOT NULL AUTO_INCREMENT,
   `sNombrePostre` varchar(100) NOT NULL,
   `nCantidadDeCalorias` double NOT NULL,
   `sFechaVencimiento` varchar(20) NOT NULL,
@@ -41,7 +41,17 @@ CREATE TABLE `tbpedidos` (
   `nValorTotal` int NOT NULL,
   PRIMARY KEY (`nIdPedido`),
   KEY `sCodigoPedido` (`sCodigoPedido`) /*!80000 INVISIBLE */,
-  CONSTRAINT `FK_cliente` FOREIGN KEY (`nIdPedido`) REFERENCES `tbclientes` (`nIdCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK_nIdCliente_idx` (`nIdCliente`),
+  CONSTRAINT `FK_nIdCliente` FOREIGN KEY (`nIdCliente`) REFERENCES `tbclientes` (`nIdCliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
+CREATE TABLE `tbpostresxpedido` (
+  `nIdPostresXPedido` bigint NOT NULL AUTO_INCREMENT,
+  `nIdPedido` bigint NOT NULL,
+  `nIdPostre` bigint NOT NULL,
+  PRIMARY KEY (`nIdPostresXPedido`),
+  KEY `FK_nIdPedido_idx` (`nIdPedido`) /*!80000 INVISIBLE */,
+  KEY `FK_nIdPostre` (`nIdPostre`),
+  CONSTRAINT `FK_nIdPedido` FOREIGN KEY (`nIdPedido`) REFERENCES `tbpedidos` (`nIdPedido`),
+  CONSTRAINT `FK_nIdPostre` FOREIGN KEY (`nIdPostre`) REFERENCES `tbpostres` (`nIdPostre`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

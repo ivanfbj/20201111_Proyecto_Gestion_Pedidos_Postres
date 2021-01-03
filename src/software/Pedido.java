@@ -7,6 +7,7 @@ import java.util.ArrayList;
 //AHORA SE DEBERÁ DE TENER UNA RELACIÓN EN BASE DE DATOS
 public class Pedido {
 
+	private Long nIdPedido;
 	private String codigoPedido;
 	private String fechaPedido;
 	private String fechaEntregaPedido;
@@ -26,6 +27,15 @@ public class Pedido {
 		postresDelPedidoList.add(postrePedido);
 	}
 
+	
+	public Long getnIdPedido() {
+		return nIdPedido;
+	}
+	
+public void setnIdPedido(Long nIdPedido) {
+	this.nIdPedido = nIdPedido;
+}
+	
 	public String getCodigoPedido() {
 		return codigoPedido;
 	}
