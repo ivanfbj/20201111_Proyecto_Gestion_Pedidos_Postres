@@ -1,0 +1,5 @@
+nId,sNombrePostre,nCantidadDeCalorias,sFechaVencimiento,nPrecio,bEsRefrigerado,nTemperaturaMantenimiento,nTiempoMaximoSinRefrigeracionHoras,bEsHojaldrado,dFechaCreacion
+6,MoraNoH,100,"11 noviembre",2000,0,NULL,NULL,0,"2021-01-02 22:31:19"
+7,FresaSiH,200,"12 noviembre",3000,0,NULL,NULL,1,"2021-01-02 22:36:13"
+8,Oreo,500,"14 novimebre",5000,1,20,20,NULL,"2021-01-02 22:36:23"
+9,MaracuyaRefrige,300,"13 noviembre",4000,1,15,24.5,NULL,"2021-01-02 22:36:58"
