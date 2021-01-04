@@ -1,6 +1,7 @@
 package software;
 
 import daoInterfaces.DAOCliente;
+import daoInterfaces.DAOPostre;
 
 public class Ejecutable {
 	public static void main(String[] args) throws Exception {
@@ -23,14 +24,14 @@ public class Ejecutable {
 		Cliente cliente5 = new Cliente("Camila", "Calle 5", 555555, "Femenino", 18);
 		GuiRegistrarCliente.cliente.add(cliente5);
 
-		PostreHorneado postreNoHojaldrado = new PostreHorneado("MoraNoH", 100, "11 noviembre", 2000, false);
-		PostreHorneado postreSiHojaldrado = new PostreHorneado("FresaSiH", 200, "12 noviembre", 3000, true);
+		PostreHorneado postreNoHojaldrado = new PostreHorneado("2MoraNoH", 100, "11 noviembre", 2000, false);
+		PostreHorneado postreSiHojaldrado = new PostreHorneado("2FresaSiH", 200, "12 noviembre", 3000, true);
 
 		GuiRegistrarPostre.postres.add(postreNoHojaldrado);
 		GuiRegistrarPostre.postres.add(postreSiHojaldrado);
 
-		GuiRegistrarPostre.postres.add(new PostreRefrigerado("MaracuyaRefrige", 300, "13 noviembre", 4000, 15, 24.5));
-		GuiRegistrarPostre.postres.add(new PostreRefrigerado("Oreo", 500, "14 noviembre", 5000, 20, 20));
+		GuiRegistrarPostre.postres.add(new PostreRefrigerado("2MaracuyaRefrige", 300, "13 noviembre", 4000, 15, 24.5));
+		GuiRegistrarPostre.postres.add(new PostreRefrigerado("2Oreo", 500, "14 noviembre", 5000, 20, 20));
 
 		GuiMenu menu = new GuiMenu();
 
@@ -56,6 +57,14 @@ boolean primerValor = true;
 int segundoValor = primerValor ? 1:0;
 System.out.println("este valor corresponde a " + segundoValor);
 		
+//DAOPostre probandoPostre = new DAOPostre();
+//probandoPostre.registrarPostre(postreNoHojaldrado);
+//probandoPostre.registrarPostre(postreSiHojaldrado);
+//probandoPostre.registrarPostre(new PostreRefrigerado("2MaracuyaRefrige", 300, "13 noviembre", 4000, 15, 24.5));
+//probandoPostre.registrarPostre(new PostreRefrigerado("2Oreo", 500, "14 noviembre", 5000, 20, 20));
+
+
+
 	}
 }
 

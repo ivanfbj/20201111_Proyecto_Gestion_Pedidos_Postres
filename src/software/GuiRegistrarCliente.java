@@ -85,8 +85,6 @@ public class GuiRegistrarCliente extends JFrame {
 					} catch (Exception e1) {
 						System.out.println("GuiRegistrarCliente, falla al guardar cliente en la base de datos");
 						e1.printStackTrace();
-						System.out.println("otro mensaje a ver que aparece");
-
 					}
 
 					JOptionPane.showMessageDialog(null, "El cliente fue registrado exitosamente.", "Cliente Registrado", JOptionPane.INFORMATION_MESSAGE);
@@ -143,8 +141,8 @@ public class GuiRegistrarCliente extends JFrame {
 
 			String listadoClientes = "";
 			try {
-			
-				if(!DAOCliente.listaClientes().isEmpty()) {
+
+				if (!DAOCliente.listaClientes().isEmpty()) {
 					for (Cliente c : DAOCliente.listaClientes()) {
 						listadoClientes += c.toString() + "\n";
 					}
@@ -152,10 +150,7 @@ public class GuiRegistrarCliente extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "No hay cliente reglistrados", "SIN Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
 				}
-			
-			
-			
-			
+
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}

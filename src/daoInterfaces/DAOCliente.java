@@ -3,15 +3,14 @@ package daoInterfaces;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import dao.ConexionSql;
 import software.Cliente;
 
 public class DAOCliente extends ConexionSql {
 
-	static PreparedStatement pst = null;
-	static ResultSet rs = null;
+	private static PreparedStatement pst = null;
+	private static ResultSet rs = null;
 
 	public void registrarCliente(Cliente objCliente) throws Exception {
 
@@ -31,6 +30,9 @@ public class DAOCliente extends ConexionSql {
 			System.out.println("DAOCliente, Error en el insert tbcliente");
 			e.printStackTrace();
 		} finally {
+			if (rs != null) {
+				rs.close();
+			}
 			if (pst != null) {
 				pst.close();
 			}

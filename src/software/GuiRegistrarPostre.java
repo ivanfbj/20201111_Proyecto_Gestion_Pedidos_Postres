@@ -1,6 +1,9 @@
 package software;
 
 import javax.swing.*;
+
+import daoInterfaces.DAOPostre;
+
 import java.awt.FlowLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -83,7 +86,16 @@ public class GuiRegistrarPostre extends JFrame {
 							Double.parseDouble(precio.getText()), esHojaldrado.isSelected());
 
 					postres.add(postreCreadoHorneado);
-
+					
+					// En este bloque TRY CATCH, se comenzó a implementar el envío de información a la base de datos MySQL.
+					try {
+						DAOPostre.registrarPostre(postreCreadoHorneado);
+					} catch (Exception e1) {
+						System.out.println("GuiRegistrarPostre, falla al guardar el postre en la base de datos");
+						e1.printStackTrace();
+					}
+					
+					
 					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Horneado", JOptionPane.INFORMATION_MESSAGE);
 //Desde la creación del postre horneado lo añade al JComboBox de la ventana de Registrar Pedidos
 
@@ -125,11 +137,23 @@ public class GuiRegistrarPostre extends JFrame {
 							Double.parseDouble(precio.getText()), Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()));
 
 					postres.add(postreCreadoRefrigerado);
-
+					
+					// En este bloque TRY CATCH, se comenzó a implementar el envío de información a la base de datos MySQL.
+					try {
+						DAOPostre.registrarPostre(postreCreadoRefrigerado);
+					} catch (Exception e1) {
+						System.out.println("GuiRegistrarPostre, falla al guardar el postre en la base de datos");
+						e1.printStackTrace();
+					}
+					
 					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Refrigerado", JOptionPane.INFORMATION_MESSAGE);
 //Desde la creación del postre refrigerado lo añade al JComboBox de la ventana de Registrar Pedidos
+					try {
 					GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado.getNombrePostre());
-
+					} catch (Exception e2) {
+						System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
+					}
+					
 					nombreDelPostre.setText(null);
 					cantidadDeCalorias.setText(null);
 					fechaVencimiento.setText(null);

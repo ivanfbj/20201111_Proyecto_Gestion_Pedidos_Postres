@@ -1,7 +1,7 @@
 package software;
 
 public class ControladorPostre {
-
+//ESTA CLASE Y SU MÉTODO TAMBIÉN SE CAMBIAN POR EL MÉTODO EN LA CLASE DAOPostre.
 	public static double PorcentajePostresRefrigerado() {
 		double porcentaje = 0;
 		double totalPostres = GuiRegistrarPostre.postres.size();

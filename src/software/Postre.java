@@ -1,7 +1,7 @@
 package software;
 
 public class Postre {
-	
+
 	private Long nIdPostre;
 	private String nombrePostre;
 	private double cantidadDeCalorias;
@@ -9,7 +9,7 @@ public class Postre {
 	private double precio;
 	private boolean esRefrigerado = false;
 
-	//Contructor explicito
+	// Contructor explicito
 	public Postre(String nombrePostre, double cantidadDeCalorias, String fechaVencimiento, double precio) {
 		this.nombrePostre = nombrePostre;
 		this.cantidadDeCalorias = cantidadDeCalorias;
@@ -17,16 +17,24 @@ public class Postre {
 		this.precio = precio;
 	}
 
-	public Long getnId() {
-		return nId;
+	public Long getnIdPostre() {
+		return nIdPostre;
 	}
-	
-	public void setnId(Long nId) {
-		this.nId = nId;
+
+	public void setnIdPostre(Long nIdPostre) {
+		this.nIdPostre = nIdPostre;
 	}
-	
+
 	public String getNombrePostre() {
 		return nombrePostre;
+	}
+
+	public double getCantidadDeCalorias() {
+		return cantidadDeCalorias;
+	}
+	
+	public String getFechaVencimiento() {
+		return fechaVencimiento;
 	}
 
 	public double getPrecio() {
@@ -40,7 +48,7 @@ public class Postre {
 	public void setEsRefrigerado(boolean esRefrigerado) {
 		this.esRefrigerado = esRefrigerado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Nombre del postre=" + nombrePostre + ", Cantidad de calorias=" + cantidadDeCalorias + ", Fecha de vencimiento=" + fechaVencimiento + ", Precio=" + precio;
