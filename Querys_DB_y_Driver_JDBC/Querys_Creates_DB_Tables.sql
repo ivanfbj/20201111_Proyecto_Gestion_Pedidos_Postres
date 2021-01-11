@@ -14,7 +14,7 @@ CREATE TABLE `tbclientes` (
   `dFechaCreacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nIdCliente`),
   UNIQUE KEY `sNombreClienteXnTelefono` (`sNombreCliente`,`nTelefono`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `tbpostres` (
   `nIdPostre` bigint NOT NULL AUTO_INCREMENT,
@@ -28,8 +28,9 @@ CREATE TABLE `tbpostres` (
   `bEsHojaldrado` tinyint(1) DEFAULT NULL,
   `dFechaCreacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nIdPostre`),
+  UNIQUE KEY `sNombrePostre_UNIQUE` (`sNombrePostre`),
   KEY `sNombrePostre` (`sNombrePostre`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `tbpedidos` (
   `nIdPedido` bigint NOT NULL AUTO_INCREMENT,
@@ -43,7 +44,7 @@ CREATE TABLE `tbpedidos` (
   KEY `sCodigoPedido` (`sCodigoPedido`) /*!80000 INVISIBLE */,
   KEY `FK_nIdCliente_idx` (`nIdCliente`),
   CONSTRAINT `FK_nIdCliente` FOREIGN KEY (`nIdCliente`) REFERENCES `tbclientes` (`nIdCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `tbpostresxpedido` (
   `nIdPostresXPedido` bigint NOT NULL AUTO_INCREMENT,
@@ -54,4 +55,4 @@ CREATE TABLE `tbpostresxpedido` (
   KEY `FK_nIdPostre` (`nIdPostre`),
   CONSTRAINT `FK_nIdPedido` FOREIGN KEY (`nIdPedido`) REFERENCES `tbpedidos` (`nIdPedido`),
   CONSTRAINT `FK_nIdPostre` FOREIGN KEY (`nIdPostre`) REFERENCES `tbpostres` (`nIdPostre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
