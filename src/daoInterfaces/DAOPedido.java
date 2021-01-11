@@ -16,6 +16,8 @@ public class DAOPedido extends ConexionSql {
 	public void registrarPedido(Pedido objPedido) throws Exception {
 		try {
 
+			
+			
 		} catch (Exception e) {
 			System.out.println("DAOPedido, Error en el insert tbpedidos");
 			e.printStackTrace();

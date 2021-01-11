@@ -2,6 +2,9 @@ package software;
 
 import javax.swing.*;
 
+import daoInterfaces.DAOCliente;
+import daoInterfaces.DAOPostre;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -38,18 +41,35 @@ public class GuiRegistrarPedido extends JFrame {
 		add(new JLabel("Cliente:"));
 		cliente = new JComboBox<>();
 		cliente.addItem("Sin seleccionar");
-		
-		//ESTA LÓGICA DEBE CAMBIAR YA QUE LOS CLIENTES SE GUARDAN EN LA BASE DE DATOS
-		for (int i = 0; i < GuiRegistrarCliente.cliente.size(); i++) {
-			cliente.addItem(GuiRegistrarCliente.cliente.get(i).getNombreCliente());
+
+		// ESTA LÓGICA DEBE CAMBIAR YA QUE LOS CLIENTES SE GUARDAN EN LA BASE DE DATOS
+//		for (int i = 0; i < GuiRegistrarCliente.cliente.size(); i++) {
+//			cliente.addItem(GuiRegistrarCliente.cliente.get(i).getNombreCliente());
+//		}
+
+		try {
+			for (Cliente objClienteEnGuiRegistrarPedido : DAOCliente.listaClientes()) {
+				cliente.addItem(objClienteEnGuiRegistrarPedido.getNombreCliente());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		add(cliente);
 
 		add(new JLabel("Postre:"));
 		postre = new JComboBox<>();
 		postre.addItem("Sin seleccionar");
-		for (int i = 0; i < GuiRegistrarPostre.postres.size(); i++) {
-			postre.addItem(GuiRegistrarPostre.postres.get(i).getNombrePostre());
+		// ESTA LÓGICA DEBE CAMBIAR YA QUE LOS CLIENTES SE GUARDAN EN LA BASE DE DATOS
+//		for (int i = 0; i < GuiRegistrarPostre.postres.size(); i++) {
+//			postre.addItem(GuiRegistrarPostre.postres.get(i).getNombrePostre());
+//		}
+
+		try {
+			for (Postre objPostreEnGuiRegistrarPedido : DAOPostre.listaPostres()) {
+				postre.addItem(objPostreEnGuiRegistrarPedido.getNombrePostre());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		add(postre);
 
@@ -100,8 +120,9 @@ public class GuiRegistrarPedido extends JFrame {
 					} else {
 						valorTotal.setText(String.valueOf(GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1).getPrecio()));
 					}
-					
-					//ESTA LOGICA TAMBIÉN DEBE CAMBIAR YA QUE NO SE GUARDARÁ UN OBJETO DENTRO DE UN OBJETO, SINO QUE EL PEDIDO TENDRÁ EL ID DEL CLIENTE PARA LA RELACIÓN DE PEDIDOXCLIENTEXPOSTRE.
+
+					// ESTA LOGICA TAMBIÉN DEBE CAMBIAR YA QUE NO SE GUARDARÁ UN OBJETO DENTRO DE UN OBJETO, SINO QUE EL PEDIDO TENDRÁ EL ID DEL CLIENTE PARA LA RELACIÓN
+					// DE PEDIDOXCLIENTEXPOSTRE.
 					Pedido pedidoRealizado = new Pedido(codigoPedido.getText(), fechaPedido.getText(), fechaEntrega.getText(), GuiRegistrarCliente.cliente.get(cliente.getSelectedIndex() - 1),
 							tiendaDomicilio.getSelection().getActionCommand(), Double.parseDouble(valorTotal.getText()), GuiRegistrarPostre.postres.get(postre.getSelectedIndex() - 1));
 
@@ -217,7 +238,7 @@ public class GuiRegistrarPedido extends JFrame {
 			tienda.setEnabled(true);
 			cliente.setEnabled(true);
 			valorTotal.setText("0");
-			JOptionPane.showMessageDialog(null, "Clic en el boton Limpiar campos");
+			
 		}
 	}
 

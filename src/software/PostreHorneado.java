@@ -11,10 +11,10 @@ public class PostreHorneado extends Postre {
 
 	public int getEsHojaldradoInt() {
 		int validaHojaldradoEntero;
-		
-		return validaHojaldradoEntero = esHojaldrado ? 1:0 ;
+
+		return validaHojaldradoEntero = esHojaldrado ? 1 : 0;
 	}
-	
+
 	public String toString() {
 		String validaHojaldrado = esHojaldrado ? "Si" : "No";// operador ternario
 

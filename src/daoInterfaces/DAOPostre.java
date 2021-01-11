@@ -63,12 +63,43 @@ public class DAOPostre extends ConexionSql {
 
 	public static ArrayList<Postre> listaPostres() throws Exception {
 		ArrayList<Postre> listaPostresDeDB = new ArrayList<Postre>();
+
 		try {
+			DAOPostre.conectar();
+			pst = DAOCliente.conexion.prepareStatement(
+					"select nIdPostre,sNombrePostre,nCantidadDeCalorias,sFechaVencimiento,nPrecio,bEsRefrigerado,nTemperaturaMantenimiento,nTiempoMaximoSinRefrigeracionHoras,bEsHojaldrado from tbpostres");
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				if (rs.getInt("bEsRefrigerado") == 1) {
+					PostreRefrigerado postreRefrigeradoDeDB = new PostreRefrigerado(rs.getString("sNombrePostre"), rs.getDouble("nCantidadDeCalorias"), rs.getString("sFechaVencimiento"),
+							rs.getDouble("nPrecio"), rs.getDouble("nTemperaturaMantenimiento"), rs.getDouble("nTiempoMaximoSinRefrigeracionHoras"));
+					postreRefrigeradoDeDB.setnIdPostre(rs.getLong("nIdPostre"));
+					listaPostresDeDB.add(postreRefrigeradoDeDB);
+
+				} else {
+					boolean esHojaldradoDB = (rs.getInt("bEsHojaldrado") == 1) ? true : false;
+
+					PostreHorneado postreHorneadoDeDB = new PostreHorneado(rs.getString("sNombrePostre"), rs.getDouble("nCantidadDeCalorias"), rs.getString("sFechaVencimiento"),
+							rs.getDouble("nPrecio"), esHojaldradoDB);
+					postreHorneadoDeDB.setnIdPostre(rs.getLong("nIdPostre"));
+					listaPostresDeDB.add(postreHorneadoDeDB);
+
+				}
+
+			}
 
 		} catch (Exception e) {
 			System.out.println("DAOPostre, Error en el select tbpostres");
 			e.printStackTrace();
 		} finally {
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (pst != null) {
+				pst.close();
+			}
 
 		}
 		return listaPostresDeDB;
@@ -77,9 +108,6 @@ public class DAOPostre extends ConexionSql {
 	public static double PorcentajePostresRefrigerado() {
 		double porcentaje = 0;
 
-		
-		
-		
 		return porcentaje;
 
 	}

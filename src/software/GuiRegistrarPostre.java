@@ -62,7 +62,7 @@ public class GuiRegistrarPostre extends JFrame {
 		limpiarCamposButton.addActionListener(new LimpiarCampos());
 
 		add(mostrarPostresButton = new JButton("Mostrar postres registrados"));
-		mostrarPostresButton.addActionListener(new AccionMostrarRegistros());
+		mostrarPostresButton.addActionListener(new AccionMostrarRegistrosDeDB());
 
 		setSize(400, 500);
 		setResizable(false);
@@ -86,7 +86,7 @@ public class GuiRegistrarPostre extends JFrame {
 							Double.parseDouble(precio.getText()), esHojaldrado.isSelected());
 
 					postres.add(postreCreadoHorneado);
-					
+
 					// En este bloque TRY CATCH, se comenzó a implementar el envío de información a la base de datos MySQL.
 					try {
 						DAOPostre.registrarPostre(postreCreadoHorneado);
@@ -94,8 +94,7 @@ public class GuiRegistrarPostre extends JFrame {
 						System.out.println("GuiRegistrarPostre, falla al guardar el postre en la base de datos");
 						e1.printStackTrace();
 					}
-					
-					
+
 					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Horneado", JOptionPane.INFORMATION_MESSAGE);
 //Desde la creación del postre horneado lo añade al JComboBox de la ventana de Registrar Pedidos
 
@@ -137,7 +136,7 @@ public class GuiRegistrarPostre extends JFrame {
 							Double.parseDouble(precio.getText()), Double.parseDouble(temperaturaMantenimiento.getText()), Double.parseDouble(tiempoMaximoSinRefrigeracionHoras.getText()));
 
 					postres.add(postreCreadoRefrigerado);
-					
+
 					// En este bloque TRY CATCH, se comenzó a implementar el envío de información a la base de datos MySQL.
 					try {
 						DAOPostre.registrarPostre(postreCreadoRefrigerado);
@@ -145,15 +144,15 @@ public class GuiRegistrarPostre extends JFrame {
 						System.out.println("GuiRegistrarPostre, falla al guardar el postre en la base de datos");
 						e1.printStackTrace();
 					}
-					
+
 					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Refrigerado", JOptionPane.INFORMATION_MESSAGE);
 //Desde la creación del postre refrigerado lo añade al JComboBox de la ventana de Registrar Pedidos
 					try {
-					GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado.getNombrePostre());
+						GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado.getNombrePostre());
 					} catch (Exception e2) {
 						System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
 					}
-					
+
 					nombreDelPostre.setText(null);
 					cantidadDeCalorias.setText(null);
 					fechaVencimiento.setText(null);
@@ -198,7 +197,7 @@ public class GuiRegistrarPostre extends JFrame {
 
 		}
 	}
-
+//ESTA LOGICA YA NO ES NECESARIA POR EL CAMIO A BASE DE DATOS MYSQL
 	class AccionMostrarRegistros implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -209,6 +208,29 @@ public class GuiRegistrarPostre extends JFrame {
 
 			}
 			JOptionPane.showMessageDialog(null, listadoDePostres);
+
+		}
+	}
+
+	class AccionMostrarRegistrosDeDB implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			String listadoDePostres = "";
+			try {
+				if (!DAOPostre.listaPostres().isEmpty()) {
+					for (Postre postre : DAOPostre.listaPostres()) {
+						listadoDePostres += postre.toString();
+					}
+					JOptionPane.showMessageDialog(null, listadoDePostres, "Postres Registrados", JOptionPane.INFORMATION_MESSAGE);
+
+				} else {
+					JOptionPane.showMessageDialog(null, "No hay postres reglistrados", "SIN Postres Registrados", JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 
 		}
 	}

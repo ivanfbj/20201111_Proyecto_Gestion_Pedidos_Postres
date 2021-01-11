@@ -50,12 +50,12 @@ public class Ejecutable {
 //		}
 		
 		//System.out.println("");
-		System.out.println(proabdoCliente.validarSiExisteCliente("ivan270123456"));
-		
-boolean primerValor = true;
-
-int segundoValor = primerValor ? 1:0;
-System.out.println("este valor corresponde a " + segundoValor);
+//		System.out.println(proabdoCliente.validarSiExisteCliente("ivan270123456"));
+//		
+//boolean primerValor = true;
+//
+//int segundoValor = primerValor ? 1 : 0;
+//System.out.println("este valor corresponde a " + segundoValor);
 		
 //DAOPostre probandoPostre = new DAOPostre();
 //probandoPostre.registrarPostre(postreNoHojaldrado);
@@ -63,7 +63,12 @@ System.out.println("este valor corresponde a " + segundoValor);
 //probandoPostre.registrarPostre(new PostreRefrigerado("2MaracuyaRefrige", 300, "13 noviembre", 4000, 15, 24.5));
 //probandoPostre.registrarPostre(new PostreRefrigerado("2Oreo", 500, "14 noviembre", 5000, 20, 20));
 
-
+//DAOPostre postreImpreso = new DAOPostre();
+//
+//for (Postre postre : postreImpreso.listaPostres()) {
+//	System.out.print(postre.toString());
+//	
+//}
 
 	}
 }

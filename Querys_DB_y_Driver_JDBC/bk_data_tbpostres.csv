@@ -1,5 +1,16 @@
-nId,sNombrePostre,nCantidadDeCalorias,sFechaVencimiento,nPrecio,bEsRefrigerado,nTemperaturaMantenimiento,nTiempoMaximoSinRefrigeracionHoras,bEsHojaldrado,dFechaCreacion
+nIdPostre,sNombrePostre,nCantidadDeCalorias,sFechaVencimiento,nPrecio,bEsRefrigerado,nTemperaturaMantenimiento,nTiempoMaximoSinRefrigeracionHoras,bEsHojaldrado,dFechaCreacion
 6,MoraNoH,100,"11 noviembre",2000,0,NULL,NULL,0,"2021-01-02 22:31:19"
 7,FresaSiH,200,"12 noviembre",3000,0,NULL,NULL,1,"2021-01-02 22:36:13"
 8,Oreo,500,"14 novimebre",5000,1,20,20,NULL,"2021-01-02 22:36:23"
 9,MaracuyaRefrige,300,"13 noviembre",4000,1,15,24.5,NULL,"2021-01-02 22:36:58"
+10,Melocotón,400,"15 noviembre",6000,1,30,13,NULL,"2021-01-03 19:20:27"
+11,Tiramizú,600,"16 noviembre",7000,0,NULL,NULL,0,"2021-01-03 19:21:39"
+31,2MoraNoH,100,"11 noviembre",2000,0,NULL,NULL,0,"2021-01-03 21:09:34"
+32,2FresaSiH,200,"12 noviembre",3000,0,NULL,NULL,1,"2021-01-03 21:09:34"
+33,2MaracuyaRefrige,300,"13 noviembre",4000,1,15,24.5,NULL,"2021-01-03 21:09:34"
+34,2Oreo,500,"14 noviembre",5000,1,20,20,NULL,"2021-01-03 21:09:34"
+35,"Nuevo postre desde APP Horneado y hojaldrado",852,123,789,0,NULL,NULL,1,"2021-01-03 21:11:08"
+39,"horneado no hojaldrado",963,465,8521,0,NULL,NULL,0,"2021-01-03 21:20:47"
+40,refrigerado,156,1635,5220,1,123,157,NULL,"2021-01-03 21:21:28"
+41,refrigerado2,1321,798,159,1,123,12312,NULL,"2021-01-03 21:23:46"
+42,refrigerado3,1564,154,321,1,234,234,NULL,"2021-01-03 21:25:39"
