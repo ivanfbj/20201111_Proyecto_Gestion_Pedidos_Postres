@@ -1,5 +1,7 @@
 package software;
 
+import interfazGraficaDeUsuario.GuiRegistrarPostre;
+
 public class ControladorPostre {
 //ESTA CLASE Y SU MÉTODO TAMBIÉN SE CAMBIAN POR EL MÉTODO EN LA CLASE DAOPostre.
 	public static double PorcentajePostresRefrigerado() {

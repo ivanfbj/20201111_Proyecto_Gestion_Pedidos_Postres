@@ -1,9 +1,13 @@
-package software;
+package interfazGraficaDeUsuario;
 
 import javax.swing.*;
 
 import daoInterfaces.DAOCliente;
 import daoInterfaces.DAOPostre;
+import software.Cliente;
+import software.ControladorPedido;
+import software.Pedido;
+import software.Postre;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,17 +15,17 @@ import java.util.ArrayList;
 
 public class GuiRegistrarPedido extends JFrame {
 
-	static double valorDomicilio = 5000;
+	public static double valorDomicilio = 5000;
 	JTextField codigoPedido, fechaPedido, fechaEntrega, valorTotal;
 	static JComboBox<String> cliente;
 	static JComboBox<String> postre;
 
 	JRadioButton tienda;
-	static JRadioButton domicilio;
+	public static JRadioButton domicilio;
 	ButtonGroup tiendaDomicilio;
 	JButton guardarPedidoButton, anadirPostreButton, limpiarCamposButton, mostrarPedidosButton;
 
-	static ArrayList<Pedido> pedidosList = new ArrayList<Pedido>();
+	public static ArrayList<Pedido> pedidosList = new ArrayList<Pedido>();
 
 	public GuiRegistrarPedido() {
 

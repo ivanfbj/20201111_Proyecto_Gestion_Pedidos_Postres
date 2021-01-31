@@ -1,5 +1,7 @@
 package software;
 
+import interfazGraficaDeUsuario.GuiRegistrarPedido;
+
 public class ControladorPedido {
 
 	public static boolean validarSiExisteCodigoPedido(String codigoPedidoActual) {

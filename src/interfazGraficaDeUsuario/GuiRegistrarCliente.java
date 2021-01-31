@@ -1,4 +1,4 @@
-package software;
+package interfazGraficaDeUsuario;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import daoInterfaces.DAOCliente;
+import software.Cliente;
+import software.ControladorCliente;
 
 public class GuiRegistrarCliente extends JFrame {
 
@@ -13,7 +15,7 @@ public class GuiRegistrarCliente extends JFrame {
 	JRadioButton masculino, femenino;
 	static JTextField nombreCliente, direccion, telefono, edad;
 	JButton guardarButton, limpiarCamposButton, mostrarClientesButton;
-	static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
+	public static ArrayList<Cliente> cliente = new ArrayList<Cliente>();
 
 	DAOCliente daoClienteDB = new DAOCliente();
 

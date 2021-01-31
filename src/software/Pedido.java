@@ -14,7 +14,7 @@ public class Pedido {
 	private Cliente cliente;
 	private String lugarDeEntrega;
 	private double valorTotal;
-	ArrayList<Postre> postresDelPedidoList = new ArrayList<Postre>();
+	public ArrayList<Postre> postresDelPedidoList = new ArrayList<Postre>();
 
 	// Contructor explicito
 	public Pedido(String codigoPedido, String fechaPedido, String fechaEntregaPedido, Cliente cliente, String lugarDeEntrega, double valorTotal, Postre postrePedido) {

@@ -1,7 +1,8 @@
 package software;
 
-import daoInterfaces.DAOCliente;
-import daoInterfaces.DAOPostre;
+import interfazGraficaDeUsuario.GuiMenu;
+import interfazGraficaDeUsuario.GuiRegistrarCliente;
+import interfazGraficaDeUsuario.GuiRegistrarPostre;
 
 public class Ejecutable {
 	public static void main(String[] args) throws Exception {
@@ -39,7 +40,7 @@ public class Ejecutable {
 		// Pruebas de conexión a la base de datos MySQL con implementación del patron DAO
 //		ConexionSql conexionDataBase = new ConexionSql();
 //		conexionDataBase.conectar();
-		DAOCliente proabdoCliente = new DAOCliente();
+//		DAOCliente proabdoCliente = new DAOCliente();
 //		
 //		if (!proabdoCliente.listaClientes().isEmpty()) {
 //			for (Cliente c : proabdoCliente.listaClientes()) {

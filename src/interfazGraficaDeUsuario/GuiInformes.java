@@ -1,8 +1,11 @@
-package software;
+package interfazGraficaDeUsuario;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import software.ControladorPedido;
+import software.ControladorPostre;
 
 public class GuiInformes extends JFrame {
 

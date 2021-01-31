@@ -1,8 +1,11 @@
-package software;
+package interfazGraficaDeUsuario;
 
 import javax.swing.*;
 
 import daoInterfaces.DAOPostre;
+import software.Postre;
+import software.PostreHorneado;
+import software.PostreRefrigerado;
 
 import java.awt.FlowLayout;
 import java.awt.event.*;
@@ -16,7 +19,7 @@ public class GuiRegistrarPostre extends JFrame {
 	JButton guardarButton, limpiarCamposButton, mostrarPostresButton;
 	JLabel jLabeltemperaturaMantenimiento, jLabeltiempoMaximoSinRefrigeracionHoras;
 
-	static ArrayList<Postre> postres = new ArrayList<Postre>();
+	public static ArrayList<Postre> postres = new ArrayList<Postre>();
 
 	public GuiRegistrarPostre() {
 		setTitle("Registrar Postre");
