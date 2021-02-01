@@ -1,5 +1,7 @@
 package software;
 
+import daoInterfaces.DAOPostre;
+import interfazGraficaDeUsuario.GuiRegistrarPedido;
 import interfazGraficaDeUsuario.GuiRegistrarPostre;
 
 public class ControladorPostre {
@@ -19,6 +21,15 @@ public class ControladorPostre {
 	
 	public static void agregarPostreAlJComboBoxPostreGuiRegistrarPedido() {
 		
+		try {
+			GuiRegistrarPedido.postre.removeAllItems();
+			GuiRegistrarPedido.postre.addItem(new Postre("Sin seleccionar", 0, "", 0));
+			for (Postre objPostreEnGuiRegistrarPedido : DAOPostre.listaPostres()) {
+				GuiRegistrarPedido.postre.addItem(objPostreEnGuiRegistrarPedido);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 }

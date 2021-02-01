@@ -51,7 +51,11 @@ public class Postre {
 
 	@Override
 	public String toString() {
-		return "Nombre del postre=" + nombrePostre + ", Cantidad de calorias=" + cantidadDeCalorias + ", Fecha de vencimiento=" + fechaVencimiento + ", Precio=" + precio;
+		return nombrePostre ;
 	}
 
+	public String informacionCompleta() {
+		return "Nombre del postre=" + nombrePostre + ", Cantidad de calorias=" + cantidadDeCalorias + ", Fecha de vencimiento=" + fechaVencimiento + ", Precio=" + precio;
+	}
+	
 }

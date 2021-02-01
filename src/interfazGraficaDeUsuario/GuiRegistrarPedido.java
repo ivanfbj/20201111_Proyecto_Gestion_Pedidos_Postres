@@ -7,6 +7,7 @@ import daoInterfaces.DAOPostre;
 import software.Cliente;
 import software.ControladorCliente;
 import software.ControladorPedido;
+import software.ControladorPostre;
 import software.Pedido;
 import software.Postre;
 
@@ -19,7 +20,7 @@ public class GuiRegistrarPedido extends JFrame {
 	public static double valorDomicilio = 5000;
 	JTextField codigoPedido, fechaPedido, fechaEntrega, valorTotal;
 	public static JComboBox<Cliente> cliente;
-	static JComboBox<String> postre;
+	public static JComboBox<Postre> postre;
 
 	JRadioButton tienda;
 	public static JRadioButton domicilio;
@@ -53,15 +54,16 @@ public class GuiRegistrarPedido extends JFrame {
 
 		add(new JLabel("Postre:"));
 		postre = new JComboBox<>();
-		postre.addItem("Sin seleccionar");
-
-		try {
-			for (Postre objPostreEnGuiRegistrarPedido : DAOPostre.listaPostres()) {
-				postre.addItem(objPostreEnGuiRegistrarPedido.getNombrePostre());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+//		try {
+//			for (Postre objPostreEnGuiRegistrarPedido : DAOPostre.listaPostres()) {
+//				postre.addItem(objPostreEnGuiRegistrarPedido);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		ControladorPostre.agregarPostreAlJComboBoxPostreGuiRegistrarPedido();
+		
 		add(postre);
 
 		add(new JLabel("Lugar de entrega:"));

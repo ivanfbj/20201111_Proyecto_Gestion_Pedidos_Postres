@@ -3,6 +3,7 @@ package interfazGraficaDeUsuario;
 import javax.swing.*;
 
 import daoInterfaces.DAOPostre;
+import software.ControladorPostre;
 import software.Postre;
 import software.PostreHorneado;
 import software.PostreRefrigerado;
@@ -102,12 +103,13 @@ public class GuiRegistrarPostre extends JFrame {
 //Desde la creación del postre horneado lo añade al JComboBox de la ventana de Registrar Pedidos
 
 					// Controlar el error en consola cuando no se abre primero la ventana de pedido antes de registrar postre
-					try {
-						GuiRegistrarPedido.postre.addItem(postreCreadoHorneado.getNombrePostre());
-					} catch (Exception e2) {
-						System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
-					}
-
+//					try {
+//						GuiRegistrarPedido.postre.addItem(postreCreadoHorneado);
+//					} catch (Exception e2) {
+//						System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
+//					}
+					ControladorPostre.agregarPostreAlJComboBoxPostreGuiRegistrarPedido();
+					
 					nombreDelPostre.setText(null);
 					cantidadDeCalorias.setText(null);
 					fechaVencimiento.setText(null);
@@ -151,7 +153,7 @@ public class GuiRegistrarPostre extends JFrame {
 					JOptionPane.showMessageDialog(null, "El postre fue registrado exitosamente.", "Postre Refrigerado", JOptionPane.INFORMATION_MESSAGE);
 //Desde la creación del postre refrigerado lo añade al JComboBox de la ventana de Registrar Pedidos
 					try {
-						GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado.getNombrePostre());
+						GuiRegistrarPedido.postre.addItem(postreCreadoRefrigerado);
 					} catch (Exception e2) {
 						System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
 					}
