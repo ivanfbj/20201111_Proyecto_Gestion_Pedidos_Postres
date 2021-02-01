@@ -98,11 +98,7 @@ public class GuiRegistrarCliente extends JFrame {
 					sexo.clearSelection();
 
 					// Controlar el error en consola cuando no se abre primero la ventana de pedido antes de registrar cliente
-					try {
-						GuiRegistrarPedido.cliente.addItem(clientes.getNombreCliente());
-					} catch (Exception e2) {
-						System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
-					}
+					 ControladorCliente.agregarClienteAlJComboBoxClienteGuiRegistrarPedido();
 
 				} else {
 					JOptionPane.showMessageDialog(null, "El cliente ya existe por favor verificar la lista de clientes existentes", "CLIENTE DUPLICADO", JOptionPane.INFORMATION_MESSAGE);
@@ -130,7 +126,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 			String listadoClientes = "";
 			for (int i = 0; i < cliente.size(); i++) {
-				listadoClientes += cliente.get(i).toString() + "\n";
+				listadoClientes += cliente.get(i).toStringComplet() + "\n";
 
 			}
 			JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
@@ -146,7 +142,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 				if (!DAOCliente.listaClientes().isEmpty()) {
 					for (Cliente c : DAOCliente.listaClientes()) {
-						listadoClientes += c.toString() + "\n";
+						listadoClientes += c.toStringComplet() + "\n";
 					}
 					JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
 				} else {

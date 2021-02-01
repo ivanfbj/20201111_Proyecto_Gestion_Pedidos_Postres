@@ -5,6 +5,7 @@ import javax.swing.*;
 import daoInterfaces.DAOCliente;
 import daoInterfaces.DAOPostre;
 import software.Cliente;
+import software.ControladorCliente;
 import software.ControladorPedido;
 import software.Pedido;
 import software.Postre;
@@ -17,7 +18,7 @@ public class GuiRegistrarPedido extends JFrame {
 
 	public static double valorDomicilio = 5000;
 	JTextField codigoPedido, fechaPedido, fechaEntrega, valorTotal;
-	static JComboBox<String> cliente;
+	public static JComboBox<Cliente> cliente;
 	static JComboBox<String> postre;
 
 	JRadioButton tienda;
@@ -44,29 +45,15 @@ public class GuiRegistrarPedido extends JFrame {
 
 		add(new JLabel("Cliente:"));
 		cliente = new JComboBox<>();
-		cliente.addItem("Sin seleccionar");
-
-		// ESTA LÓGICA DEBE CAMBIAR YA QUE LOS CLIENTES SE GUARDAN EN LA BASE DE DATOS
-//		for (int i = 0; i < GuiRegistrarCliente.cliente.size(); i++) {
-//			cliente.addItem(GuiRegistrarCliente.cliente.get(i).getNombreCliente());
-//		}
-
-		try {
-			for (Cliente objClienteEnGuiRegistrarPedido : DAOCliente.listaClientes()) {
-				cliente.addItem(objClienteEnGuiRegistrarPedido.getNombreCliente());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ControladorCliente.agregarClienteAlJComboBoxClienteGuiRegistrarPedido();
+		
 		add(cliente);
+		cliente.addActionListener(new AccionConEljComboBox());
+		
 
 		add(new JLabel("Postre:"));
 		postre = new JComboBox<>();
 		postre.addItem("Sin seleccionar");
-		// ESTA LÓGICA DEBE CAMBIAR YA QUE LOS CLIENTES SE GUARDAN EN LA BASE DE DATOS
-//		for (int i = 0; i < GuiRegistrarPostre.postres.size(); i++) {
-//			postre.addItem(GuiRegistrarPostre.postres.get(i).getNombrePostre());
-//		}
 
 		try {
 			for (Postre objPostreEnGuiRegistrarPedido : DAOPostre.listaPostres()) {
@@ -242,7 +229,7 @@ public class GuiRegistrarPedido extends JFrame {
 			tienda.setEnabled(true);
 			cliente.setEnabled(true);
 			valorTotal.setText("0");
-			
+
 		}
 	}
 
@@ -277,4 +264,16 @@ public class GuiRegistrarPedido extends JFrame {
 		public void focusGained(FocusEvent e) {
 		}
 	}
+
+	class AccionConEljComboBox implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			Cliente objetoJComboBox = (Cliente) cliente.getSelectedItem();
+			System.out.println("El cliente seleccionado es " + objetoJComboBox.getNombreCliente() + " con ID " + objetoJComboBox.getnId());
+
+		}
+
+	}
+
 }

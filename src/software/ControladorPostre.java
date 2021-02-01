@@ -16,4 +16,9 @@ public class ControladorPostre {
 		}
 		return porcentaje = (cantidadPostresRefrigerados * 100) / totalPostres;
 	}
+	
+	public static void agregarPostreAlJComboBoxPostreGuiRegistrarPedido() {
+		
+		
+	}
 }
