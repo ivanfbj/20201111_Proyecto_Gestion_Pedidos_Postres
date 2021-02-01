@@ -51,7 +51,7 @@ public class Cliente {
 		return nombreCliente ;
 	}
 
-	public String toStringComplet() {
+	public String informacionCompleta() {
 		return "Nombre del cliente=" + nombreCliente + ", Direccion=" + direccion + ", Telefono=" + telefono + ", Sexo=" + sexo + ", Edad=" + edad;
 	}
 	

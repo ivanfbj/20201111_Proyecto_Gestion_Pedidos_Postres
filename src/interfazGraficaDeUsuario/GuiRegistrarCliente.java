@@ -126,7 +126,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 			String listadoClientes = "";
 			for (int i = 0; i < cliente.size(); i++) {
-				listadoClientes += cliente.get(i).toStringComplet() + "\n";
+				listadoClientes += cliente.get(i).informacionCompleta() + "\n";
 
 			}
 			JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
@@ -142,7 +142,7 @@ public class GuiRegistrarCliente extends JFrame {
 
 				if (!DAOCliente.listaClientes().isEmpty()) {
 					for (Cliente c : DAOCliente.listaClientes()) {
-						listadoClientes += c.toStringComplet() + "\n";
+						listadoClientes += c.informacionCompleta() + "\n";
 					}
 					JOptionPane.showMessageDialog(null, listadoClientes, "Clientes Registrados", JOptionPane.INFORMATION_MESSAGE);
 				} else {
