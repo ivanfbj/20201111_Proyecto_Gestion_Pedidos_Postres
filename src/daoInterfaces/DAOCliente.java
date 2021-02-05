@@ -16,14 +16,25 @@ public class DAOCliente extends ConexionSql {
 
 		try {
 			this.conectar();
-			pst = this.conexion.prepareStatement("Insert into tbclientes (sNombreCliente,sDireccion,nTelefono,sSexo,nEdad) values (?,?,?,?,?)");
+			String insertClienteSQL = "Insert into tbclientes (sNombreCliente,sDireccion,nTelefono,sSexo,nEdad) values (?,?,?,?,?)";
+			String captureIdCliente[] = { "ID" };
+
+			pst = this.conexion.prepareStatement(insertClienteSQL,captureIdCliente);
 			pst.setString(1, objCliente.getNombreCliente());
 			pst.setString(2, objCliente.getDireccion());
 			pst.setLong(3, objCliente.getTelefono());
 			pst.setString(4, objCliente.getSexo());
 			pst.setInt(5, objCliente.getEdad());
 			pst.execute();
-
+			
+			//INICIO Exactamente no sé como pero esto me sirve para capturar el ID al guardar el objeto en la base de datos
+			rs = pst.getGeneratedKeys();
+			
+			if(rs.next()) {
+				long id = rs.getLong(1);
+				System.out.println("Insert ID - " + id);
+			}
+			//FIN Exactamente no sé como pero esto me sirve para capturar el ID al guardar el objeto en la base de datos
 			System.out.println("DAOCliente, Se ejecutó el insert tbclientes correctamente");
 
 		} catch (Exception e) {
@@ -57,11 +68,11 @@ public class DAOCliente extends ConexionSql {
 
 			while (rs.next()) {
 				Cliente clienteDB = new Cliente(rs.getString("sNombreCliente"), rs.getString("sDireccion"), rs.getLong("nTelefono"), rs.getString("sSexo"), rs.getInt("nEdad"));
-				//Se retorna el nId de la base de datos al objeto en la aplicación, con el fin de poder utilizar un ID único en la asignación de pedidos.
+				// Se retorna el nId de la base de datos al objeto en la aplicación, con el fin de poder utilizar un ID único en la asignación de pedidos.
 				clienteDB.setnId(rs.getLong("nIdCliente"));
 				listaClientesDeDB.add(clienteDB);
 			}
-			//System.out.println("DAOCliente, Se consultan correctamente la tabla tbcliente");
+			// System.out.println("DAOCliente, Se consultan correctamente la tabla tbcliente");
 
 		} catch (Exception e) {
 			System.out.println("DAOCliente, Error en el select tbcliente");

@@ -12,17 +12,20 @@ public class DAOPedido extends ConexionSql {
 
 	private static PreparedStatement pst = null;
 	private static ResultSet rs = null;
-	
+
 	public void registrarPedido(Pedido objPedido) throws Exception {
 		try {
 
-			
-			
 		} catch (Exception e) {
 			System.out.println("DAOPedido, Error en el insert tbpedidos");
 			e.printStackTrace();
 		} finally {
-
+			if (rs != null) {
+				rs.close();
+			}
+			if (pst != null) {
+				pst.close();
+			}
 		}
 	}
 
@@ -47,9 +50,9 @@ public class DAOPedido extends ConexionSql {
 	}
 
 //REVISAR LA CLASE CONTROLADOR PEDIDO PARA MIGRAR LAS CONEXIONES A ESTA CLASE
-	//validarSiExisteCodigoPedido
-	//calcularValorTotalDelPedido
-	//cantidadDePostresXPedido
-	//edadPromedioClientesDomicilio
+	// validarSiExisteCodigoPedido
+	// calcularValorTotalDelPedido
+	// cantidadDePostresXPedido
+	// edadPromedioClientesDomicilio
 
 }

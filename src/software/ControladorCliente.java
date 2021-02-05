@@ -33,7 +33,7 @@ public static void agregarClienteAlJComboBoxClienteGuiRegistrarPedido() {
 		}
 
 	} catch (Exception e2) {
-		e2.printStackTrace();
+		//e2.printStackTrace();
 		System.out.println("La ventana de pedido no fue inicializada antes de abrir el aplicativo");
 	}
 }
